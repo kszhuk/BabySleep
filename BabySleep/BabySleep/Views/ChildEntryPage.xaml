@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:BabySleep.ViewModels"
+             xmlns:behaviour="clr-namespace:BabySleep.Behaviors"
+             xmlns:converter="clr-namespace:BabySleep.Convertors"
+             xmlns:resources="clr-namespace:BabySleep.Resx"
+             xmlns:custom="clr-namespace:BabySleep.CustomControls"
+             x:Class="BabySleep.Views.ChildEntryPage"
+             Title="{x:Static resources:ChildEntryResources.Child}"
+             BackgroundColor="White"
+             >
+
+    <ContentPage.BindingContext>
+        <local:ChildEntryPageViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:InverseBoolConverter x:Key="InverseBoolConverter"/>
+            <converter:FirstValidationErrorConverter x:Key="FirstValidationErrorConverter"/>
+            <converter:ByteToImageFieldConverter x:Key="ByteToImageFieldConverter"/>
+        </ResourceDictionary>
+
+        <Style TargetType="Label"
+            ApplyToDerivedTypes="True"
+            CanCascade="True">
+            <Setter Property="FontSize" Value="Medium" />
+            <Setter Property="Margin" Value="3,0" />
+        </Style>
+
+        <Style TargetType="StackLayout" x:Key="FieldGroup"
+            ApplyToDerivedTypes="True"
+            CanCascade="True">
+            <Setter Property="Margin" Value="0,20,0,0" />
+        </Style>
+
+    </ContentPage.Resources>
+
+    <StackLayout Margin="10" VerticalOptions="CenterAndExpand">
+
+        <Label
+                HorizontalTextAlignment="Center"
+                Style="{x:StaticResource TitleStyle}"
+                Text="{Binding MainLabelText}" />
+
+        <StackLayout Style="{StaticResource FieldGroup}">
+            <custom:ExtendedEntry Placeholder="{x:Static resources:ChildEntryResources.EnterChildName}"
+                Text="{Binding Name.Value}" MaxLength="{Binding NameLength}" >
+                <Entry.Behaviors>
+                    <behaviour:EntryLineValidationBehavior IsValid="{Binding Name.IsValid}"/>
+                </Entry.Behaviors>
+            </custom:ExtendedEntry>
+            <!--<Label Text="{Binding Name.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                        IsVisible="{Binding Name.IsValid, Converter={StaticResource InverseBoolConverter}}"
+                        Style="{StaticResource ErrorTextStyle}"/>-->
+        </StackLayout>
+
+        <StackLayout Style="{StaticResource FieldGroup}">
+            <custom:ExtendedDatePicker 
+                Format="D"
+                MinimumDate="{Binding MinimumDate}"
+                MaximumDate="{Binding MaximumDate}"
+                Date="{Binding BirthDate}"
+                Placeholder="{x:Static resources:ChildEntryResources.BirthDate}"
+                IsNewChild = "{Binding IsNew}"/>
+        </StackLayout>
+
+        <StackLayout Style="{StaticResource FieldGroup}">
+            <StackLayout Orientation="Horizontal" Spacing="0">
+                <Label Text="{x:Static resources:ChildEntryResources.IsPrematureBorn}" VerticalOptions="Center" TextColor="Black"/>
+                <Switch IsToggled="{Binding IsPrematureBorn}" x:Name="switchIsPrematureBorn"
+                        ThumbColor="AliceBlue" OnColor="#5AC8FF"/>
+            </StackLayout>
+
+            <custom:ExtendedEntry Keyboard="Numeric" 
+                Placeholder="{x:Static resources:ChildEntryResources.BirthWeek}"
+                Text="{Binding BirthWeek.Value}" 
+                IsVisible="{Binding IsPrematureBorn}">
+                <Entry.Behaviors>
+                    <behaviour:EntryLineValidationBehavior IsValid="{Binding BirthWeek.IsValid}"/>
+                </Entry.Behaviors>
+            </custom:ExtendedEntry>
+            <Label Text="{Binding BirthWeek.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                        IsVisible="{Binding BirthWeek.IsValid, Converter={StaticResource InverseBoolConverter}}"
+                        Style="{StaticResource ErrorTextStyle}"/>
+        </StackLayout>
+
+        <StackLayout Style="{StaticResource FieldGroup}">
+            <custom:ExtendedImageCircle Source="{Binding Picture, Converter={StaticResource ByteToImageFieldConverter}}"
+                IsVisible="true"
+                IsEmptyPicture="False"
+                WidthRequest="100" HeightRequest="100" 
+                Aspect="AspectFill" 
+                VerticalOptions="Start" HorizontalOptions="CenterAndExpand"
+                >
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding AddPictureCommand}"/>
+                </Image.GestureRecognizers>
+            </custom:ExtendedImageCircle>
+            <Label Text="{x:Static resources:ChildEntryResources.AddPicture}" FontSize="Small"  HorizontalOptions="CenterAndExpand"/>
+        </StackLayout>
+
+        <Grid Margin="0,20" IsVisible="{Binding IsNew, Converter={StaticResource InverseBoolConverter}}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Button Text="{x:Static resources:ChildEntryResources.UpdateChild}"
+                Style="{StaticResource ActiveButtonStyle}"
+                Command="{Binding SaveChildCommand}" 
+                Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="{Binding UpdateColumnSpan}"/>
+
+            <Button Text="{x:Static resources:ChildEntryResources.DeleteChild}"
+                Style="{StaticResource InactiveButtonStyle}"
+                Command="{Binding DeleteChildCommand}" IsVisible="{Binding IsDeleteVisible}" 
+                Grid.Column="1" Grid.Row="0"/>
+        </Grid>
+
+        <StackLayout Style="{StaticResource FieldGroup}">
+            <Button Text="{x:Static resources:ChildEntryResources.SaveChild}"
+                Style="{StaticResource ActiveButtonStyle}"
+                Command="{Binding SaveChildCommand}" 
+                IsVisible="{Binding IsNew}"/>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

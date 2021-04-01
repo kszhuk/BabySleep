@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="6.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BabySleep.Application\BabySleep.Application.csproj" />
+    <ProjectReference Include="..\BabySleep.Common\BabySleep.Common.csproj" />
+    <ProjectReference Include="..\BabySleep.Infrastructure\BabySleep.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

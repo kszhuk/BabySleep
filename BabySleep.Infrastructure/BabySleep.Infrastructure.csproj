@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Business\Interfaces\" />
+    <Folder Include="Business\Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BabySleep.EfData\BabySleep.EfData.csproj" />
+    <ProjectReference Include="..\BabySleep.Domain\BabySleep.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

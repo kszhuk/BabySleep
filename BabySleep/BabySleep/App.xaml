@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:local="clr-namespace:BabySleep.CustomControls"
+             x:Class="BabySleep.App">
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <local:ChildMenuView x:Key="ChildMenuView"/>
+
+            <Style TargetType="ContentPage" x:Key="MainMenu">
+                <Setter Property="NavigationPage.TitleView" Value="{StaticResource ChildMenuView}"/>
+            </Style>
+        </ResourceDictionary>
+        <Style TargetType="Label" x:Key="ErrorTextStyle">
+            <Setter Property="TextColor" Value = "Red"   />
+            <Setter Property="FontSize" Value = "12"   />
+            <Setter Property="Margin" Value = "0,0"   />
+        </Style>
+
+        <Style TargetType="Label" x:Key="TitleStyle"
+            ApplyToDerivedTypes="True"
+            CanCascade="True">
+            <Setter Property="FontSize" Value="Title" />
+            <Setter Property="Margin" Value="3,0" />
+            <Setter Property="HorizontalTextAlignment" Value="Center"/>
+            <Setter Property="TextColor" Value="#007AFF"/>
+        </Style>
+
+        <Style TargetType="Button" x:Key="ActiveButtonStyle">
+            <Setter Property="CornerRadius" Value = "20"   />
+            <Setter Property="BackgroundColor" Value = "#5AC8FF"   />
+            <Setter Property="Margin" Value = "10,0"   />
+        </Style>
+
+        <Style TargetType="Button" x:Key="InactiveButtonStyle">
+            <Setter Property="CornerRadius" Value = "20"   />
+            <Setter Property="BackgroundColor" Value = "LightSteelBlue"   />
+            <Setter Property="Margin" Value = "10,0"   />
+        </Style>
+
+        <!--<Style TargetType="Entry">
+            <Setter Property="BackgroundColor" Value="AliceBlue"/>
+        </Style>-->
+    </Application.Resources>
+</Application>

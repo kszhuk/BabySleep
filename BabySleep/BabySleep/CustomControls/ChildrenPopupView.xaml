@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BabySleep.CustomControls.ChildrenPopupView"
+             IsVisible="{Binding IsPopupVisible}" 
+             xmlns:local="clr-namespace:BabySleep.ViewModels"
+             xmlns:custom="clr-namespace:BabySleep.CustomControls"
+             xmlns:converter="clr-namespace:BabySleep.Convertors"
+             xmlns:resources="clr-namespace:BabySleep.Resx"
+             x:Name="ChildrenPopup">
+
+    <ContentView.BindingContext>
+        <local:ChildrenPopupViewModel />
+    </ContentView.BindingContext>
+
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <converter:ByteToImageFieldConverter x:Key="ByteToImageFieldConverter"/>
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <ContentView.Content>
+        <StackLayout VerticalOptions="Start" HorizontalOptions="End">
+            <Frame CornerRadius="10"  
+               OutlineColor="#5AC8FF" 
+               Padding="0">
+                <StackLayout WidthRequest="250" BackgroundColor="White">
+                    <CollectionView x:Name="listView" x:Uid="listViewId" ItemsSource="{Binding Children}"
+                        SelectionMode="Single"
+                        SelectedItem="{Binding SelectedChild}"
+                        SelectionChangedCommand="{Binding ChildSelectedCommand}"
+                        HeightRequest="{Binding CustomCollectionViewHeight}">
+                        <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Padding="2">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="70" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="30" />
+                                        </Grid.ColumnDefinitions>
+                                        <custom:ExtendedImageCircle Grid.Column="0" Grid.RowSpan="2"
+                                            Source="{Binding Picture, Converter={StaticResource ByteToImageFieldConverter}}"
+                                            Name="{Binding Name}"
+                                            IsEmptyPicture="{Binding IsEmptyPicture}"
+                                            WidthRequest="50" HeightRequest="50" 
+                                            Aspect="AspectFill" 
+                                            VerticalOptions="Center" HorizontalOptions="CenterAndExpand"/>
+                                        <Label Grid.Column="1" Grid.Row="0"
+                                           Text="{Binding Name}"
+                                           FontAttributes="Bold"
+                                           VerticalOptions="EndAndExpand"
+                                           FontSize="Medium"/>
+                                        <Label Grid.Column="1" Grid.Row="1"
+                                               Text="{Binding Age}"
+                                               FontAttributes="Italic"
+                                               VerticalOptions="StartAndExpand"/>
+                                        <ImageButton Grid.Column="2" Grid.RowSpan="2"
+                                                BackgroundColor="Transparent"
+                                                Source="edit_icon.png"
+                                                VerticalOptions="Center"
+                                                HorizontalOptions="EndAndExpand"
+                                                WidthRequest="30" HeightRequest="30"
+                                                Command="{Binding BindingContext.EditChildCommand, Source={x:Reference ChildrenPopup}}"
+                                                CommandParameter="{Binding .}"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                        <BoxView HeightRequest="1" 
+                        BackgroundColor="#5AC8FF" 
+                        HorizontalOptions="FillAndExpand" />
+                        <Button Text="{x:Static resources:MenuResources.AddNewChild}" 
+                            Command="{Binding AddChildCommand}" Style="{StaticResource ActiveButtonStyle}"
+                            Margin="5,0,5,5" IsVisible="{Binding IsAddVisible}" />
+                    </StackLayout>
+
+            </Frame>
+        </StackLayout>
+    </ContentView.Content>
+
+    <ContentView.GestureRecognizers>
+        <TapGestureRecognizer Command="{Binding ClosePopupCommand}"/>
+    </ContentView.GestureRecognizers>
+</ContentView>
