@@ -46,10 +46,7 @@ namespace BabySleep.Tests.Application
         [ClassData(typeof(ChildValidationDataGenerator))]
         public void GetFirstChildTest(Guid childGuid)
         {
-            var child = new Child { 
-                ChildGuid = childGuid, 
-                Name = "test1", 
-                BirthDate = DateTime.Now.AddDays(-3) };
+            var child = new Child(childGuid, DateTime.Now.AddDays(-3), null, "test1", null);
             var mock = new Mock<IChildRepository>();
             mock.Setup(repo => repo.GetFirst()).Returns(child);
 
@@ -83,9 +80,9 @@ namespace BabySleep.Tests.Application
         {
             var children = new List<Child>
             {
-                new Child { ChildGuid=Guid.NewGuid(), Name = "test1", BirthDate=DateTime.Now.AddDays(-3) },
-                new Child { ChildGuid=Guid.NewGuid(), Name = "test2", BirthDate=DateTime.Now.AddMonths(-3) },
-                new Child { ChildGuid=Guid.NewGuid(), Name = "test3", BirthDate=DateTime.Now.AddYears(-2) }
+                new Child(Guid.NewGuid(), DateTime.Now.AddDays(-3), null, "test1", null),
+                new Child(Guid.NewGuid(), DateTime.Now.AddMonths(-3), null, "test2", null),
+                new Child(Guid.NewGuid(), DateTime.Now.AddYears(-2), null, "test3", null)
             };
 
             return children;

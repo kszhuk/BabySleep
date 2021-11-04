@@ -23,7 +23,7 @@ namespace BabySleep.Infrastructure.Data.Repositories
 
         public void Add(Child child)
         {
-            var childrenName = context.Children.AsNoTracking().Select(c => c.Name.ToUpper()).ToList();
+            var childrenName = context.Children.Select(c => c.Name.ToUpper()).ToList();
             if (childrenName.Contains(child.Name.ToUpper()))
             {
                 throw new ChildAlreadyExistsException();
@@ -92,7 +92,7 @@ namespace BabySleep.Infrastructure.Data.Repositories
 
         public void Update(Child child)
         {
-            var childrenName = context.Children.AsNoTracking().Where(c => c.ChildGuid != child.ChildGuid).Select(c => c.Name.ToUpper()).ToList();
+            var childrenName = context.Children.Where(c => c.ChildGuid != child.ChildGuid).Select(c => c.Name.ToUpper()).ToList();
             if (childrenName.Contains(child.Name.ToUpper()))
             {
                 throw new ChildAlreadyExistsException();

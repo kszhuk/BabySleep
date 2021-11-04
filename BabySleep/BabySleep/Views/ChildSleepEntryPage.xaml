@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:BabySleep.ViewModels"
+             xmlns:custom="clr-namespace:BabySleep.CustomControls"
+             xmlns:converter="clr-namespace:BabySleep.Convertors"
+             xmlns:resources="clr-namespace:BabySleep.Resx"
+             xmlns:behaviour="clr-namespace:BabySleep.Behaviors"
+             x:Class="BabySleep.Views.ChildSleepEntryPage">
+
+    <ContentPage.BindingContext>
+        <local:ChildSleepEntryPageViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:SliderValueToColorConverter x:Key="SliderValueToColorConverter"/>
+            <converter:InverseBoolConverter x:Key="InverseBoolConverter"/>
+            <converter:NullableShortConverter x:Key="NullableShortConverter"/>
+            <converter:NullableIntConverter x:Key="NullableIntConverter"/>
+        </ResourceDictionary>
+
+        <Style TargetType="Label"
+            ApplyToDerivedTypes="True"
+            CanCascade="True">
+            <Setter Property="FontSize" Value="Medium" />
+            <Setter Property="Margin" Value="3,0" />
+        </Style>
+    </ContentPage.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <StackLayout  Margin="10" VerticalOptions="StartAndExpand" Grid.Row="0">
+            <ScrollView>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Label Text="{Binding Duration}"
+                        Style="{x:StaticResource TitleStyle}"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand"
+                        Grid.Row="0" Grid.ColumnSpan="2"/>
+                    <Button Text="{Binding TimerText}"
+                        Style="{StaticResource ActiveButtonStyle}"
+                        Command="{Binding TimerClickCommand}" 
+                        Grid.Row="1" Grid.ColumnSpan="2"/>
+
+                    <Label Text="{x:Static resources:ChildSleepResources.StartTime}" VerticalOptions="Center" Grid.Row="2" Grid.Column="0"/>
+                    <custom:ExtendedDateTimePicker 
+                        DateTime="{Binding StartDate}"
+                        MinimumDate="{Binding MinimumDate}"
+                        MaximumDate="{Binding MaximumDate}"
+                        IsEnabled="{Binding IsEnabled}"
+                        Grid.Row="2" Grid.Column="1"/>
+
+                    <Label Text="{x:Static resources:ChildSleepResources.EndTime}" VerticalOptions="Center" Grid.Row="3" Grid.Column="0"/>
+                    <custom:ExtendedDateTimePicker 
+                        DateTime="{Binding EndDate}"
+                        MinimumDate="{Binding MinimumDate}"
+                        MaximumDate="{Binding MaximumDate}"
+                        IsEnabled="{Binding IsEnabled}"
+                        Grid.Row="3" Grid.Column="1"/>
+
+                    <Label Text="{x:Static resources:ChildSleepResources.SleepPlace}" VerticalOptions="Center" Grid.Row="4" Grid.Column="0"/>
+                    <custom:ExtendedPicker x:Name="picker" Title= "{x:Static resources:ChildSleepResources.SleepPlace}"
+                        ItemsSource="{Binding SleepPlaces}"
+                        ItemDisplayBinding="{Binding Title}"
+                        SelectedItem="{Binding SelectedSleepPlace}"
+                        IsEnabled="{Binding IsEnabled}"
+                        Grid.Row="4" Grid.Column="1"/>
+
+                    <Label Text="{x:Static resources:ChildSleepResources.Feedings}" VerticalOptions="Center" Grid.Row="5" Grid.Column="0"/>
+                    <custom:ExtendedEntry Keyboard="Numeric" 
+                        Text="{Binding FeedingCount.Value, Mode=TwoWay, Converter={StaticResource NullableShortConverter}}"
+                        IsEnabled="{Binding IsEnabled}"
+                        Grid.Row="5" Grid.Column="1" Placeholder="{x:Static resources:ChildSleepResources.FeedingsPlaceholder}">
+                        <Entry.Behaviors>
+                            <behaviour:EntryLineValidationBehavior IsValid="{Binding FeedingCount.IsValid}"/>
+                        </Entry.Behaviors>
+                    </custom:ExtendedEntry>
+
+                    <Label Text="{x:Static resources:ChildSleepResources.Awakenings}" VerticalOptions="Center" Grid.Row="6" Grid.Column="0"/>
+                    <custom:ExtendedEntry Keyboard="Numeric" 
+                        Text="{Binding AwakeningCount.Value, Mode=TwoWay, Converter={StaticResource NullableShortConverter}}"
+                        IsEnabled="{Binding IsEnabled}"
+                        HeightRequest="50"
+                        Grid.Row="6" Grid.Column="1" Placeholder="{x:Static resources:ChildSleepResources.AwakeningsPlaceholder}">
+                        <Entry.Behaviors>
+                            <behaviour:EntryLineValidationBehavior IsValid="{Binding AwakeningCount.IsValid}"/>
+                        </Entry.Behaviors>
+                    </custom:ExtendedEntry>
+
+                    <Label Text="{x:Static resources:ChildSleepResources.SleepQuality}" VerticalOptions="Center" Grid.Row="7" Grid.Column="0"/>
+                    <custom:ExtendedSlider 
+	                    HeightRequest="7" 
+	                    WidthRequest="350" 
+	                    HorizontalOptions="Center"
+                        Value="{Binding Quality}"
+                        MinimumTrackColor="{Binding Quality,Converter={StaticResource SliderValueToColorConverter},Mode=TwoWay}"
+	                    Minimum="0" Maximum="10" Grid.Row="7" Grid.Column="1"/>
+
+                    <Label Text="{x:Static resources:ChildSleepResources.Notes}" VerticalOptions="Center" Grid.Row="8" Grid.Column="0"/>
+                    <custom:ExtendedEditor MaxLength="255"
+                        HeightRequest="80"
+                        Text="{Binding Notes}"
+                        IsEnabled="{Binding IsEnabled}"
+                        Grid.Row="8" Grid.Column="1"/>
+
+                    <Label Text="{x:Static resources:ChildSleepResources.FallAsleep}" VerticalOptions="Center" Grid.Row="9" Grid.Column="0"/>
+                    <custom:ExtendedEntry Keyboard="Numeric" 
+                        Text="{Binding FallAsleep.Value, Mode=TwoWay, Converter={StaticResource NullableIntConverter}}"
+                        IsEnabled="{Binding IsEnabled}"
+                        HeightRequest="50"
+                        Grid.Row="9" Grid.Column="1" Placeholder="{x:Static resources:ChildSleepResources.FallAsleepPlaceholder}">
+                        <Entry.Behaviors>
+                            <behaviour:EntryLineValidationBehavior IsValid="{Binding FallAsleep.IsValid}"/>
+                        </Entry.Behaviors>
+                    </custom:ExtendedEntry>
+
+                </Grid>
+            </ScrollView>
+        </StackLayout>
+        <Grid Grid.Row="1" IsVisible="{Binding IsNew, Converter={StaticResource InverseBoolConverter}}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button Text="{x:Static resources:GeneralResources.Update}"
+                Style="{StaticResource ActiveButtonStyle}"
+                Command="{Binding SaveCommand}" Grid.Column="0" Grid.Row="0"/>
+
+            <Button Text="{x:Static resources:GeneralResources.Delete}"
+                Style="{StaticResource InactiveButtonStyle}"
+                Command="{Binding DeleteCommand}" Grid.Column="1" Grid.Row="0"/>
+        </Grid>
+
+        <StackLayout Grid.Row="1" IsVisible="{Binding IsNew}">
+            <Button Text="{x:Static resources:GeneralResources.Save}"
+                Style="{StaticResource ActiveButtonStyle}"
+                Command="{Binding SaveCommand}" />
+        </StackLayout>
+    </Grid>
+</ContentPage>

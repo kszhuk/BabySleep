@@ -52,7 +52,7 @@ namespace BabySleep.Droid.CustomControls
                         TextAlign = Paint.Align.Center
                     };
 
-                    var textBounds = new Rect();
+                    var textBounds = new Android.Graphics.Rect();
                     textPaint.GetTextBounds(firstLetter, 0, 1, textBounds);
 
                     var yPos = (float)((canvas.Height / 2) - ((textPaint.Descent() + textPaint.Ascent()) / 2));
@@ -69,9 +69,11 @@ namespace BabySleep.Droid.CustomControls
                 canvas.Restore();
                 path = new Path();
                 path.AddCircle(Width / 2, Height / 2, radius, Path.Direction.Ccw);
-                var paint = new Paint();
-                paint.AntiAlias = true;
-                paint.StrokeWidth = 5;
+                var paint = new Paint
+                {
+                    AntiAlias = true,
+                    StrokeWidth = 5
+                };
                 paint.SetStyle(Paint.Style.Stroke);
                 paint.Color = global::Android.Graphics.Color.AliceBlue;
                 canvas.DrawPath(path, paint);

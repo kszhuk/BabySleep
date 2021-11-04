@@ -18,6 +18,7 @@ namespace BabySleep.EfData
 
         public DbSet<Child> Children { get; set; }
         public DbSet<Setting> Settings { get; set; }
+        public DbSet<Sleep> Sleeps { get; set; }
 
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options) { }
 

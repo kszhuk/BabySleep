@@ -118,7 +118,7 @@ namespace BabySleep.ViewModels
             }
         }
 
-        Guid childGuid;
+        private Guid childGuid;
         public Guid ChildGuid
         {
             get => childGuid;
@@ -218,9 +218,14 @@ namespace BabySleep.ViewModels
 
         private Task ReloadMainPage()
         {
+            ReloadChildrenList();
+            return App.NavigateMasterDetailPop();
+        }
+
+        private void ReloadChildrenList()
+        {
             MessagingCenter.Send((App)Xamarin.Forms.Application.Current, Constants.MS_UPDATE_CHILDREN_POPUP);
             MessagingCenter.Send((App)Xamarin.Forms.Application.Current, Constants.MS_UPDATE_MENU);
-            return App.NavigateMasterDetailPop();
         }
 
         private async void AddPicture()
@@ -241,8 +246,12 @@ namespace BabySleep.ViewModels
             {
                 try
                 {
-                    childService.DeleteChild(childGuid);
-                    await ReloadMainPage();
+                    var result = await ShowQuestion(ChildEntryResources.DeleteChildQuestion);
+                    if (result)
+                    {
+                        childService.DeleteChild(childGuid);
+                        await ReloadMainPage();
+                    }
                 }
                 catch(DeleteLastChildException)
                 {
@@ -278,6 +287,7 @@ namespace BabySleep.ViewModels
 
                 if (isNewPage)
                 {
+                    ReloadChildrenList();
                     App.Current.MainPage = new MasterPage();
                 }
                 else
@@ -332,7 +342,12 @@ namespace BabySleep.ViewModels
 
         private Task ShowException(string message)
         {
-            return ((App)Xamarin.Forms.Application.Current).MainPage.DisplayAlert(MainLabelText, message, "Ok");
+            return ((App)Xamarin.Forms.Application.Current).ShowException(MainLabelText, message);
+        }
+
+        private Task<bool> ShowQuestion(string message)
+        {
+            return ((App)Xamarin.Forms.Application.Current).ShowQuestion(MainLabelText, message);
         }
         #endregion
     }

@@ -28,11 +28,19 @@ namespace BabySleep.Core
                 .As<IChildService>();
             builder.RegisterType<AppLanguageService>()
                 .As<IAppLanguageService>();
+            builder.RegisterType<ChildSleepMainService>()
+                .As<IChildSleepMainService>();
+            builder.RegisterType<ChilidSleepEntryService>()
+                .As<IChilidSleepEntryService>();
 
             //Application dto assemblers
 
             builder.RegisterType<ChildDtoAssembler>()
                 .As<IChildDtoAssembler>();
+            builder.RegisterType<ChildSleepEntryDtoAssembler>()
+                .As<IChildSleepEntryDtoAssembler>();
+            builder.RegisterType<ChildSleepCarouselDtoAssembler>()
+                .As<IChildSleepCarouselDtoAssembler>();
 
             //Infrastructure repositories
 

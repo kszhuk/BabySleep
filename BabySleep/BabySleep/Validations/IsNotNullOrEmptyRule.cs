@@ -19,7 +19,7 @@ namespace BabySleep.Validations
                 return false;
             }
 
-            var str = value as string;
+            var str = value.ToString();
 
             return !string.IsNullOrWhiteSpace(str);
         }

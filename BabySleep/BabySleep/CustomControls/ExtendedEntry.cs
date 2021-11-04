@@ -6,7 +6,7 @@ using Xamarin.Forms;
 namespace BabySleep.CustomControls
 {
     /// <summary>
-    /// Applies common style for editor elements
+    /// Applies common style for entry elements
     /// </summary>
     public class ExtendedEntry : Entry
     {

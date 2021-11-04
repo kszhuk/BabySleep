@@ -9,51 +9,11 @@ namespace BabySleep.Domain.Models
 {
     public class Child
     {
-        public Child()
-        {
-            ChildGuid = Guid.Empty;
-        }
-
-        public Child(Guid childGuid, DateTime birthDate, short? birthWeek,
-            string name, byte[] picture)
-        {
-            ChildGuid = childGuid;
-            Name = name.Trim();
-            BirthDate = birthDate;
-            Picture = picture;
-            BirthWeek = birthWeek;
-        }
-
-        public bool Validate()
-        {
-            if (string.IsNullOrEmpty(Name))
-            {
-                throw new ChildNameEmptyException();
-            }
-
-            if (Name.Length > Constants.NAME_LENGTH)
-            {
-                throw new ChildNameLengthException();
-            }
-
-            if (BirthDate > DateTime.Now || BirthDate < DateTime.Now.AddYears(-Constants.MAX_YEARS))
-            {
-                throw new ChildAgeException();
-            }
-
-            if (BirthWeek != null && (BirthWeek.Value < Constants.BIRTH_WEEK_MIN_VALUE || BirthWeek.Value > Constants.BIRTH_WEEK_MAX_VALUE))
-            {
-                throw new ChildPrematureBirthWeekException();
-            }
-
-            return true;
-        }
-
-        public Guid ChildGuid { get; set; }
-        public string Name { get; set; }
-        public DateTime BirthDate { get; set; }
-        public byte[] Picture { get; set; }
-        public short? BirthWeek { get; set; }
+        public Guid ChildGuid { get; private set; }
+        public string Name { get; private set; }
+        public DateTime BirthDate { get; private set; }
+        public byte[] Picture { get; private set; }
+        public short? BirthWeek { get; private set; }
         public string Age
         {
             get
@@ -108,6 +68,46 @@ namespace BabySleep.Domain.Models
 
                 return ageMonths;
             }
+        }
+
+        public Child()
+        {
+            ChildGuid = Guid.Empty;
+        }
+
+        public Child(Guid childGuid, DateTime birthDate, short? birthWeek,
+            string name, byte[] picture)
+        {
+            ChildGuid = childGuid;
+            Name = name.Trim();
+            BirthDate = birthDate;
+            Picture = picture;
+            BirthWeek = birthWeek;
+        }
+
+        public bool Validate()
+        {
+            if (string.IsNullOrEmpty(Name))
+            {
+                throw new ChildNameEmptyException();
+            }
+
+            if (Name.Length > Constants.NAME_LENGTH)
+            {
+                throw new ChildNameLengthException();
+            }
+
+            if (BirthDate > DateTime.Now || BirthDate < DateTime.Now.AddYears(-Constants.MAX_YEARS))
+            {
+                throw new ChildAgeException();
+            }
+
+            if (BirthWeek != null && (BirthWeek.Value < Constants.BIRTH_WEEK_MIN_VALUE || BirthWeek.Value > Constants.BIRTH_WEEK_MAX_VALUE))
+            {
+                throw new ChildPrematureBirthWeekException();
+            }
+
+            return true;
         }
     }
 }

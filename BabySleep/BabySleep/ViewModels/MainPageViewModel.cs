@@ -8,10 +8,11 @@ using Xamarin.Forms;
 using BabySleep.Views;
 using BabySleep.Helpers;
 using BabySleep.Application.DTO;
+using BabySleep.Interfaces;
 
 namespace BabySleep.ViewModels
 {
-    public class MainPageViewModel : INotifyPropertyChanged
+    public class MainPageViewModel
     {
         public MainPageViewModel()
         {

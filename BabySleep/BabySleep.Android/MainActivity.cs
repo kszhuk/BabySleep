@@ -25,6 +25,7 @@ namespace BabySleep.Droid
             base.OnCreate(savedInstanceState);
             Instance = this;
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+            global::Xamarin.Forms.Forms.SetFlags("IndicatorView_Experimental");
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
         }

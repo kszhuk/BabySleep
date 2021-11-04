@@ -10,14 +10,7 @@ namespace BabySleep.Tests.Helpers
     {
         public static Child FillChild(Guid guid, string name, byte[] picture, short? birthWeek, DateTime birthDate)
         {
-            return new Child()
-            {
-                ChildGuid = guid,
-                Name = name,
-                Picture = picture,
-                BirthWeek = birthWeek,
-                BirthDate = birthDate
-            };
+            return new Child(guid, birthDate, birthWeek, name, picture);
         }
 
         public static ChildDto FillChildDto(Guid guid, string name, byte[] picture, short? birthWeek, DateTime birthDate, string age)

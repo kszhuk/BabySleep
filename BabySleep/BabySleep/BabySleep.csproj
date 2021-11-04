@@ -14,18 +14,24 @@
   <ItemGroup>
     <None Remove="Resources\add-icon.png" />
     <None Remove="Resources\add_photo_icon.jpg" />
+    <None Remove="Resources\clock-icon.png" />
     <None Remove="Resources\edit-icon.png" />
     <None Remove="Resources\hamburger_menu.png" />
     <None Remove="Resources\menu-edit-icon.png" />
     <None Remove="Resources\menu-home-icon.png" />
+    <None Remove="Resources\moon-icon.png" />
+    <None Remove="Resources\sun-icon.png" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Resources\add-icon.png" />
     <EmbeddedResource Include="Resources\add_photo_icon.jpg" />
+    <EmbeddedResource Include="Resources\clock-icon.png" />
     <EmbeddedResource Include="Resources\hamburger_menu.png" />
     <EmbeddedResource Include="Resources\menu-edit-icon.png" />
     <EmbeddedResource Include="Resources\menu-home-icon.png" />
+    <EmbeddedResource Include="Resources\moon-icon.png" />
+    <EmbeddedResource Include="Resources\sun-icon.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,7 +39,7 @@
     <PackageReference Include="Behaviors.XamarinForms" Version="4.0.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.2" />
     <PackageReference Include="sqlite-net-pcl" Version="1.7.335" />
-    <PackageReference Include="Xamarin.Forms" Version="4.6.0.1141" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2125" />
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
   </ItemGroup>
 
@@ -60,13 +66,28 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
+    <Compile Update="Resx\MenuResources.Designer.cs">
+      <DependentUpon>MenuResources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
     <Compile Update="Resx\MenuResources.ru.Designer.cs">
       <DependentUpon>MenuResources.ru.resx</DependentUpon>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
-    <Compile Update="Resx\MenuResources.Designer.cs">
-      <DependentUpon>MenuResources.resx</DependentUpon>
+    <Compile Update="Resx\GeneralResources.Designer.cs">
+      <DependentUpon>GeneralResources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Resx\GeneralResources.uk.Designer.cs">
+      <DependentUpon>GeneralResources.uk.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Resx\GeneralResources.ru.Designer.cs">
+      <DependentUpon>GeneralResources.ru.resx</DependentUpon>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
@@ -90,8 +111,26 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
+    <Compile Update="Resx\ChildSleepResources.ru.Designer.cs">
+      <DependentUpon>ChildSleepResources.ru.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Resx\ChildSleepResources.Designer.cs">
+      <DependentUpon>ChildSleepResources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Resx\ChildSleepResources.uk.Designer.cs">
+      <DependentUpon>ChildSleepResources.uk.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
     <Compile Update="Views\ChildEntryPage.xaml.cs">
       <DependentUpon>ChildEntryPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\ChildSleepPage.xaml.cs">
+      <DependentUpon>ChildSleepPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\EditLanguagePage.xaml.cs">
       <DependentUpon>EditLanguagePage.xaml</DependentUpon>
@@ -101,6 +140,9 @@
     </Compile>
     <Compile Update="Views\MenuPage.xaml.cs">
       <DependentUpon>MenuPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\StatisticsPage.xaml.cs">
+      <DependentUpon>StatisticsPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
@@ -121,7 +163,19 @@
       <LastGenOutput>EditSettingsResources.Designer.cs</LastGenOutput>
       <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Resx\MenuResources.resx">
+    <EmbeddedResource Update="Resx\GeneralResources.resx">
+      <LastGenOutput>GeneralResources.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resx\GeneralResources.uk.resx">
+      <LastGenOutput>GeneralResources.Designer.uk.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resx\GeneralResources.ru.resx">
+      <LastGenOutput>GeneralResources.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resx\MenuResources.ru.resx">
       <LastGenOutput>MenuResources.Designer.cs</LastGenOutput>
       <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
@@ -142,7 +196,10 @@
     <EmbeddedResource Update="CustomControls\ChildrenPopupView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ChildSleep.xaml">
+    <EmbeddedResource Update="Views\ChildSleepEntryPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ChildSleepPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\EditLanguagePage.xaml">
@@ -162,8 +219,20 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ChildEntryResources.ru.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\StatisticPage.xaml">
+    <EmbeddedResource Update="Views\StatisticsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resx\ChildSleepResources.resx">
+      <LastGenOutput>ChildSleepResources.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resx\ChildSleepResources.ru.resx">
+      <LastGenOutput>ChildSleepResources.ru.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resx\ChildSleepResources.uk.resx">
+      <LastGenOutput>ChildSleepResources.uk.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
   </ItemGroup>
 </Project>

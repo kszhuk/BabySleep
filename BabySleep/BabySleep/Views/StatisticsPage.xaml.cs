@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BabySleep.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,9 +11,9 @@ using Xamarin.Forms.Xaml;
 namespace BabySleep.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ChildSleep : ContentPage
+    public partial class StatisticsPage : ContentPage
     {
-        public ChildSleep()
+        public StatisticsPage()
         {
             InitializeComponent();
         }

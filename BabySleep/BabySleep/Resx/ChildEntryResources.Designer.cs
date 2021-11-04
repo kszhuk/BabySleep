@@ -115,7 +115,7 @@ namespace BabySleep.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Child.
         /// </summary>
         public static string Child {
             get {
@@ -160,11 +160,11 @@ namespace BabySleep.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Delete.
+        ///   Looks up a localized string similar to Do you really want to delete this child?.
         /// </summary>
-        public static string DeleteChild {
+        public static string DeleteChildQuestion {
             get {
-                return ResourceManager.GetString("DeleteChild", resourceCulture);
+                return ResourceManager.GetString("DeleteChildQuestion", resourceCulture);
             }
         }
         
@@ -228,24 +228,6 @@ namespace BabySleep.Resx {
         public static string NameRequired {
             get {
                 return ResourceManager.GetString("NameRequired", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Save.
-        /// </summary>
-        public static string SaveChild {
-            get {
-                return ResourceManager.GetString("SaveChild", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Update.
-        /// </summary>
-        public static string UpdateChild {
-            get {
-                return ResourceManager.GetString("UpdateChild", resourceCulture);
             }
         }
     }

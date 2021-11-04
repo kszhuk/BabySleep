@@ -118,12 +118,12 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AgeMonth" xml:space="preserve">
-    <value>{0} month(s)</value>
+    <value>{0} месяц(ев)</value>
   </data>
   <data name="AgeYear" xml:space="preserve">
-    <value>{0},{1} year(s)</value>
+    <value>{0},{1} лет</value>
   </data>
   <data name="Newborn" xml:space="preserve">
-    <value>Новорожденній</value>
+    <value>Новорожденный</value>
   </data>
 </root>

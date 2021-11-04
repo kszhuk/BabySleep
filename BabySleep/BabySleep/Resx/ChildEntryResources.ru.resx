@@ -127,31 +127,34 @@
     <value>Дата рождения</value>
   </data>
   <data name="BirthDateEmpty" xml:space="preserve">
-    <value>Birth date shouldn't be empty</value>
+    <value>Дата рождения должна быть заполнена</value>
   </data>
   <data name="BirthWeek" xml:space="preserve">
-    <value>Введите неделю рождения</value>
+    <value>Введите дату рождения</value>
   </data>
   <data name="BirthWeekRange" xml:space="preserve">
-    <value>Неделя рождения должна біть между {0} и {1}</value>
+    <value>Дата рождения для преждевременно рожденных должна быть между {0} и {1} неделями</value>
+  </data>
+  <data name="Child" xml:space="preserve">
+    <value>Ребенок</value>
   </data>
   <data name="ChildAgeRange" xml:space="preserve">
-    <value>Child birth date should be between today and 3 years from now</value>
+    <value>Дата рождения должна быть не более 3 лет назад</value>
   </data>
   <data name="ChildAlreadyExistsException" xml:space="preserve">
     <value>Ребенок с таким именем уже существует</value>
   </data>
   <data name="ChildLimitException" xml:space="preserve">
-    <value>Ви достигли лимита на количество детей</value>
+    <value>Нельзя добавить больше детей. Удалите или отредактируйте уже существующих.</value>
   </data>
   <data name="ChildName" xml:space="preserve">
     <value>Имя ребенка</value>
   </data>
-  <data name="DeleteChild" xml:space="preserve">
-    <value>Удалить</value>
+  <data name="DeleteChildQuestion" xml:space="preserve">
+    <value>Вы действительно хотите удалить этого ребенка?</value>
   </data>
   <data name="DeleteLastChildException" xml:space="preserve">
-    <value>Ви не можете удалить последнего ребенка</value>
+    <value>Последний ребенок не иожет быть удален</value>
   </data>
   <data name="DeletePicture" xml:space="preserve">
     <value>Удалить фото</value>
@@ -160,21 +163,15 @@
     <value>Редактировать ребенка</value>
   </data>
   <data name="EnterChildName" xml:space="preserve">
-    <value>Редактировать имя ребенка</value>
+    <value>Введите имя ребенка</value>
   </data>
   <data name="IsPrematureBorn" xml:space="preserve">
     <value>Ребенок рожден преждевременно</value>
   </data>
   <data name="NameMaxLength" xml:space="preserve">
-    <value>Max length for child name is {0}</value>
+    <value>Максимальная длина имени ребенка {0}</value>
   </data>
   <data name="NameRequired" xml:space="preserve">
     <value>Имя обязательно</value>
-  </data>
-  <data name="SaveChild" xml:space="preserve">
-    <value>Сохранить</value>
-  </data>
-  <data name="UpdateChild" xml:space="preserve">
-    <value>Обновить</value>
   </data>
 </root>

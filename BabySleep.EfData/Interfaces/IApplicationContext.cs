@@ -10,6 +10,7 @@ namespace BabySleep.EfData.Interfaces
     {
         DbSet<Child> Children { get; set; }
         DbSet<Setting> Settings { get; set; }
+        DbSet<Sleep> Sleeps { get; set; }
         int SaveChanges();
     }
 }

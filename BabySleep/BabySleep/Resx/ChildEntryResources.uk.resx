@@ -124,57 +124,54 @@
     <value>Додати фото</value>
   </data>
   <data name="BirthDate" xml:space="preserve">
-    <value>Дата нарождення</value>
+    <value>Дата народження</value>
   </data>
   <data name="BirthDateEmpty" xml:space="preserve">
-    <value>Birth date shouldn't be empty</value>
+    <value>Дата народження має бути заповнена</value>
   </data>
   <data name="BirthWeek" xml:space="preserve">
-    <value>Тиждень нарождення</value>
+    <value>Введіть дату народження</value>
   </data>
   <data name="BirthWeekRange" xml:space="preserve">
-    <value>Тиждень нарождення має бути між {0} та {1}</value>
+    <value>Дата народження для передчасно народжених дітей має бути між {0} і {1} тижнями</value>
+  </data>
+  <data name="Child" xml:space="preserve">
+    <value>Дитина</value>
   </data>
   <data name="ChildAgeRange" xml:space="preserve">
-    <value>Child birth date should be between today and 3 years from now</value>
+    <value>Дата народження має бути не більша ніж 3 роки</value>
   </data>
   <data name="ChildAlreadyExistsException" xml:space="preserve">
     <value>Дитина з таким ім'ям вже існує</value>
   </data>
   <data name="ChildLimitException" xml:space="preserve">
-    <value>Ви досягли ліміту на кількість дітей</value>
+    <value>Не можна додати більше дітей. Будь ласка, відредагуйте або видаліть вже існуючих.</value>
   </data>
   <data name="ChildName" xml:space="preserve">
     <value>Ім'я дитини</value>
   </data>
-  <data name="DeleteChild" xml:space="preserve">
-    <value>Виалити</value>
+  <data name="DeleteChildQuestion" xml:space="preserve">
+    <value>Ви дійсно хочете видалити цю дитину?</value>
   </data>
   <data name="DeleteLastChildException" xml:space="preserve">
-    <value>Ви не можете видалити останню дитину</value>
+    <value>Остання дитина не може бути видаленною</value>
   </data>
   <data name="DeletePicture" xml:space="preserve">
-    <value>Виалити фото</value>
+    <value>Видалити фото</value>
   </data>
   <data name="EditChild" xml:space="preserve">
     <value>Редагувати дитину</value>
   </data>
   <data name="EnterChildName" xml:space="preserve">
-    <value>Редагувати ім'я дитини</value>
+    <value>Введіть ім'я дитини</value>
   </data>
   <data name="IsPrematureBorn" xml:space="preserve">
-    <value>Дитина народжена достроково</value>
+    <value>Дитина передчасно народженна</value>
   </data>
   <data name="NameMaxLength" xml:space="preserve">
-    <value>Max length for child name is {0}</value>
+    <value>Максимальна довжина імені дитини {0}</value>
   </data>
   <data name="NameRequired" xml:space="preserve">
     <value>Ім'я обов'язкове</value>
-  </data>
-  <data name="SaveChild" xml:space="preserve">
-    <value>Зберегти</value>
-  </data>
-  <data name="UpdateChild" xml:space="preserve">
-    <value>Оновити</value>
   </data>
 </root>

@@ -136,7 +136,7 @@
     <value>Birth week for premature born should be between {0} and {1} weeks</value>
   </data>
   <data name="Child" xml:space="preserve">
-    <value />
+    <value>Child</value>
   </data>
   <data name="ChildAgeRange" xml:space="preserve">
     <value>Child birth date should be between today and 3 years from now</value>
@@ -150,8 +150,8 @@
   <data name="ChildName" xml:space="preserve">
     <value>Child Name</value>
   </data>
-  <data name="DeleteChild" xml:space="preserve">
-    <value>Delete</value>
+  <data name="DeleteChildQuestion" xml:space="preserve">
+    <value>Do you really want to delete this child?</value>
   </data>
   <data name="DeleteLastChildException" xml:space="preserve">
     <value>Last child couldn't be deleted</value>
@@ -173,11 +173,5 @@
   </data>
   <data name="NameRequired" xml:space="preserve">
     <value>Name is required</value>
-  </data>
-  <data name="SaveChild" xml:space="preserve">
-    <value>Save</value>
-  </data>
-  <data name="UpdateChild" xml:space="preserve">
-    <value>Update</value>
   </data>
 </root>

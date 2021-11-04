@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace BabySleep.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class StatisticPage : ContentPage
+    public partial class ChildSleepPage : ContentPage
     {
-        public StatisticPage()
+        public ChildSleepPage()
         {
             InitializeComponent();
         }

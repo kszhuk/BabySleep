@@ -14,21 +14,24 @@ namespace BabySleep.EfData.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "5.0.2");
+                .HasAnnotation("ProductVersion", "5.0.5");
 
             modelBuilder.Entity("BabySleep.EfData.Models.Child", b =>
                 {
                     b.Property<Guid>("ChildGuid")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("TEXT")
+                        .HasColumnName("ChildGUID");
 
                     b.Property<DateTime>("BirthDate")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("date");
 
                     b.Property<short?>("BirthWeek")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
                     b.Property<byte[]>("Picture")
@@ -43,17 +46,59 @@ namespace BabySleep.EfData.Migrations
                 {
                     b.Property<int>("RowId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("RowID");
 
                     b.Property<string>("Language")
+                        .HasMaxLength(5)
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Type")
-                        .HasColumnType("SMALLINT");
+                    b.Property<short>("Type")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("RowId");
 
                     b.ToTable("Settings");
+                });
+
+            modelBuilder.Entity("BabySleep.EfData.Models.Sleep", b =>
+                {
+                    b.Property<Guid>("SleepGuid")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("SleepGuid");
+
+                    b.Property<Guid>("ChildGuid")
+                        .HasColumnType("TEXT");
+
+                    b.Property<short>("AwakeningCount")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("EndTime")
+                        .HasColumnType("date");
+
+                    b.Property<short>("FallAsleepTime")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<short>("FeedingCount")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Note")
+                        .HasMaxLength(255)
+                        .HasColumnType("TEXT");
+
+                    b.Property<short>("Quality")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<short>("SleepPlace")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("StartTime")
+                        .HasColumnType("date");
+
+                    b.HasKey("SleepGuid");
+
+                    b.ToTable("Sleep");
                 });
 #pragma warning restore 612, 618
         }

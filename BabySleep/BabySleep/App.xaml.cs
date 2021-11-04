@@ -62,6 +62,7 @@ namespace BabySleep
                 EditSettingsResources.Culture = language;
                 ChildEntryResources.Culture = language;
                 MenuResources.Culture = language;
+                GeneralResources.Culture = language;
 
                 Thread.CurrentThread.CurrentCulture = language;
                 Thread.CurrentThread.CurrentUICulture = language;
@@ -71,6 +72,18 @@ namespace BabySleep
 
             return false;
         }
+
+        #region Alerts
+        public Task ShowException(string title, string message)
+        {
+            return MainPage.DisplayAlert(title, message, GeneralResources.Ok);
+        }
+
+        public Task<bool> ShowQuestion(string title, string message)
+        {
+            return MainPage.DisplayAlert(title, message, GeneralResources.Yes, GeneralResources.No);
+        }
+        #endregion
         #endregion
 
         #region PrivateMethods
