@@ -39,8 +39,8 @@ namespace BabySleep.Core
                 .As<IChildDtoAssembler>();
             builder.RegisterType<ChildSleepEntryDtoAssembler>()
                 .As<IChildSleepEntryDtoAssembler>();
-            builder.RegisterType<ChildSleepCarouselDtoAssembler>()
-                .As<IChildSleepCarouselDtoAssembler>();
+            builder.RegisterType<ChildSleepMainDtoAssembler>()
+                .As<IChildSleepMainDtoAssembler>();
 
             //Infrastructure repositories
 

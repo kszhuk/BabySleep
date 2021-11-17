@@ -14,6 +14,7 @@ namespace BabySleep.CustomControls
         public ExtendedEntry Entry { get; private set; } = new ExtendedEntry();
         public ExtendedDatePicker DatePicker { get; private set; } = new ExtendedDatePicker() { IsVisible = false };
         public TimePicker TimePicker { get; private set; } = new TimePicker() { IsVisible = false };
+        //public Button PreviousButton { get; private set; }
 
         public string StringFormat
         {

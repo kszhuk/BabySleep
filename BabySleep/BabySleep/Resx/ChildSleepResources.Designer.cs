@@ -196,6 +196,24 @@ namespace BabySleep.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sleep in this time frame already exists.
+        /// </summary>
+        public static string SleepAlreadyExistsException {
+            get {
+                return ResourceManager.GetString("SleepAlreadyExistsException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sleep should last less than {0} hours.
+        /// </summary>
+        public static string SleepDurationException {
+            get {
+                return ResourceManager.GetString("SleepDurationException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sleep.
         /// </summary>
         public static string SleepMain {

@@ -20,7 +20,7 @@ namespace BabySleep.Domain.Models
         {
             get
             {
-                if(StartTime.Hour < 5 || StartTime.Hour > 20)
+                if(StartTime.Hour <= 5 || StartTime.Hour >= 19)
                 {
                     return SleepType.NightSleep;
                 }

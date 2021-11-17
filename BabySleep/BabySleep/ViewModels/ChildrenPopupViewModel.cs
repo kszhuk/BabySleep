@@ -3,6 +3,7 @@ using BabySleep.Application.DTO;
 using BabySleep.Application.Interfaces;
 using BabySleep.Helpers;
 using BabySleep.Views;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -126,6 +127,7 @@ namespace BabySleep.ViewModels
             App.SelectedChildGuid = SelectedChild.ChildGuid;
 
             MessagingCenter.Send((App)Xamarin.Forms.Application.Current, Constants.MS_UPDATE_MENU);
+            MessagingCenter.Send((App)Xamarin.Forms.Application.Current, Constants.MS_UPDATE_SLEEPS, DateTime.Now);
 
             IsPopupVisible = false;
             SelectedChild = null;

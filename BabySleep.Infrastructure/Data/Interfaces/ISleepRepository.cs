@@ -11,8 +11,7 @@ namespace BabySleep.Infrastructure.Data.Interfaces
         Sleep Get(Guid sleepGuid);
         void Add(Sleep sleep);
         void Delete(Guid sleepGuid);
-        IList<Sleep> Take(Guid childGuid, int count);
-        IList<Sleep> Take(Guid childGuid, int count, DateTime maxDate);
+        IList<Sleep> Take(Guid childGuid, DateTime currentDate);
         void Update(Sleep sleep);
     }
 }

@@ -57,7 +57,7 @@
         </StackLayout>
 
         <StackLayout Style="{StaticResource FieldGroup}">
-            <custom:ExtendedDatePicker 
+            <custom:ExtendedDatePicker
                 Format="D"
                 MinimumDate="{Binding MinimumDate}"
                 MaximumDate="{Binding MaximumDate}"

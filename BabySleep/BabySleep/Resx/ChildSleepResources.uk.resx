@@ -162,6 +162,12 @@
   <data name="Parents" xml:space="preserve">
     <value>Спільний з батьками</value>
   </data>
+  <data name="SleepAlreadyExistsException" xml:space="preserve">
+    <value>Сон у цей період часу вже існує</value>
+  </data>
+  <data name="SleepDurationException" xml:space="preserve">
+    <value>Сон повинен тривати менше {0} годин</value>
+  </data>
   <data name="SleepMain" xml:space="preserve">
     <value>Заснув</value>
   </data>

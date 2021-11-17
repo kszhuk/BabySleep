@@ -2,6 +2,7 @@
 using BabySleep.Application.DTO;
 using BabySleep.Application.Interfaces;
 using BabySleep.Common.Enums;
+using BabySleep.Common.Exceptions.Sleep;
 using BabySleep.Helpers;
 using BabySleep.Models;
 using BabySleep.Resx;
@@ -278,7 +279,7 @@ namespace BabySleep.ViewModels
             SleepTimer.Start();
         }
 
-        private async void TimerClick()
+        private void TimerClick()
         {
             var currentTime = DateTime.Now;
 
@@ -352,23 +353,39 @@ namespace BabySleep.ViewModels
                 return;
             }
 
-            var childSleep = new ChildSleepEntryDto()
+            try
             {
-                AwakeningCount = awakeningCount.Value ?? 0,
-                EndTime = endDate,
-                FallAsleepTime = fallAsleep.Value ?? Constants.FALL_ASLEEP_TIME,
-                FeedingCount = feedingCount.Value ?? 0,
-                Notes = notes,
-                Quality = quality,
-                SleepGuid = sleepGuid,
-                SleepPlace = selectedSleepPlace.Id,
-                StartTime = startDate,
-                ChildGuid = App.SelectedChildGuid
-            };
-            sleepService.Save(childSleep);
+                var childSleep = new ChildSleepEntryDto()
+                {
+                    AwakeningCount = awakeningCount.Value ?? 0,
+                    EndTime = endDate,
+                    FallAsleepTime = fallAsleep.Value ?? Constants.FALL_ASLEEP_TIME,
+                    FeedingCount = feedingCount.Value ?? 0,
+                    Notes = notes,
+                    Quality = quality,
+                    SleepGuid = sleepGuid,
+                    SleepPlace = selectedSleepPlace.Id,
+                    StartTime = startDate,
+                    ChildGuid = App.SelectedChildGuid
+                };
+                sleepService.Save(childSleep);
 
-            MessagingCenter.Send((App)Xamarin.Forms.Application.Current, Constants.MS_UPDATE_SLEEPS, StartDate);
-            await App.NavigateMasterDetailPop();
+                MessagingCenter.Send((App)Xamarin.Forms.Application.Current, Constants.MS_UPDATE_SLEEPS, StartDate);
+                await App.NavigateMasterDetailPop();
+            }
+            catch (SleepAlreadyExistsException)
+            {
+                await ((App)Xamarin.Forms.Application.Current).ShowException(ChildSleepResources.SleepMain, ChildSleepResources.SleepAlreadyExistsException);
+            }
+            catch (SleepDurationException)
+            {
+                await ((App)Xamarin.Forms.Application.Current).ShowException(ChildSleepResources.SleepMain, 
+                    string.Format(ChildSleepResources.SleepDurationException, Common.Helpers.Constants.MAX_SLEEP_DURATION));
+            }
+            catch (Exception ex)
+            {
+                await ((App)Xamarin.Forms.Application.Current).ShowException(ChildSleepResources.SleepMain, ex.Message);
+            }
         }
 
         private async void Delete()
@@ -376,10 +393,17 @@ namespace BabySleep.ViewModels
             var result = await ((App)Xamarin.Forms.Application.Current).ShowQuestion(ChildSleepResources.DeleteSleepTitle, ChildSleepResources.DeleteSleepQuestion);
             if (result)
             {
-                sleepService.Delete(SleepGuid);
+                try
+                {
+                    sleepService.Delete(SleepGuid);
 
-                MessagingCenter.Send((App)Xamarin.Forms.Application.Current, Constants.MS_UPDATE_SLEEPS, StartDate);
-                await App.NavigateMasterDetailPop();
+                    MessagingCenter.Send((App)Xamarin.Forms.Application.Current, Constants.MS_UPDATE_SLEEPS, StartDate);
+                    await App.NavigateMasterDetailPop();
+                }
+                catch (Exception ex)
+                {
+                    await ((App)Xamarin.Forms.Application.Current).ShowException(ChildSleepResources.SleepMain, ex.Message);
+                }
             }
         }
 

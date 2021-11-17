@@ -162,6 +162,10 @@ namespace BabySleep.ViewModels
             set
             {
                 isPrematureBorn = value;
+                if(!isPrematureBorn)
+                {
+                    BirthWeek.IsValid = true;
+                }
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsPrematureBorn)));
             }
         }

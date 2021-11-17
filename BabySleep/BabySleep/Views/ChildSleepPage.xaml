@@ -40,164 +40,161 @@
     <AbsoluteLayout>
         <Grid>
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <StackLayout Grid.Row="0">
-                <IndicatorView x:Name="indicatorView"
-                       IndicatorColor="LightGray"
-                       SelectedIndicatorColor="DarkGray"
-                       HorizontalOptions="Center"
-                       MaximumVisible="{Binding IndicatorCount}"
-                       />
-                <CarouselView ItemsSource="{Binding ChildSleepsMain}" 
-                              Position="{Binding CarouselPosition}" x:Name="carouselView" 
-                              IndicatorView="indicatorView"
-                              >
-                    <CarouselView.ItemTemplate>
-                        <DataTemplate>
-                            <!--<StackLayout>-->
-                                <Grid>
+            <StackLayout Grid.Row="0" HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
+                <Image 
+                    BackgroundColor="Transparent"
+                    Source="arrow_left_icon.png"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Start"
+                    WidthRequest="20" HeightRequest="20">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding PreviousDateCommand}"/>
+                    </Image.GestureRecognizers>
+                </Image>
+                <custom:ExtendedTitleDatePicker 
+                    Format="MMMM dd, yyyy"
+                    Date="{Binding BindingContext.CurrentDate, Source={x:Reference ChildSleep}}"
+                    MaximumDate="{x:Static sys:DateTime.Now}" Grid.Column="0" 
+                    />
+                <Image 
+                    BackgroundColor="Transparent"
+                    Source="arrow_right_icon.png"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Start"
+                    WidthRequest="20" HeightRequest="20"
+                    IsVisible="{Binding IsNextVisible}">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding NextDateCommand}"/>
+                    </Image.GestureRecognizers>
+                </Image>
+            </StackLayout>
+            <ScrollView  Grid.Column="0" Grid.Row="1">
+                <StackLayout>
+                <CollectionView x:Name="collectionViewChildSleeps" ItemsSource="{Binding ChildSleepsMain, Mode=TwoWay}"
+                    SelectionMode="Single"
+                    SelectionChangedCommand="{Binding BindingContext.EditSleepCommand, Source={x:Reference ChildSleep}}"
+                    SelectionChangedCommandParameter="{Binding Source={x:Reference collectionViewChildSleeps}, Path=SelectedItem}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Padding="10">
                                     <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
                                         <RowDefinition Height="Auto" />
                                         <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="60" />
+                                        <ColumnDefinition Width="Auto" />
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
-                                    <custom:ExtendedTitleDatePicker HorizontalOptions="CenterAndExpand"
-                                    Format="MMMM dd, yyyy"
-                                    Date="{Binding BindingContext.CurrentDate, Source={x:Reference ChildSleep}}"
-                                    MaximumDate="{x:Static sys:DateTime.Now}" Grid.Column="0" Grid.Row="0"
-                                    />
-                                    <ScrollView  Grid.Column="0" Grid.Row="1">
-                                        <StackLayout>
-                                            <CollectionView x:Name="collectionViewChildSleeps" ItemsSource="{Binding ChildSleeps, Mode=TwoWay}"
-                                            SelectionMode="Single"
-                                            SelectionChangedCommand="{Binding BindingContext.EditSleepCommand, Source={x:Reference ChildSleep}}"
-                                            SelectionChangedCommandParameter="{Binding Source={x:Reference collectionViewChildSleeps}, Path=SelectedItem}">
-                                                <CollectionView.ItemTemplate>
-                                                    <DataTemplate>
-                                                        <Grid Padding="10">
-                                                            <Grid.RowDefinitions>
-                                                                <RowDefinition Height="Auto" />
-                                                                <RowDefinition Height="Auto" />
-                                                                <RowDefinition Height="Auto" />
-                                                                <RowDefinition Height="Auto" />
-                                                                <RowDefinition Height="Auto" />
-                                                            </Grid.RowDefinitions>
-                                                            <Grid.ColumnDefinitions>
-                                                                <ColumnDefinition Width="60" />
-                                                                <ColumnDefinition Width="Auto" />
-                                                                <ColumnDefinition Width="*" />
-                                                            </Grid.ColumnDefinitions>
-                                                            <BoxView Color="White" Grid.Column="0" Grid.Row="0" Grid.RowSpan="4" Grid.ColumnSpan="3"/>
+                                    <BoxView Color="White" Grid.Column="0" Grid.Row="0" Grid.RowSpan="4" Grid.ColumnSpan="3"/>
 
-                                                            <!--1st column with sun/moon icon-->
-                                                            <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="4"
-                                                            BackgroundColor="Transparent"
-                                                            Source="{Binding IsDaySleep, Converter={StaticResource ImageSleepTypeConverter}}"
-                                                            VerticalOptions="Center"
-                                                            HorizontalOptions="Start"
-                                                            WidthRequest="50" HeightRequest="50"/>
+                                    <!--1st column with sun/moon icon-->
+                                    <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="4"
+                                    BackgroundColor="Transparent"
+                                    Source="{Binding IsDaySleep, Converter={StaticResource ImageSleepTypeConverter}}"
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="Start"
+                                    WidthRequest="50" HeightRequest="50"/>
 
-                                                            <!--2nd column with woke/sleep info-->
-                                                            <Label Grid.Column="1" Grid.Row="0" 
-                                                               Text="{x:Static resources:ChildSleepResources.SleepMain}"
-                                                               FontAttributes="Bold"
-                                                               VerticalOptions="EndAndExpand"
-                                                               FontSize="Medium"/>
-                                                            <Label Grid.Column="1" Grid.Row="1" 
-                                                               Text="{Binding StartTime, StringFormat='{}{0:HH\\:mm}'}"
-                                                               VerticalOptions="EndAndExpand"
-                                                               FontSize="Medium"/>
-                                                            <Label Grid.Column="1" Grid.Row="2" 
-                                                               Padding="0,15,0,0"
-                                                               Text="{x:Static resources:ChildSleepResources.Woke}"
-                                                               FontAttributes="Bold"
-                                                               VerticalOptions="EndAndExpand"
-                                                               FontSize="Medium"/>
-                                                            <Label Grid.Column="1" Grid.Row="3" 
-                                                               Text="{Binding EndTime, StringFormat='{}{0:HH\\:mm}'}"
-                                                               VerticalOptions="EndAndExpand"
-                                                               FontSize="Medium"/>
+                                    <!--2nd column with woke/sleep info-->
+                                    <Label Grid.Column="1" Grid.Row="0" 
+                                        Text="{x:Static resources:ChildSleepResources.SleepMain}"
+                                        FontAttributes="Bold"
+                                        VerticalOptions="EndAndExpand"
+                                        FontSize="Medium"/>
+                                    <Label Grid.Column="1" Grid.Row="1" 
+                                        Text="{Binding StartTime, StringFormat='{}{0:HH\\:mm}'}"
+                                        VerticalOptions="EndAndExpand"
+                                        FontSize="Medium"/>
+                                    <Label Grid.Column="1" Grid.Row="2" 
+                                        Padding="0,15,0,0"
+                                        Text="{x:Static resources:ChildSleepResources.Woke}"
+                                        FontAttributes="Bold"
+                                        VerticalOptions="EndAndExpand"
+                                        FontSize="Medium"/>
+                                    <Label Grid.Column="1" Grid.Row="3" 
+                                        Text="{Binding EndTime, StringFormat='{}{0:HH\\:mm}'}"
+                                        VerticalOptions="EndAndExpand"
+                                        FontSize="Medium"/>
 
-                                                            <!--3rd column with duration info-->
-                                                            <StackLayout Orientation="Horizontal" Padding="15,0,0,0"
-                                                            Grid.Column="2" Grid.Row="0">
-                                                                <Image Grid.Column="2" Grid.Row="0"
-                                                                    BackgroundColor="Transparent"
-                                                                    Source="clock_icon.png"
-                                                                    VerticalOptions="Center"
-                                                                    HorizontalOptions="Start"
-                                                                    WidthRequest="20" HeightRequest="20"/>
-                                                                <Label Grid.Column="2" Grid.Row="0"
-                                                                   Text="{Binding Duration}"
-                                                                   FontAttributes="Bold"
-                                                                   VerticalOptions="EndAndExpand"
-                                                                   FontSize="Medium"/>
-                                                            </StackLayout>
+                                    <!--3rd column with duration info-->
+                                    <StackLayout Orientation="Horizontal" Padding="15,0,0,0"
+                                    Grid.Column="2" Grid.Row="0">
+                                        <Image Grid.Column="2" Grid.Row="0"
+                                            BackgroundColor="Transparent"
+                                            Source="clock_icon.png"
+                                            VerticalOptions="Center"
+                                            HorizontalOptions="Start"
+                                            WidthRequest="20" HeightRequest="20"/>
+                                        <Label Grid.Column="2" Grid.Row="0"
+                                            Text="{Binding Duration}"
+                                            FontAttributes="Bold"
+                                            VerticalOptions="EndAndExpand"
+                                            FontSize="Medium"/>
+                                    </StackLayout>
 
-                                                            <!--3rd column with quality info-->
-                                                            <StackLayout Orientation="Horizontal" Padding="15,0,0,0"
-                                                            Grid.Column="2" Grid.Row="1">
-                                                                <Image Grid.Column="2" Grid.Row="1"
-                                                                    BackgroundColor="Transparent"
-                                                                    Source="quality_icon.png"
-                                                                    VerticalOptions="Center"
-                                                                    HorizontalOptions="Start"
-                                                                    WidthRequest="20" HeightRequest="20"/>
-                                                                <Label Grid.Column="2" Grid.Row="1"
-                                                                   Text="{Binding Quality}"
-                                                                   VerticalOptions="EndAndExpand"
-                                                                   FontSize="Medium"/>
-                                                            </StackLayout>
+                                    <!--3rd column with quality info-->
+                                    <StackLayout Orientation="Horizontal" Padding="15,0,0,0"
+                                    Grid.Column="2" Grid.Row="1">
+                                        <Image Grid.Column="2" Grid.Row="1"
+                                            BackgroundColor="Transparent"
+                                            Source="quality_icon.png"
+                                            VerticalOptions="Center"
+                                            HorizontalOptions="Start"
+                                            WidthRequest="20" HeightRequest="20"/>
+                                        <Label Grid.Column="2" Grid.Row="1"
+                                            Text="{Binding Quality}"
+                                            VerticalOptions="EndAndExpand"
+                                            FontSize="Medium"/>
+                                    </StackLayout>
 
-                                                            <!--3rd column with notes info-->
-                                                            <StackLayout Orientation="Horizontal" Padding="15,15,0,0"
-                                                            Grid.Column="2" Grid.Row="2" Grid.RowSpan="2" 
-                                                            IsVisible="{Binding Notes, Converter={StaticResource StringNullOrEmptyBoolConverter}}">
-                                                                <Image Grid.Column="2" Grid.Row="2" Grid.RowSpan="2"
-                                                                    BackgroundColor="Transparent"
-                                                                    Source="notes_icon.png"
-                                                                    VerticalOptions="StartAndExpand"
-                                                                    HorizontalOptions="Start"
-                                                                    WidthRequest="20" HeightRequest="20"/>
-                                                                <Label Grid.Column="2" Grid.Row="2" Grid.RowSpan="2"
-                                                                   Text="{Binding Note}"
-                                                                   VerticalOptions="StartAndExpand"
-                                                                   FontSize="Medium" MaxLines="2"/>
-                                                            </StackLayout>
+                                    <!--3rd column with notes info-->
+                                    <StackLayout Orientation="Horizontal" Padding="15,15,0,0"
+                                    Grid.Column="2" Grid.Row="2" Grid.RowSpan="2" 
+                                    IsVisible="{Binding Notes, Converter={StaticResource StringNullOrEmptyBoolConverter}}">
+                                        <Image Grid.Column="2" Grid.Row="2" Grid.RowSpan="2"
+                                            BackgroundColor="Transparent"
+                                            Source="notes_icon.png"
+                                            VerticalOptions="StartAndExpand"
+                                            HorizontalOptions="Start"
+                                            WidthRequest="20" HeightRequest="20"/>
+                                        <Label Grid.Column="2" Grid.Row="2" Grid.RowSpan="2"
+                                            Text="{Binding Note}"
+                                            VerticalOptions="StartAndExpand"
+                                            FontSize="Medium" MaxLines="2"/>
+                                    </StackLayout>
 
 
-                                                            <!--Wakefulness row-->
-                                                            <StackLayout Orientation="Horizontal" 
-                                                            Grid.ColumnSpan="3" Grid.Row="4"
-                                                            IsVisible="{Binding Wakefulness, Converter={StaticResource StringNullOrEmptyBoolConverter}}">
-                                                                <Label Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="4"
-                                                                   Text="{x:Static resources:ChildSleepResources.Wakefulness}"
-                                                                   FontAttributes="Bold"
-                                                                   VerticalOptions="EndAndExpand"
-                                                                   FontSize="Medium"/>
-                                                                <Label Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="4"
-                                                                   Text="{Binding Wakefulness}"
-                                                                   VerticalOptions="EndAndExpand"
-                                                                   FontSize="Medium"/>
-                                                            </StackLayout>
-                                                        </Grid>
-                                                    </DataTemplate>
-                                                </CollectionView.ItemTemplate>
-                                            </CollectionView>
-                                        </StackLayout>
-                                    </ScrollView>
+                                    <!--Wakefulness row-->
+                                    <StackLayout Orientation="Horizontal" 
+                                    Grid.ColumnSpan="3" Grid.Row="4"
+                                    IsVisible="{Binding Wakefulness, Converter={StaticResource StringNullOrEmptyBoolConverter}}">
+                                        <Label Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="4"
+                                            Text="{x:Static resources:ChildSleepResources.Wakefulness}"
+                                            FontAttributes="Bold"
+                                            VerticalOptions="EndAndExpand"
+                                            FontSize="Medium"/>
+                                        <Label Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="4"
+                                            Text="{Binding Wakefulness}"
+                                            VerticalOptions="EndAndExpand"
+                                            FontSize="Medium"/>
+                                    </StackLayout>
                                 </Grid>
                             </DataTemplate>
-                    </CarouselView.ItemTemplate>
-                </CarouselView>
-            </StackLayout>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </StackLayout>
+            </ScrollView>
             <Button Text="{x:Static resources:ChildSleepResources.AddSleep}"
                     Style="{StaticResource ActiveButtonStyle}"
-                    Command="{Binding AddSleepCommand}" Grid.Row="1" />
+                    Command="{Binding AddSleepCommand}" Grid.Row="2" />
         </Grid>
         <views:ChildrenPopupView AbsoluteLayout.LayoutBounds="0, 0, 1, 1" 
              AbsoluteLayout.LayoutFlags="All"

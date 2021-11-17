@@ -81,9 +81,8 @@ namespace BabySleep.Droid.CustomControls
                 path.Dispose();
                 return result;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                var msg = ex.Message;
             }
             return base.DrawChild(canvas, child, drawingTime);
         }

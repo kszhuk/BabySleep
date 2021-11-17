@@ -162,6 +162,12 @@
   <data name="Parents" xml:space="preserve">
     <value>Parents</value>
   </data>
+  <data name="SleepAlreadyExistsException" xml:space="preserve">
+    <value>Sleep in this time frame already exists</value>
+  </data>
+  <data name="SleepDurationException" xml:space="preserve">
+    <value>Sleep should last less than {0} hours</value>
+  </data>
   <data name="SleepMain" xml:space="preserve">
     <value>Sleep</value>
   </data>

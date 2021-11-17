@@ -1,5 +1,6 @@
 ﻿using BabySleep.Common.Enums;
 using BabySleep.Common.Exceptions.Sleep;
+using BabySleep.Common.Helpers;
 using BabySleep.Domain.Models;
 using BabySleep.EfData.Interfaces;
 using BabySleep.Infrastructure.Data.Interfaces;
@@ -22,7 +23,7 @@ namespace BabySleep.Infrastructure.Data.Repositories
 
         public void Add(Sleep sleep)
         {
-            ValidateSleepTime(sleep.SleepTime, sleep.SleepGuid);
+            ValidateSleepTime(sleep.SleepTime, sleep.SleepGuid, sleep.ChildGuid);
 
             var efSleep = new EfData.Models.Sleep()
             {
@@ -64,22 +65,20 @@ namespace BabySleep.Infrastructure.Data.Repositories
                 OrderBy(c => c.StartTime).ToList().Select(c => ConvertToDomain(c)).ToList();
         }
 
-        public IList<Sleep> Take(Guid childGuid, int countDays)
+        public IList<Sleep> Take(Guid childGuid, DateTime currentDate)
         {
-            return Take(childGuid, countDays, DateTime.Now);
-        }
-
-        public IList<Sleep> Take(Guid childGuid, int countDays, DateTime maxDate)
-        {
-            var startDate = new DateTime(maxDate.Year, maxDate.Month, maxDate.Day, 0, 0, 0).AddDays(-countDays);
-            var sleeps = context.Sleeps.AsNoTracking().ToList();
-            return context.Sleeps.AsNoTracking().Where(s => s.ChildGuid == childGuid && s.EndTime >= startDate).
-                OrderBy(c => c.StartTime).ToList().Select(c => ConvertToDomain(c)).ToList();
+            var previousDate = FormatEmptyDate(currentDate.AddDays(-1));
+            var nextDate = FormatEmptyDate(currentDate.AddDays(2));
+            var childSleeps = context.Sleeps.AsNoTracking().Where(s => s.ChildGuid == childGuid &&
+                ((s.StartTime >= previousDate && s.StartTime <= nextDate) || (s.EndTime >= previousDate && s.EndTime <= nextDate))).
+                OrderBy(c => c.StartTime).ToList();
+            return childSleeps.Where(s => AreEqualDates(currentDate, s.StartTime) || AreEqualDates(currentDate, s.EndTime)).
+                Select(c => ConvertToDomain(c)).ToList();
         }
 
         public void Update(Sleep sleep)
         {
-            ValidateSleepTime(sleep.SleepTime, sleep.SleepGuid);
+            ValidateSleepTime(sleep.SleepTime, sleep.SleepGuid, sleep.ChildGuid);
 
             var efSleep = context.Sleeps.FirstOrDefault(s => s.SleepGuid == sleep.SleepGuid);
 
@@ -109,16 +108,34 @@ namespace BabySleep.Infrastructure.Data.Repositories
                 sleep.FeedingCount, sleep.FallAsleepTime, sleep.AwakeningCount, sleep.Quality, sleep.Note);
         }
 
-        private void ValidateSleepTime(SleepTime sleepTime, Guid sleepGuid)
+        private void ValidateSleepTime(SleepTime sleepTime, Guid sleepGuid, Guid childGuid)
         {
-            var startIntersectionSleeps = context.Sleeps.Where(s =>
-                s.StartTime > sleepTime.StartTime && s.StartTime < sleepTime.EndTime && s.SleepGuid != sleepGuid).ToList();
-            var endIntersectionSleeps = context.Sleeps.Where(s =>
-                s.EndTime > sleepTime.StartTime && s.EndTime < sleepTime.EndTime && s.SleepGuid != sleepGuid).ToList();
-            if (startIntersectionSleeps.Any() || endIntersectionSleeps.Any())
+            var startIntersectionSleeps = context.Sleeps.Where(s => s.ChildGuid == childGuid &&
+                s.StartTime >= sleepTime.StartTime && s.StartTime <= sleepTime.EndTime && s.SleepGuid != sleepGuid).ToList();
+            var endIntersectionSleeps = context.Sleeps.Where(s => s.ChildGuid == childGuid &&
+                s.EndTime >= sleepTime.StartTime && s.EndTime <= sleepTime.EndTime && s.SleepGuid != sleepGuid).ToList();
+            var wholeIntersectionSleeps = context.Sleeps.Where(s => s.ChildGuid == childGuid &&
+                s.StartTime <= sleepTime.StartTime && s.EndTime >= sleepTime.EndTime && s.SleepGuid != sleepGuid).ToList();
+            if (startIntersectionSleeps.Any() || endIntersectionSleeps.Any() || wholeIntersectionSleeps.Any())
             {
                 throw new SleepAlreadyExistsException();
             }
+
+            var duration = (sleepTime.EndTime - sleepTime.StartTime).TotalHours;
+            if(duration > Constants.MAX_SLEEP_DURATION)
+            {
+                throw new SleepDurationException();
+            }
+        }
+
+        private DateTime FormatEmptyDate(DateTime date)
+        {
+            return new DateTime(date.Year, date.Month, date.Day, 0, 0, 0);
+        }
+
+        private bool AreEqualDates(DateTime date1, DateTime date2)
+        {
+            return date1.Year == date2.Year && date1.Month == date2.Month && date1.Day == date2.Day;
         }
     }
 }
