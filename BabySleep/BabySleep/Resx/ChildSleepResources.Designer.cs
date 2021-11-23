@@ -241,6 +241,15 @@ namespace BabySleep.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sleep&apos;s end time should be more than start time.
+        /// </summary>
+        public static string SleepTimeException {
+            get {
+                return ResourceManager.GetString("SleepTimeException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Start.
         /// </summary>
         public static string Start {

@@ -382,6 +382,11 @@ namespace BabySleep.ViewModels
                 await ((App)Xamarin.Forms.Application.Current).ShowException(ChildSleepResources.SleepMain, 
                     string.Format(ChildSleepResources.SleepDurationException, Common.Helpers.Constants.MAX_SLEEP_DURATION));
             }
+            catch (SleepTimeException)
+            {
+                await ((App)Xamarin.Forms.Application.Current).ShowException(ChildSleepResources.SleepMain,
+                    ChildSleepResources.SleepTimeException);
+            }
             catch (Exception ex)
             {
                 await ((App)Xamarin.Forms.Application.Current).ShowException(ChildSleepResources.SleepMain, ex.Message);

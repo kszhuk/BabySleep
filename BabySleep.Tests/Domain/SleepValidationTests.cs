@@ -26,6 +26,18 @@ namespace BabySleep.Tests.Domain
             Assert.Throws<SleepDurationException>(() => sleep.Validate());
         }
 
+        [Fact]
+        public void SleepTimeException()
+        {
+            DateTime startTime = new DateTime(2021, 11, 15, 15, 0, 0); 
+            DateTime endTime = new DateTime(2021, 11, 15, 13, 0, 0);
+
+            var sleep = new Sleep();
+            sleep.SetSleepTime(startTime, endTime);
+
+            Assert.Throws<SleepTimeException>(() => sleep.Validate());
+        }
+
         public class SleepTimeDataGenerator : TheoryData<DateTime, DateTime>
         {
             public SleepTimeDataGenerator()

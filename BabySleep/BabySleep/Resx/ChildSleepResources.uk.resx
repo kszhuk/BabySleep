@@ -177,6 +177,9 @@
   <data name="SleepQuality" xml:space="preserve">
     <value>Якість сну</value>
   </data>
+  <data name="SleepTimeException" xml:space="preserve">
+    <value>Початок сну має бути раніше ніж закінчення</value>
+  </data>
   <data name="Start" xml:space="preserve">
     <value>Старт</value>
   </data>

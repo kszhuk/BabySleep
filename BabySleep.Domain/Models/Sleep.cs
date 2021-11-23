@@ -66,6 +66,11 @@ namespace BabySleep.Domain.Models
                 throw new SleepDurationException();
             }
 
+            if(SleepTime.StartTime >= SleepTime.EndTime)
+            {
+                throw new SleepTimeException();
+            }
+
             return true;
         }
     }
