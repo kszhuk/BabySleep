@@ -1,15 +1,10 @@
 ﻿using BabySleep.Common.Exceptions.Child;
 using BabySleep.Domain.Models;
-using BabySleep.EfData;
 using BabySleep.Infrastructure.Data.Repositories;
 using BabySleep.Tests.Helpers;
-using Microsoft.Data.Sqlite;
-using Microsoft.EntityFrameworkCore;
-using Moq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Xunit;
 
 namespace BabySleep.Tests.Infrastructure.Data

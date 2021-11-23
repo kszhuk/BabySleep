@@ -12,7 +12,7 @@ namespace BabySleep.Application.DTOAssemblers
         {
             if (sleep == null)
             {
-                sleep = new Sleep();
+                sleep = new Sleep(Guid.Empty, Guid.Empty, new DateTime(), new DateTime());
             }
 
             var sleepDto = new ChildSleepEntryDto()

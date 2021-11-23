@@ -7,7 +7,6 @@ namespace BabySleep.Infrastructure.Data.Interfaces
 {
     public interface ISleepRepository
     {
-        IList<Sleep> GetAll(Guid childGuid);
         Sleep Get(Guid sleepGuid);
         void Add(Sleep sleep);
         void Delete(Guid sleepGuid);

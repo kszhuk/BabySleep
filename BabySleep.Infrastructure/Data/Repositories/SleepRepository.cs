@@ -59,12 +59,6 @@ namespace BabySleep.Infrastructure.Data.Repositories
             return ConvertToDomain(context.Sleeps.AsNoTracking().FirstOrDefault(s => s.SleepGuid == sleepGuid));
         }
 
-        public IList<Sleep> GetAll(Guid childGuid)
-        {
-            return context.Sleeps.AsNoTracking().Where(s => s.ChildGuid == childGuid).
-                OrderBy(c => c.StartTime).ToList().Select(c => ConvertToDomain(c)).ToList();
-        }
-
         public IList<Sleep> Take(Guid childGuid, DateTime currentDate)
         {
             var previousDate = FormatEmptyDate(currentDate.AddDays(-1));
@@ -119,12 +113,6 @@ namespace BabySleep.Infrastructure.Data.Repositories
             if (startIntersectionSleeps.Any() || endIntersectionSleeps.Any() || wholeIntersectionSleeps.Any())
             {
                 throw new SleepAlreadyExistsException();
-            }
-
-            var duration = (sleepTime.EndTime - sleepTime.StartTime).TotalHours;
-            if(duration > Constants.MAX_SLEEP_DURATION)
-            {
-                throw new SleepDurationException();
             }
         }
 

@@ -1,4 +1,6 @@
 ﻿using BabySleep.Common.Enums;
+using BabySleep.Common.Exceptions.Sleep;
+using BabySleep.Common.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -58,20 +60,13 @@ namespace BabySleep.Domain.Models
 
         public bool Validate()
         {
+            var duration = (SleepTime.EndTime - SleepTime.StartTime).TotalHours;
+            if (duration > Constants.MAX_SLEEP_DURATION)
+            {
+                throw new SleepDurationException();
+            }
 
             return true;
-        }
-    }
-
-    public class CustomerInfo
-    {
-        public short Quality { get; private set; }
-        public string Note { get; private set; }
-
-        public CustomerInfo(short quality, string note)
-        {
-            Quality = quality;
-            Note = note;
         }
     }
 }
