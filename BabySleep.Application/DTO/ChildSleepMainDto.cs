@@ -27,5 +27,13 @@ namespace BabySleep.Application.DTO
             }
         }
 
+        public long DurationTicks
+        {
+            get
+            {
+                return (EndTime - StartTime).Ticks;
+            }
+        }
+
     }
 }

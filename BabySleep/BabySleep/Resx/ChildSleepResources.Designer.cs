@@ -268,6 +268,15 @@ namespace BabySleep.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} time(s), {1}.
+        /// </summary>
+        public static string StatisticsDayTotal {
+            get {
+                return ResourceManager.GetString("StatisticsDayTotal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Stop.
         /// </summary>
         public static string Stop {

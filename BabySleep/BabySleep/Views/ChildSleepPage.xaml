@@ -74,10 +74,11 @@
             </StackLayout>
             <ScrollView  Grid.Column="0" Grid.Row="1">
                 <StackLayout>
-                <CollectionView x:Name="collectionViewChildSleeps" ItemsSource="{Binding ChildSleepsMain, Mode=TwoWay}"
+                    <CollectionView x:Name="collectionViewChildSleeps" ItemsSource="{Binding ChildSleepsMain, Mode=TwoWay}"
                     SelectionMode="Single"
                     SelectionChangedCommand="{Binding BindingContext.EditSleepCommand, Source={x:Reference ChildSleep}}"
-                    SelectionChangedCommandParameter="{Binding Source={x:Reference collectionViewChildSleeps}, Path=SelectedItem}">
+                    SelectionChangedCommandParameter="{Binding Source={x:Reference collectionViewChildSleeps}, Path=SelectedItem}"
+                                HeightRequest="{Binding CollectionHeightRequest}" >
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
                                 <Grid Padding="10">
@@ -190,7 +191,67 @@
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                     </CollectionView>
+                    <StackLayout IsVisible="{Binding IsStatisticsVisible}">
+                        <Grid Padding="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <BoxView Color="White" Grid.Column="0" Grid.Row="0" Grid.RowSpan="5"/>
+                            <StackLayout Orientation="Horizontal" Padding="0,0,0,0"
+                                    Grid.Column="0" Grid.Row="0">
+                                <Label Text="{x:Static resources:GeneralResources.Statistics}" FontAttributes="Bold" Grid.Column="0" Grid.Row="0"
+                                    VerticalOptions="StartAndExpand"
+                                    FontSize="Medium"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" Padding="0,5,0,0"
+                                    Grid.Column="0" Grid.Row="1">
+                                <Image 
+                                    BackgroundColor="Transparent"
+                                    Source="sun_icon.png"
+                                    VerticalOptions="StartAndExpand"
+                                    HorizontalOptions="Start"
+                                    WidthRequest="40" HeightRequest="40"/>
+                                <Label 
+                                    Text="{Binding StatisticsDayTotal}"
+                                    VerticalOptions="CenterAndExpand"
+                                    FontSize="Medium"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" Padding="0,5,0,0"
+                                    Grid.Column="0" Grid.Row="3">
+                                <Image 
+                                    BackgroundColor="Transparent"
+                                    Source="moon_icon.png"
+                                    VerticalOptions="StartAndExpand"
+                                    HorizontalOptions="Start"
+                                    WidthRequest="40" HeightRequest="40"/>
+                                <Label 
+                                    Text="{Binding StatisticsNightTotal}"
+                                    VerticalOptions="CenterAndExpand"
+                                    FontSize="Medium"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" Padding="0,5,0,5"
+                                    Grid.Column="0" Grid.Row="4">
+                                <Image 
+                                    BackgroundColor="Transparent"
+                                    Source="clock_icon.png"
+                                    VerticalOptions="StartAndExpand"
+                                    HorizontalOptions="Start"
+                                    WidthRequest="40" HeightRequest="40"/>
+                                <Label 
+                                    Text="{Binding StatisticsTotal}"
+                                    VerticalOptions="CenterAndExpand"
+                                    FontSize="Medium"/>
+                            </StackLayout>
+                        </Grid>
+                    </StackLayout>
                 </StackLayout>
+
             </ScrollView>
             <Button Text="{x:Static resources:ChildSleepResources.AddSleep}"
                     Style="{StaticResource ActiveButtonStyle}"

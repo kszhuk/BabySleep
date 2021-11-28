@@ -61,12 +61,12 @@ namespace BabySleep.Infrastructure.Data.Repositories
 
         public IList<Sleep> Take(Guid childGuid, DateTime currentDate)
         {
-            var previousDate = FormatEmptyDate(currentDate.AddDays(-1));
-            var nextDate = FormatEmptyDate(currentDate.AddDays(2));
+            var previousDate = DateTimeHelper.FormatEmptyDate(currentDate.AddDays(-1));
+            var nextDate = DateTimeHelper.FormatEmptyDate(currentDate.AddDays(2));
             var childSleeps = context.Sleeps.AsNoTracking().Where(s => s.ChildGuid == childGuid &&
                 ((s.StartTime >= previousDate && s.StartTime <= nextDate) || (s.EndTime >= previousDate && s.EndTime <= nextDate))).
                 OrderBy(c => c.StartTime).ToList();
-            return childSleeps.Where(s => AreEqualDates(currentDate, s.StartTime) || AreEqualDates(currentDate, s.EndTime)).
+            return childSleeps.Where(s => DateTimeHelper.AreEqualDates(currentDate, s.StartTime) || DateTimeHelper.AreEqualDates(currentDate, s.EndTime)).
                 Select(c => ConvertToDomain(c)).ToList();
         }
 
@@ -114,16 +114,6 @@ namespace BabySleep.Infrastructure.Data.Repositories
             {
                 throw new SleepAlreadyExistsException();
             }
-        }
-
-        private DateTime FormatEmptyDate(DateTime date)
-        {
-            return new DateTime(date.Year, date.Month, date.Day, 0, 0, 0);
-        }
-
-        private bool AreEqualDates(DateTime date1, DateTime date2)
-        {
-            return date1.Year == date2.Year && date1.Month == date2.Month && date1.Day == date2.Day;
         }
     }
 }
