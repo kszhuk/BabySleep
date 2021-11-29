@@ -19,9 +19,9 @@ namespace BabySleep.Application.Services
             this.sleepRepository = sleepRepository;
         }
 
-        public IList<ChildSleepMainDto> GetChildSleeps(Guid childGuid, DateTime currentDate)
+        public ChildSleepMainDto GetChildSleeps(Guid childGuid, DateTime currentDate)
         {
-            return sleepDtoAssembler.WriteSleepsDto(sleepRepository.Take(childGuid, currentDate));
+            return sleepDtoAssembler.WriteSleepsDto(sleepRepository.Take(childGuid, currentDate), currentDate);
         }
     }
 }

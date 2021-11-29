@@ -8,7 +8,6 @@ namespace BabySleep.Application.DTOAssemblers
 {
     public interface IChildSleepMainDtoAssembler
     {
-        ChildSleepMainDto WriteSleepDto(Sleep sleep, string wakefulness);
-        IList<ChildSleepMainDto> WriteSleepsDto(IList<Sleep> sleeps);
+        ChildSleepMainDto WriteSleepsDto(IList<Sleep> sleeps, DateTime currentDate);
     }
 }

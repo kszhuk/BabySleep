@@ -10,9 +10,35 @@ namespace BabySleep.Application.DTOAssemblers
 {
     public class ChildSleepMainDtoAssembler : IChildSleepMainDtoAssembler
     {
-        public ChildSleepMainDto WriteSleepDto(Sleep sleep, string wakefulness)
+        public ChildSleepMainDto WriteSleepsDto(IList<Sleep> sleeps, DateTime currentDate)
         {
-            return new ChildSleepMainDto()
+            var sleepsDto = new List<ChildSleepMainItemDto>();
+
+            for (int i = 0; i < sleeps.Count(); i++)
+            {
+                var currentSleep = sleeps[i];
+                var wakefulness = (i == sleeps.Count() - 1) ? string.Empty :
+                    CalcWakefulness(sleeps[i + 1].SleepTime.StartTime, currentSleep.SleepTime.EndTime);
+                sleepsDto.Add(WriteSleepItemDto(sleeps[i], wakefulness));
+            }
+
+            var daySleepsTime = CalculateDaySleepsTime(sleepsDto);
+            var nightSleepsTime = CalculateNightSleepsTime(sleepsDto, currentDate);
+            var totalSleepsTime = daySleepsTime + nightSleepsTime;
+            var daySleepsCount = sleepsDto.Count(s => s.IsDaySleep);
+
+            return new ChildSleepMainDto() { 
+                ChildSleeps = sleepsDto, 
+                DaySleepsTime = daySleepsTime, 
+                NightSleepsTime = nightSleepsTime, 
+                TotalSleepsTime = totalSleepsTime,
+                DaySleepsCount = daySleepsCount
+            };
+        }
+
+        private ChildSleepMainItemDto WriteSleepItemDto(Sleep sleep, string wakefulness)
+        {
+            return new ChildSleepMainItemDto()
             {
                 SleepGuid = sleep.SleepGuid,
                 SleepType = sleep.SleepTime.SleepType,
@@ -20,33 +46,50 @@ namespace BabySleep.Application.DTOAssemblers
                 EndTime = sleep.SleepTime.EndTime,
                 Wakefulness = wakefulness,
                 Quality = FormatQuality(sleep.CustomerInfo.Quality),
-                Note = sleep.CustomerInfo.Note
+                Note = sleep.CustomerInfo.Note,
+                Duration = (sleep.SleepTime.EndTime - sleep.SleepTime.StartTime).ToString(Constants.SHORT_TIME_FORMAT),
+                DurationTicks = (sleep.SleepTime.EndTime - sleep.SleepTime.StartTime).Ticks,
+                IsDaySleep = sleep.SleepTime.SleepType == SleepType.DaySleep
             };
-        }
-
-        public IList<ChildSleepMainDto> WriteSleepsDto(IList<Sleep> sleeps)
-        {
-            var sleepsDto = new List<ChildSleepMainDto>();
-
-            for (int i = 0; i < sleeps.Count(); i++)
-            {
-                var currentSleep = sleeps[i];
-                var wakefulness = (i == sleeps.Count() - 1) ? string.Empty :
-                    CalcWakefulness(sleeps[i + 1].SleepTime.StartTime, currentSleep.SleepTime.EndTime);
-                sleepsDto.Add(WriteSleepDto(sleeps[i], wakefulness));
-            }
-
-            return sleepsDto;
         }
 
         private string CalcWakefulness(DateTime date1, DateTime date2)
         {
-            return (date1 - date2).ToString(@"hh\:mm");
+            return (date1 - date2).ToString(Constants.SHORT_TIME_FORMAT);
         }
 
         private string FormatQuality(short quality)
         {
-            return string.Format("{0}/10", quality);
+            return string.Format(Constants.QUALITY_FORMAT, quality);
+        }
+
+        private long CalculateDaySleepsTime(List<ChildSleepMainItemDto> sleeps)
+        {
+            return sleeps.Where(s => s.IsDaySleep).Sum(s => s.DurationTicks);
+        }
+
+        private long CalculateNightSleepsTime(List<ChildSleepMainItemDto> sleeps, DateTime currentDate)
+        {
+            var nightSleeps = sleeps.Where(s => !s.IsDaySleep);
+            long nightSleepsTime = 0;
+            foreach (var nightSleep in nightSleeps)
+            {
+                if (nightSleep.StartTime.Day != currentDate.Day)
+                {
+                    nightSleepsTime += (nightSleep.DurationTicks - (DateTimeHelper.FormatEmptyDate(currentDate) - nightSleep.StartTime).Ticks);
+                    continue;
+                }
+
+                if (nightSleep.EndTime.Day != currentDate.Day)
+                {
+                    nightSleepsTime += (nightSleep.DurationTicks - (nightSleep.EndTime - DateTimeHelper.FormatEmptyDate(currentDate.AddDays(1))).Ticks);
+                    continue;
+                }
+
+                nightSleepsTime += nightSleep.DurationTicks;
+            }
+
+            return nightSleepsTime;
         }
     }
 }

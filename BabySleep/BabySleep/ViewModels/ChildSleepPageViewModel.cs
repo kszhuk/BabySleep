@@ -24,11 +24,11 @@ namespace BabySleep.ViewModels
         public ChildSleepPageViewModel()
         {
             childSleepMainService = App.Container.Resolve<IChildSleepMainService>();
-            ChildSleepsMain = new ObservableCollection<ChildSleepMainDto>();
+            ChildSleepsMain = new ObservableCollection<ChildSleepMainItemDto>();
             ReloadSleeps();
 
             AddSleepCommand = new Command(AddSleep);
-            EditSleepCommand = new Command<ChildSleepMainDto>(EditSleep);
+            EditSleepCommand = new Command<ChildSleepMainItemDto>(EditSleep);
             PreviousDateCommand = new Command(SelectPreviousDate);
             NextDateCommand = new Command(SelectNextDate);
 
@@ -48,10 +48,10 @@ namespace BabySleep.ViewModels
 
         private readonly IChildSleepMainService childSleepMainService;
 
-        public ObservableCollection<ChildSleepMainDto> ChildSleepsMain { get; set; }
+        public ObservableCollection<ChildSleepMainItemDto> ChildSleepsMain { get; set; }
 
-        ChildSleepMainDto selectedChildSleep;
-        public ChildSleepMainDto SelectedChildSleep
+        ChildSleepMainItemDto selectedChildSleep;
+        public ChildSleepMainItemDto SelectedChildSleep
         {
             get => selectedChildSleep;
             set
@@ -166,7 +166,7 @@ namespace BabySleep.ViewModels
             await App.NavigateMasterDetailPush(new ChildSleepEntryPage());
         }
 
-        private async void EditSleep(ChildSleepMainDto sleep)
+        private async void EditSleep(ChildSleepMainItemDto sleep)
         {
             if (sleep == null)
             {
@@ -196,44 +196,19 @@ namespace BabySleep.ViewModels
             CurrentDate = currentDate;
             ChildSleepsMain.Clear();
 
-            var sleeps = childSleepMainService.GetChildSleeps(App.SelectedChildGuid, currentDate);
-            foreach (var sleep in sleeps)
+            var sleepMain = childSleepMainService.GetChildSleeps(App.SelectedChildGuid, currentDate);
+            foreach (var sleep in sleepMain.ChildSleeps)
             {
                 ChildSleepsMain.Add(sleep);
             }
 
-            var wakefulnessCount = sleeps.Count(s => s.Wakefulness != string.Empty);
-            CollectionHeightRequest = sleeps.Count * 160 + wakefulnessCount * 20;
+            var wakefulnessCount = sleepMain.ChildSleeps.Count(s => s.Wakefulness != string.Empty);
+            CollectionHeightRequest = sleepMain.ChildSleeps.Count * 160 + wakefulnessCount * 20;
 
-            if(ChildSleepsMain != null && ChildSleepsMain.Any())
-            {
-                var daySleepsCount = ChildSleepsMain.Where(s => s.IsDaySleep).Count();
-                var daySleepsTime = ChildSleepsMain.Where(s => s.IsDaySleep).Sum(s => s.DurationTicks);
-
-                var nightSleeps = ChildSleepsMain.Where(s => !s.IsDaySleep);
-                long nightSleepsTime = 0;
-                foreach (var nightSleep in nightSleeps)
-                {
-                    if(nightSleep.StartTime.Day != currentDate.Day)
-                    {
-                        nightSleepsTime += (nightSleep.DurationTicks - (DateTimeHelper.FormatEmptyDate(currentDate) - nightSleep.StartTime).Ticks);
-                        continue;
-                    }
-
-                    if (nightSleep.EndTime.Day != currentDate.Day)
-                    {
-                        nightSleepsTime += (nightSleep.DurationTicks - (nightSleep.EndTime - DateTimeHelper.FormatEmptyDate(currentDate.AddDays(1))).Ticks);
-                        continue;
-                    }
-
-                    nightSleepsTime += nightSleep.DurationTicks;
-                }
-
-                StatisticsDayTotal = string.Format(ChildSleepResources.StatisticsDayTotal, daySleepsCount, 
-                    new TimeSpan(daySleepsTime).ToString(Helpers.Constants.SHORT_TIME_FORMAT));
-                StatisticsNightTotal = new TimeSpan(nightSleepsTime).ToString(Helpers.Constants.SHORT_TIME_FORMAT);
-                StatisticsTotal = new TimeSpan(daySleepsTime + nightSleepsTime).ToString(Helpers.Constants.SHORT_TIME_FORMAT);
-            }
+            StatisticsDayTotal = string.Format(ChildSleepResources.StatisticsDayTotal, sleepMain.DaySleepsCount,
+                new TimeSpan(sleepMain.DaySleepsTime).ToString(Common.Helpers.Constants.SHORT_TIME_FORMAT));
+            StatisticsNightTotal = new TimeSpan(sleepMain.NightSleepsTime).ToString(Common.Helpers.Constants.SHORT_TIME_FORMAT);
+            StatisticsTotal = new TimeSpan(sleepMain.TotalSleepsTime).ToString(Common.Helpers.Constants.SHORT_TIME_FORMAT);
 
             IsStatisticsVisible = ChildSleepsMain != null && ChildSleepsMain.Any();
 

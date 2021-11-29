@@ -32,7 +32,7 @@ namespace BabySleep.Tests.Application
         [ClassData(typeof(GetEntrySleepsDataGenerator))]
         public void DeleteSleepTest(Sleep sleep, ChildSleepEntryDto sleepDto)
         {
-            if(sleep == null)
+            if (sleep == null)
             {
                 return;
             }
@@ -92,8 +92,8 @@ namespace BabySleep.Tests.Application
                 var sleeps = new List<Tuple<Sleep, ChildSleepEntryDto>>();
 
                 //Empty sleep
-                sleeps.Add(Tuple.Create<Sleep, ChildSleepEntryDto> (null,
-                    SleepEntryHelper.FillChildSleepEntryDto(Guid.Empty, Guid.Empty, new DateTime(), new DateTime(), 
+                sleeps.Add(Tuple.Create<Sleep, ChildSleepEntryDto>(null,
+                    SleepEntryHelper.FillChildSleepEntryDto(Guid.Empty, Guid.Empty, new DateTime(), new DateTime(),
                         new Sleep().SleepPlace, 0, string.Empty, 0, 0, 0)
                 ));
 

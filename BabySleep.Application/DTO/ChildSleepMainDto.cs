@@ -10,30 +10,10 @@ namespace BabySleep.Application.DTO
     /// </summary>
     public class ChildSleepMainDto
     {
-        public Guid SleepGuid { get; set; }
-        public bool IsDaySleep => SleepType == SleepType.DaySleep;
-        public SleepType SleepType { get; set; }
-        public DateTime StartTime { get; set; }
-        public DateTime EndTime { get; set; }
-        public string Quality { get; set; }
-        public string Wakefulness { get; set; }
-        public string Note { get; set; }
-
-        public string Duration
-        {
-            get
-            {
-                return (EndTime - StartTime).ToString(@"hh\:mm");
-            }
-        }
-
-        public long DurationTicks
-        {
-            get
-            {
-                return (EndTime - StartTime).Ticks;
-            }
-        }
-
+        public List<ChildSleepMainItemDto> ChildSleeps { get; set; }
+        public long DaySleepsTime { get; set;  }
+        public long DaySleepsCount { get; set; }
+        public long NightSleepsTime { get; set; }
+        public long TotalSleepsTime { get; set; }
     }
 }

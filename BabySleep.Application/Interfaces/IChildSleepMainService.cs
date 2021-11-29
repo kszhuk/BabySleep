@@ -7,6 +7,6 @@ namespace BabySleep.Application.Interfaces
 {
     public interface IChildSleepMainService
     {
-        IList<ChildSleepMainDto> GetChildSleeps(Guid childGuid, DateTime currentDate);
+        ChildSleepMainDto GetChildSleeps(Guid childGuid, DateTime currentDate);
     }
 }

@@ -9,10 +9,24 @@ namespace BabySleep.Tests.Helpers
 {
     public static class SleepHelper
     {
-        public static ChildSleepMainDto FillChildSleepMainDto(Guid sleepGuid, SleepType sleepType,
-            DateTime startTime, DateTime endTime, string quality, string wakefulness, string note)
+        public static ChildSleepMainDto FillChildSleepMainDto(List<ChildSleepMainItemDto> sleepItemDtos,
+            long daySleepsCount, long daySleepsTime, long nightSleepsTime, long totalSleepsTime)
         {
             return new ChildSleepMainDto()
+            {
+                ChildSleeps = sleepItemDtos,
+                DaySleepsCount = daySleepsCount,
+                DaySleepsTime = daySleepsTime,
+                NightSleepsTime = nightSleepsTime,
+                TotalSleepsTime = totalSleepsTime
+            };
+        }
+
+        public static ChildSleepMainItemDto FillChildSleepMainItemDto(Guid sleepGuid, SleepType sleepType,
+            DateTime startTime, DateTime endTime, string quality, string wakefulness, string note,
+            bool isDaySleep, string duration, long durationTicks)
+        {
+            return new ChildSleepMainItemDto()
             {
                 SleepGuid = sleepGuid,
                 SleepType = sleepType,
@@ -20,7 +34,10 @@ namespace BabySleep.Tests.Helpers
                 StartTime = startTime,
                 Note = note,
                 Quality = quality,
-                Wakefulness = wakefulness
+                Wakefulness = wakefulness,
+                IsDaySleep = isDaySleep,
+                Duration = duration,
+                DurationTicks = durationTicks
             };
         }
 
