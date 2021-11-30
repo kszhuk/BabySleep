@@ -6,6 +6,7 @@
              xmlns:converter="clr-namespace:BabySleep.Convertors"
              xmlns:resources="clr-namespace:BabySleep.Resx"
              xmlns:behaviour="clr-namespace:BabySleep.Behaviors"
+             xmlns:tabs="http://xamarin.com/schemas/2020/toolkit"
              x:Class="BabySleep.Views.ChildSleepEntryPage">
 
     <ContentPage.BindingContext>
@@ -30,11 +31,74 @@
 
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <StackLayout  Margin="10" VerticalOptions="StartAndExpand" Grid.Row="0">
-            <ScrollView>
+
+        <!--<StackLayout  Margin="0 10 10 10" VerticalOptions="StartAndExpand" Grid.Row="2">-->
+            <tabs:TabView
+                TabStripBackgroundColor="White" Margin="0 10 10 10" VerticalOptions="StartAndExpand" Grid.Row="2">
+                <tabs:TabViewItem Text="Main"
+                                  TextColorSelected="#007AFF">
+                    <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Label Text="{Binding Duration}"
+                        Style="{x:StaticResource TitleStyle}"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand"
+                        Grid.Row="0" Grid.ColumnSpan="2"/>
+                    <Button Text="{Binding TimerText}"
+                        Style="{StaticResource ActiveButtonStyle}"
+                        Command="{Binding TimerClickCommand}" 
+                        Grid.Row="1" Grid.ColumnSpan="2"/>
+                    <Label Text="{x:Static resources:ChildSleepResources.StartTime}" VerticalOptions="Center" Grid.Row="2" Grid.Column="0" HorizontalOptions="Center"/>
+                    <custom:ExtendedDateTimePicker 
+                        DateTime="{Binding StartDate}"
+                        MinimumDate="{Binding MinimumDate}"
+                        MaximumDate="{Binding MaximumDate}"
+                        IsEnabled="{Binding IsEnabled}"
+                        Grid.Row="3" Grid.Column="0"/>
+
+                    <Label Text="{x:Static resources:ChildSleepResources.EndTime}" VerticalOptions="Center" Grid.Row="2" Grid.Column="1"  HorizontalOptions="Center"/>
+                    <custom:ExtendedDateTimePicker 
+                        DateTime="{Binding EndDate}"
+                        MinimumDate="{Binding MinimumDate}"
+                        MaximumDate="{Binding MaximumDate}"
+                        IsEnabled="{Binding IsEnabled}"
+                        Grid.Row="3" Grid.Column="1"/>
+                </Grid>
+                </tabs:TabViewItem>
+                <tabs:TabViewItem Text="Notes"
+                                  TextColorSelected="#007AFF">
+                    <Grid>
+                        <Label
+                                HorizontalOptions="Center"
+                                Text="TabContent2"
+                                VerticalOptions="Center" />
+                    </Grid>
+                </tabs:TabViewItem>
+                <tabs:TabViewItem Text="Info"
+                                  TextColorSelected="#007AFF">
+                    <Grid>
+                        <Label
+                                HorizontalOptions="Center"
+                                Text="TabContent2"
+                                VerticalOptions="Center" />
+                    </Grid>
+                </tabs:TabViewItem>
+            </tabs:TabView>
+            <!--<ScrollView>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
@@ -52,15 +116,7 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <Label Text="{Binding Duration}"
-                        Style="{x:StaticResource TitleStyle}"
-                        VerticalOptions="CenterAndExpand" 
-                        HorizontalOptions="CenterAndExpand"
-                        Grid.Row="0" Grid.ColumnSpan="2"/>
-                    <Button Text="{Binding TimerText}"
-                        Style="{StaticResource ActiveButtonStyle}"
-                        Command="{Binding TimerClickCommand}" 
-                        Grid.Row="1" Grid.ColumnSpan="2"/>
+
 
                     <Label Text="{x:Static resources:ChildSleepResources.StartTime}" VerticalOptions="Center" Grid.Row="2" Grid.Column="0"/>
                     <custom:ExtendedDateTimePicker 
@@ -135,8 +191,8 @@
                     </custom:ExtendedEntry>
 
                 </Grid>
-            </ScrollView>
-        </StackLayout>
+            </ScrollView>-->
+        <!--</StackLayout>-->
         <Grid Grid.Row="1" IsVisible="{Binding IsNew, Converter={StaticResource InverseBoolConverter}}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -151,7 +207,7 @@
                 Command="{Binding DeleteCommand}" Grid.Column="1" Grid.Row="0"/>
         </Grid>
 
-        <StackLayout Grid.Row="1" IsVisible="{Binding IsNew}">
+        <StackLayout Grid.Row="3" IsVisible="{Binding IsNew}">
             <Button Text="{x:Static resources:GeneralResources.Save}"
                 Style="{StaticResource ActiveButtonStyle}"
                 Command="{Binding SaveCommand}" />
