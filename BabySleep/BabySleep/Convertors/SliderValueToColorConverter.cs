@@ -13,15 +13,15 @@ namespace BabySleep.Convertors
             {
                 if (sliderValue > 6)
                 {
-                    return Color.LawnGreen;
+                    return Color.FromHex("#4fc3f7");
                 }
 
                 if (sliderValue < 4)
                 {
-                    return Color.Red;
+                    return Color.FromHex("#b3e5fc");
                 }
 
-                return Color.Yellow;
+                return Color.FromHex("#81d4fa");
             }
 
             return Color.AliceBlue;

@@ -20,29 +20,232 @@ using Xamarin.Forms;
 
 namespace BabySleep.ViewModels
 {
+    public class Client
+    {
+        public string Id { get; set; }
+        public string Name { get; set; }
+        public string Leistungsort { get; set; }
+    }
+
+    public class ChildSleepEntryPageMainViewModel : INotifyPropertyChanged
+
+    {
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        //#region Properties
+        //private Guid sleepGuid;
+        //public Guid SleepGuid
+        //{
+        //    get => sleepGuid;
+        //    set
+        //    {
+        //        sleepGuid = value;
+        //        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SleepGuid)));
+        //    }
+        //}
+
+        //private string duration;
+        //public string Duration
+        //{
+        //    get => duration;
+        //    set
+        //    {
+        //        duration = value;
+        //        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Duration)));
+        //    }
+        //}
+
+        //private DateTime minimumDate = DateTime.Now.AddMonths(-1);
+        //public DateTime MinimumDate
+        //{
+        //    get => minimumDate;
+        //    set
+        //    {
+        //        minimumDate = value;
+        //        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(MinimumDate)));
+        //    }
+        //}
+
+        //private DateTime maximumDate = DateTime.Now.AddDays(1);
+        //public DateTime MaximumDate
+        //{
+        //    get => maximumDate;
+        //    set
+        //    {
+        //        maximumDate = value;
+        //        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(MaximumDate)));
+        //    }
+        //}
+
+        //private DateTime startDate;
+        //public DateTime StartDate
+        //{
+        //    get => startDate;
+        //    set
+        //    {
+        //        startDate = value;
+        //        if (EndDate < value)
+        //        {
+        //            EndDate = value;
+        //        }
+        //        UpdateDuration();
+        //        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(StartDate)));
+        //    }
+        //}
+
+        //private DateTime endDate;
+        //public DateTime EndDate
+        //{
+        //    get => endDate;
+        //    set
+        //    {
+        //        endDate = value;
+        //        if (StartDate > value)
+        //        {
+        //            StartDate = value;
+        //        }
+        //        UpdateDuration();
+        //        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(EndDate)));
+        //    }
+        //}
+
+        //private bool isEnabled;
+        //public bool IsEnabled
+        //{
+        //    get => isEnabled;
+        //    set
+        //    {
+        //        isEnabled = value;
+        //        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsEnabled)));
+        //    }
+        //}
+
+        //private string timerText;
+        //public string TimerText
+        //{
+        //    get => timerText;
+        //    set
+        //    {
+        //        timerText = value;
+        //        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(TimerText)));
+        //    }
+        //}
+
+        //private Timer SleepTimer;
+
+        //object selectedSleepPlace;
+        //public object SelectedSleepPlace
+        //{
+        //    get => selectedSleepPlace;
+        //    set
+        //    {
+        //        selectedSleepPlace = value;
+        //        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SelectedSleepPlace)));
+        //    }
+        //}
+
+        //private short quality = 5;
+        //public short Quality
+        //{
+        //    get => quality;
+        //    set
+        //    {
+        //        quality = value;
+        //        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Quality)));
+        //    }
+        //}
+
+        //#endregion
+
+        //#region Timer
+        //private void InitTimer()
+        //{
+
+        //    TimerText = ChildSleepResources.Stop;
+        //    SleepTimer = new Timer
+        //    {
+        //        Interval = 1000
+        //    };
+        //    SleepTimer.Elapsed += OnTimedEvent;
+        //    SleepTimer.Start();
+        //}
+
+        //private async void TimerClick()
+        //{
+        //    var currentTime = DateTime.Now;
+
+        //    if (!IsEnabled)
+        //    {
+        //        StopTimer();
+        //    }
+        //    else
+        //    {
+        //        TimerText = ChildSleepResources.Stop;
+        //        SleepTimer.Start();
+        //        IsEnabled = false;
+        //        StartDate = currentTime;
+        //    }
+        //    EndDate = currentTime;
+        //}
+
+        //public void StopTimer()
+        //{
+        //    TimerText = ChildSleepResources.Start;
+        //    SleepTimer.Stop();
+        //    IsEnabled = true;
+        //}
+
+        //private void OnTimedEvent(object source, ElapsedEventArgs e)
+        //{
+        //    Device.BeginInvokeOnMainThread(() =>
+        //    {
+        //        var elapsedTime = (DateTime.Now - StartDate);
+        //        UpdateDuration(elapsedTime);
+        //    });
+        //}
+
+        //private void UpdateDuration()
+        //{
+        //    Duration = string.Format("{0:hh\\:mm\\:ss}", EndDate - StartDate);
+        //}
+
+        //private void UpdateDuration(TimeSpan elapsedTime)
+        //{
+        //    Duration = string.Format("{0:hh\\:mm\\:ss}", elapsedTime);
+        //}
+
+
+        //#endregion
+
+        public Client Client { get; set; }
+    }
+
     public class ChildSleepEntryPageViewModel : INotifyPropertyChanged
     {
-        public ChildSleepEntryPageViewModel()
-        {
-            InitService();
-
-            IsEnabled = false;
-            StartDate = DateTime.Now;
-            EndDate = DateTime.Now;
-
-            TimerClickCommand = new Command(TimerClick);
-            SaveCommand = new Command(Save);
-            DeleteCommand = new Command(Delete);
-
-            InitTimer();
-            InitSleepPlace();
-
-            AddValidations();
-        }
 
         public ChildSleepEntryPageViewModel(Guid sleepGuid) : this()
         {
-            StopTimer();
+
+
+            ////
+            //InitService();
+
+
+
+            //IsEnabled = false;
+            ////IsEnabled = true;
+            //StartDate = DateTime.Now;
+            //EndDate = DateTime.Now;
+
+            //TimerClickCommand = new Command(TimerClick);
+            //SaveCommand = new Command(Save);
+            //DeleteCommand = new Command(Delete);
+
+            //InitTimer();
+            //InitSleepPlace();
+
+            //AddValidations();
+            ////
 
             var sleep = sleepService.GetSleep(sleepGuid);
 
@@ -50,8 +253,7 @@ namespace BabySleep.ViewModels
             EndDate = sleep.EndTime;
             UpdateDuration();
 
-            SelectedSleepPlace = SleepPlaces.FirstOrDefault(l =>
-                l.Id == sleep.SleepPlace);
+            SelectedSleepPlace = (short)sleep.SleepPlace;
             FeedingCount = new ValidatableObject<short?>() 
             { 
                 Value = sleep.FeedingCount 
@@ -67,12 +269,42 @@ namespace BabySleep.ViewModels
                 Value = sleep.FallAsleepTime
             };
             SleepGuid = sleep.SleepGuid;
+
+            ChildSleepEntryPageMainVM = new ChildSleepEntryPageMainViewModel();
+
+            ChildSleepEntryPageMainVM.Client = new Client() { Id = "3", Name = SleepGuid.ToString(), Leistungsort = "1" };
+        }
+
+        public ChildSleepEntryPageViewModel()
+        {
+            InitService();
+
+            
+
+            IsEnabled = false;
+            //IsEnabled = true;
+            StartDate = DateTime.Now;
+            EndDate = DateTime.Now;
+
+            TimerClickCommand = new Command(TimerClick);
+            SaveCommand = new Command(Save);
+            DeleteCommand = new Command(Delete);
+
+            InitTimer();
+            InitSleepPlace();
+
+            AddValidations();
+
+            ChildSleepEntryPageMainVM = new ChildSleepEntryPageMainViewModel();
+
+            ChildSleepEntryPageMainVM.Client = new Client() { Id = "2", Name = SleepGuid.ToString(), Leistungsort = "1" };
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-        public ObservableCollection<SleepPlaceModel> SleepPlaces { get; set; }
 
         #region Properties
+        public ChildSleepEntryPageMainViewModel ChildSleepEntryPageMainVM { get; set; }
+
         private IChilidSleepEntryService sleepService;
 
         private Guid sleepGuid;
@@ -163,7 +395,6 @@ namespace BabySleep.ViewModels
             }
         }
 
-
         private string timerText;
         public string TimerText
         {
@@ -177,8 +408,8 @@ namespace BabySleep.ViewModels
 
         private Timer SleepTimer;
 
-        SleepPlaceModel selectedSleepPlace;
-        public SleepPlaceModel SelectedSleepPlace
+        object selectedSleepPlace;
+        public object SelectedSleepPlace
         {
             get => selectedSleepPlace;
             set
@@ -279,11 +510,11 @@ namespace BabySleep.ViewModels
             SleepTimer.Start();
         }
 
-        private void TimerClick()
+        private async void TimerClick()
         {
             var currentTime = DateTime.Now;
 
-            if (SleepTimer.Enabled)
+            if (!IsEnabled)
             {
                 StopTimer();
             }
@@ -297,7 +528,7 @@ namespace BabySleep.ViewModels
             EndDate = currentTime;
         }
 
-        private void StopTimer()
+        public void StopTimer()
         {
             TimerText = ChildSleepResources.Start;
             SleepTimer.Stop();
@@ -334,16 +565,7 @@ namespace BabySleep.ViewModels
 
         private void InitSleepPlace()
         {
-            SleepPlaces = new ObservableCollection<SleepPlaceModel>()
-            {
-                new SleepPlaceModel(){ Id = SleepPlace.BabyStroller, Title = ChildSleepResources.BabyStroller},
-                new SleepPlaceModel(){ Id = SleepPlace.Car, Title = ChildSleepResources.Car},
-                new SleepPlaceModel(){ Id = SleepPlace.Crib, Title = ChildSleepResources.Crib},
-                new SleepPlaceModel(){ Id = SleepPlace.Parents, Title = ChildSleepResources.Parents}
-            };
-
-            SelectedSleepPlace = SleepPlaces.FirstOrDefault(l =>
-                l.Id == SleepPlace.Crib);
+            SelectedSleepPlace = (short)SleepPlace.Crib;
         }
 
         private async void Save()
@@ -364,7 +586,7 @@ namespace BabySleep.ViewModels
                     Notes = notes,
                     Quality = quality,
                     SleepGuid = sleepGuid,
-                    SleepPlace = selectedSleepPlace.Id,
+                    SleepPlace = (SleepPlace)selectedSleepPlace,
                     StartTime = startDate,
                     ChildGuid = App.SelectedChildGuid
                 };

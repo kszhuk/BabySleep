@@ -28,7 +28,7 @@
                         <VisualState x:Name="Selected">
                             <VisualState.Setters>
                                 <Setter Property="BackgroundColor"
-                                        Value="AliceBlue" />
+                                        Value="#e1f5fe" />
                             </VisualState.Setters>
                         </VisualState>
                     </VisualStateGroup>
@@ -37,7 +37,7 @@
         </Style>
     </ContentPage.Resources>
 
-    <AbsoluteLayout>
+    <AbsoluteLayout BackgroundColor="#e1f5fe">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -94,7 +94,7 @@
                                         <ColumnDefinition Width="Auto" />
                                         <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
-                                    <BoxView Color="White" Grid.Column="0" Grid.Row="0" Grid.RowSpan="4" Grid.ColumnSpan="3"/>
+                                    <BoxView Color="AliceBlue" Grid.Column="0" Grid.Row="0" Grid.RowSpan="4" Grid.ColumnSpan="3"/>
 
                                     <!--1st column with sun/moon icon-->
                                     <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="4"
@@ -192,7 +192,7 @@
                         </CollectionView.ItemTemplate>
                     </CollectionView>
                     <StackLayout IsVisible="{Binding IsStatisticsVisible}">
-                        <Grid Padding="10">
+                        <Grid >
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
@@ -202,7 +202,7 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <BoxView Color="White" Grid.Column="0" Grid.Row="0" Grid.RowSpan="5"/>
+                            <BoxView Color="AliceBlue" Grid.Column="0" Grid.Row="0" Grid.RowSpan="5"/>
                             <StackLayout Orientation="Horizontal" Padding="0,0,0,0"
                                     Grid.Column="0" Grid.Row="0">
                                 <Label Text="{x:Static resources:GeneralResources.Statistics}" FontAttributes="Bold" Grid.Column="0" Grid.Row="0"

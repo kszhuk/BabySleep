@@ -7,7 +7,7 @@ namespace BabySleep.Models
 {
     public class SleepPlaceModel
     {
-        public SleepPlace Id { get; set; }
+        public short Id { get; set; }
 
         public string Title { get; set; }
     }
