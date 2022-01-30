@@ -67,6 +67,7 @@
   <ItemGroup>
     <Compile Include="CustomControls\ExtendedDateTimePickerRenderer.cs" />
     <Compile Include="CustomControls\ExtendedEditorRenderer.cs" />
+    <Compile Include="CustomControls\ExtendedDateTimeEntryRenderer.cs" />
     <Compile Include="CustomControls\ExtendedSliderRenderer.cs" />
     <Compile Include="CustomControls\ExtendedTitleDatePickerRenderer.cs" />
     <Compile Include="CustomControls\MainPageRenderer.cs" />

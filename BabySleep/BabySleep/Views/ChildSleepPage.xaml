@@ -77,8 +77,8 @@
                     <CollectionView x:Name="collectionViewChildSleeps" ItemsSource="{Binding ChildSleepsMain, Mode=TwoWay}"
                     SelectionMode="Single"
                     SelectionChangedCommand="{Binding BindingContext.EditSleepCommand, Source={x:Reference ChildSleep}}"
-                    SelectionChangedCommandParameter="{Binding Source={x:Reference collectionViewChildSleeps}, Path=SelectedItem}"
-                                HeightRequest="{Binding CollectionHeightRequest}" >
+                    SelectionChangedCommandParameter="{Binding Source={x:Reference collectionViewChildSleeps}, Path=SelectedItem, Mode=TwoWay}"
+                    HeightRequest="{Binding CollectionHeightRequest}" >
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
                                 <Grid Padding="10">

@@ -50,17 +50,6 @@ namespace BabySleep.ViewModels
 
         public ObservableCollection<ChildSleepMainItemDto> ChildSleepsMain { get; set; }
 
-        ChildSleepMainItemDto selectedChildSleep;
-        public ChildSleepMainItemDto SelectedChildSleep
-        {
-            get => selectedChildSleep;
-            set
-            {
-                selectedChildSleep = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SelectedChildSleep)));
-            }
-        }
-
         bool isSelected = true;
         public bool IsSelected
         {
@@ -173,6 +162,7 @@ namespace BabySleep.ViewModels
                 return;
             }
 
+            ReloadSleeps(CurrentDate);
             await App.NavigateMasterDetailPush(new ChildSleepEntryPage(new ChildSleepEntryPageViewModel(sleep.SleepGuid)));
         }
 

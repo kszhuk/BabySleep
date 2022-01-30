@@ -184,7 +184,7 @@
     <value>Start</value>
   </data>
   <data name="StartTime" xml:space="preserve">
-    <value>StartTime</value>
+    <value>Start Time</value>
   </data>
   <data name="StatisticsDayTotal" xml:space="preserve">
     <value>{0} time(s), {1}</value>

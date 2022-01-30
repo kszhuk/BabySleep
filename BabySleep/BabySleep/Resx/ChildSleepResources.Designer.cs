@@ -259,7 +259,7 @@ namespace BabySleep.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to StartTime.
+        ///   Looks up a localized string similar to Start Time.
         /// </summary>
         public static string StartTime {
             get {
