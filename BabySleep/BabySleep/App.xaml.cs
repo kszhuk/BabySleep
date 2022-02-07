@@ -16,7 +16,7 @@ namespace BabySleep
 {
     public partial class App : Xamarin.Forms.Application
     {
-        public static MasterDetailPage MasterDetail { get; set; }
+        public static FlyoutPage MasterDetail { get; set; }
         public static IContainer Container { get; set; }
         public static Guid SelectedChildGuid { get; set; }
 
