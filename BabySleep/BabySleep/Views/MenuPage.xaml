@@ -10,9 +10,9 @@
     <ContentPage.BindingContext>
         <local:MenuViewModel />
     </ContentPage.BindingContext>
-    
+
     <StackLayout>
-        <StackLayout HeightRequest="40">
+        <StackLayout HeightRequest="40" >
             <StackLayout.IsVisible>
                 <OnPlatform x:TypeArguments="x:Boolean">
                     <On Platform="Android, iOS" Value="True" />
@@ -24,22 +24,22 @@
                     <On Platform="iOS" Value="0,20,0,0" />
                 </OnPlatform>
             </StackLayout.Margin>
-            <Label Text="Baby Sleep" Margin="10" VerticalOptions="Center" FontSize="Large" FontAttributes="Bold"></Label>
+            <Label Text="Baby Sleep" TextColor="#0277BD" Margin="10" VerticalOptions="Center" FontSize="Large" FontAttributes="Bold"></Label>
         </StackLayout>
         <ListView x:Name="MenuList" ItemsSource="{Binding MenuItemList}" 
-                      SelectedItem="{Binding SelectedMenuItem, Mode=TwoWay}">
+                      SelectedItem="{Binding SelectedMenuItem, Mode=TwoWay}" BackgroundColor="#e1f5fe" SeparatorVisibility="None">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <custom:ExtendedViewCell SelectedBackgroundColor="LightGray">
+                    <custom:ExtendedViewCell SelectedBackgroundColor="#e1f5fe">
                         <StackLayout  VerticalOptions="FillAndExpand"
-                             Orientation="Horizontal">
+                             Orientation="Horizontal" BackgroundColor="#e1f5fe">
                             <Image Source="{Binding Icon}"
                                  WidthRequest="20"
                                  HeightRequest="20"
                                  VerticalOptions="Center" 
                                    IsVisible="true" Margin="20,0,0,0" />
                             <Label Text="{Binding Title}"
-                                       VerticalOptions="CenterAndExpand"></Label>
+                                       VerticalOptions="CenterAndExpand" TextColor="#0277BD"></Label>
                         </StackLayout>
                     </custom:ExtendedViewCell>
                 </DataTemplate>

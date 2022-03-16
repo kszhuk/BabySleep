@@ -25,16 +25,12 @@
             ApplyToDerivedTypes="True"
             CanCascade="True">
             <Setter Property="FontSize" Value="Subtitle" />
-            <!--<Setter Property="TextColor" Value="#01579B" />-->
-            <!--<Setter Property="TextColor" Value="#0277BD" />-->
-            <!--<Setter Property="FontAttributes" Value="Bold" />-->
             <Setter Property="TextColor" Value="Black" />
             <Setter Property="Margin" Value="3,0" />
         </Style>
 
         <ControlTemplate x:Key="RadioButtonTemplate">
             <Frame 
-                 BackgroundColor="#e1f5fe"
                 HeightRequest="25"
                    WidthRequest="25"
                    HasShadow="False"
@@ -67,7 +63,7 @@
         </ControlTemplate>
     </ContentPage.Resources>
 
-    <Grid BackgroundColor="#e1f5fe">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
@@ -89,8 +85,8 @@
                     <StackLayout Grid.Row="2" WidthRequest="100" HeightRequest="100" HorizontalOptions="Center" 
                                Margin="10" Grid.ColumnSpan="2">
                         <Frame CornerRadius="50" 
-                           Padding="1" BackgroundColor="#29b6f6"  >
-                            <StackLayout WidthRequest="100" HeightRequest="100" BackgroundColor="#29b6f6" Orientation="Vertical">
+                           Padding="1" BackgroundColor="#4fc3f7"  >
+                            <StackLayout WidthRequest="100" HeightRequest="100" BackgroundColor="#4fc3f7" Orientation="Vertical">
                                 <StackLayout.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding TimerClickCommand}"/>
                                 </StackLayout.GestureRecognizers>
@@ -107,7 +103,7 @@
                             </StackLayout>
                         </Frame>
                     </StackLayout>
-                    <Label Text="{x:Static resources:ChildSleepResources.StartTime}" VerticalOptions="Center" Grid.Row="0" Grid.Column="0" TextColor="#0277BD"  FontAttributes="Bold" FontSize="Medium" />
+                    <Label Text="{x:Static resources:ChildSleepResources.StartTime}" VerticalOptions="Center" Grid.Row="0" Grid.Column="0" Style="{x:StaticResource ChildSleepLabelStyle}" />
                     <custom:ExtendedDateTimePicker 
                         DateTime="{Binding StartDate}"
                         MinimumDate="{Binding MinimumDate}"
@@ -115,7 +111,7 @@
                         IsEnabled="{Binding IsEnabled}"
                         Grid.Row="1" Grid.Column="0"/>
 
-                    <Label Text="{x:Static resources:ChildSleepResources.EndTime}" VerticalOptions="Center" Grid.Row="0" Grid.Column="1" TextColor="#0277BD" FontAttributes="Bold" FontSize="Medium" />
+                    <Label Text="{x:Static resources:ChildSleepResources.EndTime}" VerticalOptions="Center" Grid.Row="0" Grid.Column="1" Style="{x:StaticResource ChildSleepLabelStyle}"/>
                     <custom:ExtendedDateTimePicker 
                         DateTime="{Binding EndDate}"
                         MinimumDate="{Binding MinimumDate}"
@@ -177,8 +173,9 @@
                         <custom:ExtendedDateTimeEntry Keyboard="Numeric"
                             Text="{Binding FallAsleep.Value, Mode=TwoWay, Converter={StaticResource NullableIntConverter}}"
                             IsEnabled="{Binding IsEnabled}"
-                            WidthRequest="40" HorizontalOptions="Start" MaxLength="3"
-                            Grid.Row="2" Grid.Column="1" Placeholder="{x:Static resources:ChildSleepResources.FallAsleepPlaceholder}" FontSize="Small">
+                            HorizontalOptions="Start" MaxLength="3"
+                            Grid.Row="2" Grid.Column="1" Placeholder="{x:Static resources:ChildSleepResources.FallAsleepPlaceholder}"
+                            Style="{x:StaticResource ChildSleepEntryStyle}">
                                 <Entry.Behaviors>
                                     <behaviour:EntryLineValidationBehavior IsValid="{Binding FallAsleep.IsValid}"/>
                                 </Entry.Behaviors>
@@ -188,8 +185,9 @@
                         <custom:ExtendedDateTimeEntry Keyboard="Numeric" 
                             Text="{Binding FeedingCount.Value, Mode=TwoWay, Converter={StaticResource NullableShortConverter}}"
                             IsEnabled="{Binding IsEnabled}"
-                            WidthRequest="40" HorizontalOptions="Start" MaxLength="2"
-                            Grid.Row="3" Grid.Column="1" Placeholder="{x:Static resources:ChildSleepResources.FeedingsPlaceholder}"  FontSize="Small">
+                            HorizontalOptions="Start" MaxLength="2"
+                            Grid.Row="3" Grid.Column="1" Placeholder="{x:Static resources:ChildSleepResources.FeedingsPlaceholder}" 
+                            Style="{x:StaticResource ChildSleepEntryStyle}" >
                                 <Entry.Behaviors>
                                     <behaviour:EntryLineValidationBehavior IsValid="{Binding FeedingCount.IsValid}"/>
                                 </Entry.Behaviors>
@@ -199,8 +197,9 @@
                         <custom:ExtendedDateTimeEntry Keyboard="Numeric" 
                             Text="{Binding AwakeningCount.Value, Mode=TwoWay, Converter={StaticResource NullableShortConverter}}"
                             IsEnabled="{Binding IsEnabled}"
-                            WidthRequest="40" HorizontalOptions="Start" MaxLength="2"
-                            Grid.Row="4" Grid.Column="1" Placeholder="{x:Static resources:ChildSleepResources.AwakeningsPlaceholder}"  FontSize="Small">
+                            HorizontalOptions="Start" MaxLength="2"
+                            Grid.Row="4" Grid.Column="1" Placeholder="{x:Static resources:ChildSleepResources.AwakeningsPlaceholder}"
+                            Style="{x:StaticResource ChildSleepEntryStyle}">
                                 <Entry.Behaviors>
                                     <behaviour:EntryLineValidationBehavior IsValid="{Binding AwakeningCount.IsValid}"/>
                                 </Entry.Behaviors>

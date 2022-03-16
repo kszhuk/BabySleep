@@ -18,6 +18,7 @@
     <None Remove="Resources\arrow-right-icon.png" />
     <None Remove="Resources\clock-icon.png" />
     <None Remove="Resources\edit-icon.png" />
+    <None Remove="Resources\google-translate-icon.png" />
     <None Remove="Resources\hamburger_menu.png" />
     <None Remove="Resources\menu-edit-icon.png" />
     <None Remove="Resources\menu-home-icon.png" />
@@ -29,6 +30,7 @@
     <EmbeddedResource Include="Resources\add-icon.png" />
     <EmbeddedResource Include="Resources\add_photo_icon.jpg" />
     <EmbeddedResource Include="Resources\clock-icon.png" />
+    <EmbeddedResource Include="Resources\google-translate-icon.png" />
     <EmbeddedResource Include="Resources\hamburger_menu.png" />
     <EmbeddedResource Include="Resources\menu-edit-icon.png" />
     <EmbeddedResource Include="Resources\menu-home-icon.png" />

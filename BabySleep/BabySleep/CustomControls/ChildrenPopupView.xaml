@@ -22,9 +22,9 @@
     <ContentView.Content>
         <StackLayout VerticalOptions="Start" HorizontalOptions="End">
             <Frame CornerRadius="10"  
-               OutlineColor="#5AC8FF" 
+               OutlineColor="#4fc3f7" 
                Padding="0">
-                <StackLayout WidthRequest="250" BackgroundColor="White">
+                <StackLayout WidthRequest="250" BackgroundColor="#e1f5fe">
                     <CollectionView x:Name="listView" x:Uid="listViewId" ItemsSource="{Binding Children}"
                         SelectionMode="Single"
                         SelectedItem="{Binding SelectedChild}"
@@ -60,7 +60,7 @@
                                                VerticalOptions="StartAndExpand"/>
                                         <ImageButton Grid.Column="2" Grid.RowSpan="2"
                                                 BackgroundColor="Transparent"
-                                                Source="edit_icon.png"
+                                                Source="notes_icon.png"
                                                 VerticalOptions="Center"
                                                 HorizontalOptions="EndAndExpand"
                                                 WidthRequest="30" HeightRequest="30"
@@ -71,7 +71,7 @@
                             </CollectionView.ItemTemplate>
                         </CollectionView>
                         <BoxView HeightRequest="1" 
-                        BackgroundColor="#5AC8FF" 
+                        BackgroundColor="#4fc3f7" 
                         HorizontalOptions="FillAndExpand" />
                         <Button Text="{x:Static resources:MenuResources.AddNewChild}" 
                             Command="{Binding AddChildCommand}" Style="{StaticResource ActiveButtonStyle}"

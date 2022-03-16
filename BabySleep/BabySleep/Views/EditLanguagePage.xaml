@@ -19,7 +19,7 @@
         </Style>
     </ContentPage.Resources>
 
-    <StackLayout Margin="10">
+    <StackLayout Margin="10" >
         <Label
                 HorizontalTextAlignment="Center"
                 Style="{x:StaticResource TitleStyle}"

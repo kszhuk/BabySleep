@@ -12,6 +12,7 @@ using Android.Views;
 using Android.Widget;
 using BabySleep.CustomControls;
 using BabySleep.Droid.CustomControls;
+using BabySleep.Helpers;
 using Java.Util;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
@@ -31,11 +32,13 @@ namespace BabySleep.Droid.CustomControls
 
             if (Control != null && e.NewElement != null)
             {
-                Control.SetTextColor(Android.Graphics.Color.ParseColor("#007AFF"));
+                Control.SetTextColor(Android.Graphics.Color.ParseColor(Constants.COLOR_HEADER));
 
                 var element = Element as ExtendedTitleDatePicker;
                 var textSize = Device.GetNamedSize(NamedSize.Title, element);
-                Control.TextSize = (float)textSize;
+                Control.SetTypeface(Android.Graphics.Typeface.SansSerif, Android.Graphics.TypefaceStyle.Bold);
+                Control.SetTextSize(Android.Util.ComplexUnitType.Sp, (float)textSize);
+    
 
                 var gd = new GradientDrawable();
                 gd.SetStroke(0, Android.Graphics.Color.Transparent);

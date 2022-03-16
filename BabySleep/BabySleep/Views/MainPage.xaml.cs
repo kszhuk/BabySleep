@@ -1,4 +1,5 @@
-﻿using BabySleep.Interfaces;
+﻿using BabySleep.Helpers;
+using BabySleep.Interfaces;
 using BabySleep.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -22,8 +23,8 @@ namespace BabySleep.Views
         {
             InitializeComponent();
             On<Android>().SetToolbarPlacement(ToolbarPlacement.Bottom);
-            this.SelectedTabColor = Color.FromHex("#007AFF");
-            this.UnselectedTabColor = Color.Black;
+            this.SelectedTabColor = Color.FromHex(Constants.COLOR_HEADER);
+            this.UnselectedTabColor = Color.Gray;
 
             currentPage = Children[0];
             this.CurrentPageChanged += Handle_CurrentPageChanged;

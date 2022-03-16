@@ -4,6 +4,7 @@ using Android.Graphics;
 using Android.Views;
 using BabySleep.CustomControls;
 using BabySleep.Droid.CustomControls;
+using BabySleep.Helpers;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 [assembly: ExportRenderer(typeof(ExtendedImageCircle), typeof(ExtendedImageCircleRenderer))]
@@ -38,7 +39,7 @@ namespace BabySleep.Droid.CustomControls
                 path.AddCircle(Width / 2, Height / 2, radius, Path.Direction.Ccw);
                 canvas.Save();
                 canvas.ClipPath(path);
-                canvas.DrawColor(Android.Graphics.Color.AliceBlue);
+                canvas.DrawColor(Android.Graphics.Color.ParseColor(Constants.COLOR_BACKGROUND));
                 
                 var result = true;
                 if (element.IsEmptyPicture)
@@ -47,7 +48,7 @@ namespace BabySleep.Droid.CustomControls
 
                     var textPaint = new Paint
                     {
-                        Color = Android.Graphics.Color.ParseColor("#007AFF"),
+                        Color = Android.Graphics.Color.ParseColor(Constants.COLOR_HEADER),
                         TextSize = 80,
                         TextAlign = Paint.Align.Center
                     };
@@ -75,7 +76,7 @@ namespace BabySleep.Droid.CustomControls
                     StrokeWidth = 5
                 };
                 paint.SetStyle(Paint.Style.Stroke);
-                paint.Color = global::Android.Graphics.Color.AliceBlue;
+                paint.Color = global::Android.Graphics.Color.ParseColor(Constants.COLOR_BACKGROUND);
                 canvas.DrawPath(path, paint);
                 paint.Dispose();
                 path.Dispose();

@@ -18,18 +18,26 @@
             <Setter Property="Margin" Value = "0,0"   />
         </Style>
 
+        <Style TargetType="Label" x:Key="SubTitleStyle"
+            ApplyToDerivedTypes="True"
+            CanCascade="True">
+            <Setter Property="FontSize" Value="Medium" />
+            <Setter Property="TextColor" Value="#0277BD"/>
+        </Style>
+
         <Style TargetType="Label" x:Key="TitleStyle"
             ApplyToDerivedTypes="True"
             CanCascade="True">
             <Setter Property="FontSize" Value="Title" />
             <Setter Property="Margin" Value="3,0" />
             <Setter Property="HorizontalTextAlignment" Value="Center"/>
-            <Setter Property="TextColor" Value="#007AFF"/>
+            <Setter Property="TextColor" Value="#0277BD"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
         </Style>
 
         <Style TargetType="Button" x:Key="ActiveButtonStyle">
             <Setter Property="CornerRadius" Value = "20"   />
-            <Setter Property="BackgroundColor" Value = "#29b6f6"   />
+            <Setter Property="BackgroundColor" Value = "#4fc3f7"   />
             <Setter Property="Margin" Value = "10,0"   />
         </Style>
 
@@ -45,6 +53,31 @@
             <Setter Property="HeightRequest" Value = "20"   />
             <Setter Property="BackgroundColor" Value = "Green"   />
             <Setter Property="Margin" Value = "10,0"   />
+        </Style>
+
+        <Style TargetType="ContentPage" ApplyToDerivedTypes="True">
+            <Setter Property="BackgroundColor" Value="#e1f5fe" />
+        </Style>
+
+        <Style TargetType="BoxView" x:Key="ChildBoxStyle"
+            ApplyToDerivedTypes="True"
+            CanCascade="True">
+            <Setter Property="BackgroundColor" Value="AliceBlue" />
+        </Style>
+
+        <Style TargetType="Label" x:Key="ChildSleepLabelStyle"
+            ApplyToDerivedTypes="True"
+            CanCascade="True">
+            <Setter Property="FontSize" Value="Medium" />
+            <Setter Property="TextColor" Value="#0277BD"/>
+            <Setter Property="FontAttributes" Value="Bold" />
+        </Style>
+
+        <Style TargetType="Entry" x:Key="ChildSleepEntryStyle"
+            ApplyToDerivedTypes="True"
+            CanCascade="True">
+            <Setter Property="FontSize" Value="Small" />
+            <Setter Property="WidthRequest" Value="40"/>
         </Style>
 
         <!--<Style TargetType="Entry">

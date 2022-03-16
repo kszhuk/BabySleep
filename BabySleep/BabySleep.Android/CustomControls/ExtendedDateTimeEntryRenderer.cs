@@ -20,13 +20,6 @@ namespace BabySleep.Droid.CustomControls
 
             if (Control != null && e.NewElement != null)
             {
-                //var shape = new GradientDrawable();
-                //shape.SetStroke(1, Android.Graphics.Color.ParseColor("#5AC8FF"));
-                ////shape.SetColor(Android.Graphics.Color.AliceBlue);
-                ////shape.SetCornerRadius(10);
-
-                //Control.SetBackground(shape);
-
                 Control.BackgroundTintList = Android.Content.Res.ColorStateList.ValueOf(Android.Graphics.Color.ParseColor("#5AC8FF"));
             }
         }

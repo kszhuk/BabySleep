@@ -50,7 +50,7 @@ namespace BabySleep.ViewModels
                 new MenuItemModel(){
                     Id = MenuItemType.EditSettings,
                     Title = Resx.MenuResources.EditLanguage,
-                    Icon = ImageSource.FromResource("BabySleep.Resources.menu-edit-icon.png",
+                    Icon = ImageSource.FromResource("BabySleep.Resources.google-translate-icon.png",
                         typeof(MenuViewModel).GetTypeInfo().Assembly)
                 }
             };
