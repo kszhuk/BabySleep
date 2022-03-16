@@ -10,12 +10,12 @@ using Xamarin.Forms.Xaml;
 namespace BabySleep.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MasterPage : MasterDetailPage
+    public partial class MasterPage : FlyoutPage
     {
         public MasterPage()
         {
             InitializeComponent();
-            this.Master = new MenuPage();
+            this.Flyout = new MenuPage();
             this.Detail = new NavigationPage(new MainPage());
             App.MasterDetail = this;
         }
@@ -23,7 +23,7 @@ namespace BabySleep.Views
         public MasterPage(Page detail)
         {
             InitializeComponent();
-            this.Master = new MenuPage();
+            this.Flyout = new MenuPage();
             this.Detail = new NavigationPage(detail);
             App.MasterDetail = this;
         }
