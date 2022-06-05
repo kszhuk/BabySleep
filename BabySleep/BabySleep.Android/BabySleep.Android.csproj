@@ -77,6 +77,7 @@
     <Compile Include="CustomControls\ExtendedPickerRenderer.cs" />
     <Compile Include="CustomControls\ExtendedViewCellRenderer.cs" />
     <Compile Include="CustomControls\ExtendedImageCircleRenderer.cs" />
+    <Compile Include="Services\AlertBuilderService.cs" />
     <Compile Include="Services\ContainerService.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
@@ -203,6 +204,12 @@
   <ItemGroup>
     <AndroidResource Include="Resources\layout\listview_item.xml">
       <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\custom_title.xml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
     </AndroidResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

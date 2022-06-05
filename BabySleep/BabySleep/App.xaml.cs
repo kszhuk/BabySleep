@@ -76,12 +76,12 @@ namespace BabySleep
         #region Alerts
         public Task ShowException(string title, string message)
         {
-            return MainPage.DisplayAlert(title, message, GeneralResources.Ok);
+            return DependencyService.Get<IAlertBuilderService>().ShowExceptionAsync(title, message, GeneralResources.Ok);
         }
 
         public Task<bool> ShowQuestion(string title, string message)
         {
-            return MainPage.DisplayAlert(title, message, GeneralResources.Yes, GeneralResources.No);
+            return DependencyService.Get<IAlertBuilderService>().ShowQuestionAsync(title, message, GeneralResources.Yes, GeneralResources.No);
         }
         #endregion
         #endregion

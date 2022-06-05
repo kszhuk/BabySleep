@@ -55,7 +55,12 @@ namespace BabySleep.Droid.CustomControls
             items = model.Items.ToArray(); 
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
-            builder.SetTitle(model.Title ?? "");
+            var titleView = LayoutInflater.From(context).Inflate(Resource.Layout.custom_title, null);
+            var textView = (TextView)titleView.FindViewById(Resource.Id.customTitleText);
+            var text = model.Title ?? "";
+            textView.SetText(text.ToCharArray(), 0, text.Length);
+            builder.SetCustomTitle(titleView);
+
             builder.SetNegativeButton(GeneralResources.Cancel, (s, a) =>
             {
                 Control?.ClearFocus();
