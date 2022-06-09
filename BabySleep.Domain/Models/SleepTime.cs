@@ -1,4 +1,5 @@
 ﻿using BabySleep.Common.Enums;
+using BabySleep.Common.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -20,7 +21,7 @@ namespace BabySleep.Domain.Models
         {
             get
             {
-                if(StartTime.Hour <= 5 || StartTime.Hour >= 19)
+                if(StartTime.Hour <= Constants.NIGHT_SLEEP_END || StartTime.Hour >= Constants.NIGHT_SLEEP_START)
                 {
                     return SleepType.NightSleep;
                 }

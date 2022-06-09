@@ -32,6 +32,8 @@ namespace BabySleep.Core
                 .As<IChildSleepMainService>();
             builder.RegisterType<ChilidSleepEntryService>()
                 .As<IChilidSleepEntryService>();
+            builder.RegisterType<StatisticsService>()
+                .As<IStatisticsService>();
 
             //Application dto assemblers
 
@@ -41,6 +43,8 @@ namespace BabySleep.Core
                 .As<IChildSleepEntryDtoAssembler>();
             builder.RegisterType<ChildSleepMainDtoAssembler>()
                 .As<IChildSleepMainDtoAssembler>();
+            builder.RegisterType<StatisticsDtoAssembler>()
+                .As<IStatisticsDtoAssembler>();
 
             //Infrastructure repositories
 
@@ -52,8 +56,6 @@ namespace BabySleep.Core
                 .As<ISleepRepository>();
 
             //Infrastructure services
-
-
 
             builder.RegisterAssemblyTypes(Assembly.Load("BabySleep.Common"))
                 .Where(t => t.Namespace.Contains("Interfaces"))
@@ -70,7 +72,6 @@ namespace BabySleep.Core
             builder.RegisterAssemblyTypes(Assembly.Load("BabySleep.Infrastructure"))
                 .Where(t => t.Namespace.Contains("Business.Interfaces"))
                 .As(t => t.GetInterfaces().FirstOrDefault(i => i.Name == "I" + t.Name));
-
 
             builder.RegisterAssemblyTypes(Assembly.Load("BabySleep.Application"))
                 .Where(t => t.Namespace.Contains("DTOAssemblers"))

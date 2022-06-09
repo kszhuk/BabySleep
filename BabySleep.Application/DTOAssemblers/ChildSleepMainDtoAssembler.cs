@@ -27,10 +27,11 @@ namespace BabySleep.Application.DTOAssemblers
             var totalSleepsTime = daySleepsTime + nightSleepsTime;
             var daySleepsCount = sleepsDto.Count(s => s.IsDaySleep);
 
-            return new ChildSleepMainDto() { 
-                ChildSleeps = sleepsDto, 
-                DaySleepsTime = daySleepsTime, 
-                NightSleepsTime = nightSleepsTime, 
+            return new ChildSleepMainDto()
+            {
+                ChildSleeps = sleepsDto,
+                DaySleepsTime = daySleepsTime,
+                NightSleepsTime = nightSleepsTime,
                 TotalSleepsTime = totalSleepsTime,
                 DaySleepsCount = daySleepsCount
             };
@@ -74,19 +75,18 @@ namespace BabySleep.Application.DTOAssemblers
             long nightSleepsTime = 0;
             foreach (var nightSleep in nightSleeps)
             {
-                if (nightSleep.StartTime.Day != currentDate.Day)
+                if (nightSleep.StartTime.Day == currentDate.Day && nightSleep.StartTime.Hour >= Constants.NIGHT_SLEEP_START)
                 {
-                    nightSleepsTime += (nightSleep.DurationTicks - (DateTimeHelper.FormatEmptyDate(currentDate) - nightSleep.StartTime).Ticks);
+                    nightSleepsTime += nightSleep.DurationTicks;
                     continue;
                 }
 
-                if (nightSleep.EndTime.Day != currentDate.Day)
+                var nextDate = nightSleep.StartTime.AddDays(1);
+                if (nightSleep.StartTime.Day == nextDate.Day && nightSleep.StartTime.Hour <= Constants.NIGHT_SLEEP_END)
                 {
-                    nightSleepsTime += (nightSleep.DurationTicks - (nightSleep.EndTime - DateTimeHelper.FormatEmptyDate(currentDate.AddDays(1))).Ticks);
+                    nightSleepsTime += nightSleep.DurationTicks;
                     continue;
                 }
-
-                nightSleepsTime += nightSleep.DurationTicks;
             }
 
             return nightSleepsTime;

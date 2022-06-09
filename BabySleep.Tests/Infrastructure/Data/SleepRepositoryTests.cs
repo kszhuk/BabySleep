@@ -274,6 +274,141 @@ namespace BabySleep.Tests.Infrastructure.Data
         }
 
         [Fact]
+        public void TakeTestStatistics()
+        {
+            using (var context = new ApplicationContextFactory().CreateContext())
+            {
+                var repository = new SleepRepository(context);
+
+                var generator = new GetSleepsGenerator();
+                var sleeps = generator.GetTestSleeps();
+
+                for (int i = 0; i < sleeps.Count; i++)
+                {
+                    repository.Add(sleeps[i]);
+                }
+
+                Assert.Equal(sleeps.Count, context.Sleeps.ToList().Count);
+
+                var childGuid = Guid.NewGuid();
+                var sleepDate = DateTime.Now;
+                var sleepDatePrevious = DateTime.Now.AddDays(-1);
+                var sleepDateNext = DateTime.Now.AddDays(1);
+                var sleepDateOld = DateTime.Now.AddMonths(-1);
+                var sleepDateFuture = DateTime.Now.AddMonths(1);
+
+                //Day sleep
+                var sleepGuidCurrentDate = Guid.NewGuid();
+                var startTime1 = new DateTime(sleepDate.Year, sleepDate.Month, sleepDate.Day, 13, 0, 0);
+                var endTime1 = new DateTime(sleepDate.Year, sleepDate.Month, sleepDate.Day, 15, 30, 0);
+                short quality1 = 1;
+                var note1 = "Test Day 1";
+                short feedingCount1 = 1;
+                int fallAsleepTime1 = 1;
+                short awakeningCount1 = 1;
+                var sleepPlace1 = SleepPlace.Car;
+                repository.Add(SleepEntryHelper.FillChildSleep(sleepGuidCurrentDate, childGuid, startTime1, endTime1,
+                        sleepPlace1, quality1, note1, feedingCount1, awakeningCount1, fallAsleepTime1));
+
+                var sleepPlace = SleepPlace.Crib;
+                short quality = 5;
+                var note = "Test Day";
+                short feedingCount = 2;
+                int fallAsleepTime = 16;
+                short awakeningCount = 2;
+
+                //Previous day night sleep
+                var sleepGuidPreviousNight = Guid.NewGuid();
+                var startTime2 = new DateTime(sleepDatePrevious.Year, sleepDatePrevious.Month, sleepDatePrevious.Day, 21, 0, 0);
+                var endTime2 = new DateTime(sleepDate.Year, sleepDate.Month, sleepDate.Day, 06, 30, 0);
+                repository.Add(SleepEntryHelper.FillChildSleep(sleepGuidPreviousNight, childGuid, startTime2, endTime2,
+                        sleepPlace, quality, note, feedingCount, awakeningCount, fallAsleepTime));
+
+                //Previous day daily sleep
+                var sleepGuid3 = Guid.NewGuid();
+                var startTime3 = new DateTime(sleepDatePrevious.Year, sleepDatePrevious.Month, sleepDatePrevious.Day, 13, 0, 0);
+                var endTime3 = new DateTime(sleepDatePrevious.Year, sleepDatePrevious.Month, sleepDatePrevious.Day, 15, 0, 0);
+                repository.Add(SleepEntryHelper.FillChildSleep(sleepGuid3, childGuid, startTime3, endTime3,
+                        sleepPlace, quality, note, feedingCount, awakeningCount, fallAsleepTime));
+
+                //Next day night sleep
+                var sleepGuidNextNight = Guid.NewGuid();
+                var startTime4 = new DateTime(sleepDate.Year, sleepDate.Month, sleepDate.Day, 21, 0, 0);
+                var endTime4 = new DateTime(sleepDateNext.Year, sleepDateNext.Month, sleepDateNext.Day, 06, 30, 0);
+                repository.Add(SleepEntryHelper.FillChildSleep(sleepGuidNextNight, childGuid, startTime4, endTime4,
+                        sleepPlace, quality, note, feedingCount, awakeningCount, fallAsleepTime));
+
+                //Next day daily sleep
+                var sleepGuid5 = Guid.NewGuid();
+                var startTime5 = new DateTime(sleepDateNext.Year, sleepDateNext.Month, sleepDateNext.Day, 13, 0, 0);
+                var endTime5 = new DateTime(sleepDateNext.Year, sleepDateNext.Month, sleepDateNext.Day, 15, 0, 0);
+                repository.Add(SleepEntryHelper.FillChildSleep(sleepGuid5, childGuid, startTime5, endTime5,
+                        sleepPlace, quality, note, feedingCount, awakeningCount, fallAsleepTime));
+
+                //Old sleep
+                var sleepGuid6 = Guid.NewGuid();
+                var startTime6 = new DateTime(sleepDateOld.Year, sleepDateOld.Month, sleepDateOld.Day, 13, 0, 0);
+                var endTime6 = new DateTime(sleepDateOld.Year, sleepDateOld.Month, sleepDateOld.Day, 15, 0, 0);
+                repository.Add(SleepEntryHelper.FillChildSleep(sleepGuid6, childGuid, startTime6, endTime6,
+                        sleepPlace, quality, note, feedingCount, awakeningCount, fallAsleepTime));
+
+                //Future sleep
+                var sleepGuid7 = Guid.NewGuid();
+                var startTime7 = new DateTime(sleepDateFuture.Year, sleepDateFuture.Month, sleepDateFuture.Day, 13, 0, 0);
+                var endTime7 = new DateTime(sleepDateFuture.Year, sleepDateFuture.Month, sleepDateFuture.Day, 15, 0, 0);
+                repository.Add(SleepEntryHelper.FillChildSleep(sleepGuid7, childGuid, startTime7, endTime7,
+                        sleepPlace, quality, note, feedingCount, awakeningCount, fallAsleepTime));
+
+                Assert.Equal(sleeps.Count + 7, context.Sleeps.ToList().Count);
+
+                //verify old date
+                var oldSleeps = repository.Take(childGuid, sleepDateOld.AddDays(-1), sleepDateOld.AddDays(1));
+                Assert.Equal(1, oldSleeps.Count);
+                Assert.Equal(startTime6, oldSleeps.First().SleepTime.StartTime);
+                Assert.Equal(endTime6, oldSleeps.First().SleepTime.EndTime);
+
+                //verify future date
+                var futureSleeps = repository.Take(childGuid, sleepDateFuture.AddDays(-1), sleepDateFuture.AddDays(1));
+                Assert.Equal(1, futureSleeps.Count);
+                Assert.Equal(startTime7, futureSleeps.First().SleepTime.StartTime);
+                Assert.Equal(endTime7, futureSleeps.First().SleepTime.EndTime);
+
+                //verify current date sleep
+                var currentSleeps = repository.Take(childGuid, sleepDate, sleepDate);
+                Assert.Equal(5, currentSleeps.Count);
+                var currentDateSleep = currentSleeps.FirstOrDefault(s => s.SleepTime.StartTime == startTime1 && s.SleepTime.EndTime == endTime1);
+                Assert.NotNull(currentDateSleep);
+                Assert.Equal(awakeningCount1, currentDateSleep.AwakeningCount);
+                Assert.Equal(childGuid, currentDateSleep.ChildGuid);
+                Assert.Equal(note1, currentDateSleep.CustomerInfo.Note);
+                Assert.Equal(quality1, currentDateSleep.CustomerInfo.Quality);
+                Assert.Equal(fallAsleepTime1, currentDateSleep.FallAsleepTime);
+                Assert.Equal(feedingCount1, currentDateSleep.FeedingCount);
+                Assert.Equal(sleepPlace1, (SleepPlace)currentDateSleep.SleepPlace);
+
+                //verify previous date sleep
+                var previousSleeps = repository.Take(childGuid, sleepDatePrevious.AddDays(-1), sleepDatePrevious);
+                Assert.Equal(4, previousSleeps.Count);
+
+                //verify next date sleep
+                var nextSleeps = repository.Take(childGuid, sleepDateNext, sleepDateNext.AddDays(1));
+                Assert.Equal(4, nextSleeps.Count);
+
+                //verify sleeps for 3 days
+                var sleepsSome = repository.Take(childGuid, sleepDatePrevious, sleepDateNext);
+                Assert.Equal(5, sleepsSome.Count);
+
+                //verify not existing date
+                var nullSleeps = repository.Take(childGuid, DateTime.Now.AddYears(1), DateTime.Now.AddYears(2));
+                Assert.Equal(0, nullSleeps.Count);
+
+                //verify not existing child
+                var nullSleepsChild = repository.Take(Guid.NewGuid(), sleepDate, sleepDate.AddDays(1));
+                Assert.Equal(0, nullSleepsChild.Count);
+            }
+        }
+
+        [Fact]
         public void UpdateTest()
         {
             using (var context = new ApplicationContextFactory().CreateContext())

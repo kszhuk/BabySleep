@@ -48,8 +48,8 @@ namespace BabySleep.ViewModels
             Languages = new ObservableCollection<LanguageModel>()
             {
                 new LanguageModel(){ Id = LanguageType.en, Title = EditSettingsResources.English},
-                new LanguageModel(){ Id = LanguageType.uk, Title = EditSettingsResources.Ukrainian},
-                new LanguageModel(){ Id = LanguageType.ru, Title = EditSettingsResources.Russian}
+                new LanguageModel(){ Id = LanguageType.uk, Title = EditSettingsResources.Ukrainian}//,
+                //new LanguageModel(){ Id = LanguageType.ru, Title = EditSettingsResources.Russian}
             };
 
             SelectedLanguage = Languages.FirstOrDefault(l =>

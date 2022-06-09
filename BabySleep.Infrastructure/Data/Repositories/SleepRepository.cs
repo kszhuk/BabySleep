@@ -70,6 +70,16 @@ namespace BabySleep.Infrastructure.Data.Repositories
                 Select(c => ConvertToDomain(c)).ToList();
         }
 
+        public IList<Sleep> Take(Guid childGuid, DateTime startDate, DateTime endDate)
+        {
+            var previousDate = DateTimeHelper.FormatEmptyDate(startDate.AddDays(-1));
+            var nextDate = DateTimeHelper.FormatEmptyDate(endDate.AddDays(2));
+            var childSleeps = context.Sleeps.AsNoTracking().Where(s => s.ChildGuid == childGuid &&
+                ((s.StartTime >= previousDate && s.StartTime <= nextDate) || (s.EndTime >= previousDate && s.EndTime <= nextDate))).
+                OrderBy(c => c.StartTime).ToList();
+            return childSleeps.Select(c => ConvertToDomain(c)).ToList();
+        }
+
         public void Update(Sleep sleep)
         {
             ValidateSleepTime(sleep.SleepTime, sleep.SleepGuid, sleep.ChildGuid);

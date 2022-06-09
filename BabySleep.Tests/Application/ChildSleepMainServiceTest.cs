@@ -45,7 +45,7 @@ namespace BabySleep.Tests.Application
                 var sleeps = new List<Tuple<Guid, DateTime, List<Sleep>, ChildSleepMainDto>>();
 
                 //No sleeps
-                sleeps.Add(Tuple.Create(Guid.NewGuid(), DateTime.Now, new List<Sleep>(), 
+                sleeps.Add(Tuple.Create(Guid.NewGuid(), DateTime.Now, new List<Sleep>(),
                     new ChildSleepMainDto() { ChildSleeps = new List<ChildSleepMainItemDto>() }));
 
                 //1 sleep
@@ -132,8 +132,8 @@ namespace BabySleep.Tests.Application
 
                 daySleepsCount = 2;
                 daySleepsTime = 108000000000;
-                nightSleepsTime = 377050000000;
-                totalSleepsTime = 485050000000;
+                nightSleepsTime = 342000000000;
+                totalSleepsTime = 450000000000;
 
                 sleeps.Add(Tuple.Create(childGuid, date,
                     new List<Sleep>()

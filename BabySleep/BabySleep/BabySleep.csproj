@@ -41,6 +41,7 @@
   <ItemGroup>
     <PackageReference Include="Autofac" Version="6.1.0" />
     <PackageReference Include="Behaviors.XamarinForms" Version="4.0.4" />
+    <PackageReference Include="Microcharts.Forms" Version="0.9.5.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.2" />
     <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
     <PackageReference Include="Xamarin.CommunityToolkit" Version="1.3.1" />
@@ -131,6 +132,16 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
+    <Compile Update="Resx\StatisticsResources.Designer.cs">
+      <DependentUpon>StatisticsResources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Resx\StatisticsResources.uk.Designer.cs">
+      <DependentUpon>StatisticsResources.uk.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
     <Compile Update="Views\ChildEntryPage.xaml.cs">
       <DependentUpon>ChildEntryPage.xaml</DependentUpon>
     </Compile>
@@ -191,6 +202,14 @@
     <EmbeddedResource Update="Resx\MenuResources.uk.resx">
       <LastGenOutput>MenuResources.uk.Designer.cs</LastGenOutput>
       <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resx\StatisticsResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>StatisticsResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resx\StatisticsResources.uk.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>StatisticsResources.uk.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ChildEntryPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>

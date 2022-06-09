@@ -4,16 +4,65 @@
              xmlns:views="clr-namespace:BabySleep.CustomControls"
              xmlns:local="clr-namespace:BabySleep.ViewModels"
              x:Class="BabySleep.Views.StatisticsPage"
-             Icon="{Binding CurrentIcon}">
+             xmlns:custom="clr-namespace:BabySleep.CustomControls"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:forms="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
+             xmlns:resources="clr-namespace:BabySleep.Resx"
+             Icon="{Binding CurrentIcon}"
+             x:Name="Statistics">
 
     <ContentPage.BindingContext>
         <local:StatisticsViewModel />
     </ContentPage.BindingContext>
     
     <AbsoluteLayout>
-        <StackLayout>
-            <Label Text="Statistic:" FontSize="Title" Padding="30,10,30,10"/>
-        </StackLayout>
+        <Grid AbsoluteLayout.LayoutFlags="PositionProportional"
+                AbsoluteLayout.LayoutBounds="0.5,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+                <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal" Grid.Row="0">
+                <custom:ExtendedTitleDatePicker 
+                    Format="MMM dd"
+                    Date="{Binding BindingContext.StartDate, Source={x:Reference Statistics}}"
+                    MaximumDate="{x:Static sys:DateTime.Now}"
+                    Grid.Column="0"
+                    />
+                <Label 
+                    Text=" - "
+                    VerticalOptions="CenterAndExpand"
+                    Style="{StaticResource TitleStyle}"/>
+                <custom:ExtendedTitleDatePicker 
+                    Format="MMM dd"
+                    Date="{Binding BindingContext.EndDate, Source={x:Reference Statistics}}"
+                    MaximumDate="{x:Static sys:DateTime.Now}"
+                    Grid.Column="1"
+                    />
+            </StackLayout>
+            <ScrollView  Grid.Column="0" Grid.Row="1" HorizontalOptions="CenterAndExpand">
+                <StackLayout HorizontalOptions="CenterAndExpand">
+                    <Label Text="{x:Static resources:StatisticsResources.TotalHours}" FontAttributes="Bold"
+                        VerticalOptions="StartAndExpand" Style="{x:StaticResource SubTitleStyle}" HorizontalOptions="CenterAndExpand"/>
+                    <forms:ChartView  Chart="{Binding TotalHours}" HeightRequest="200" HorizontalOptions="CenterAndExpand" WidthRequest="1000" Margin="10"/>
+                    
+                    <Label Text="{x:Static resources:StatisticsResources.NightHours}" FontAttributes="Bold"
+                        VerticalOptions="StartAndExpand" Style="{x:StaticResource SubTitleStyle}" HorizontalOptions="CenterAndExpand"/>
+                    <forms:ChartView  Chart="{Binding NightHours}" HeightRequest="200" HorizontalOptions="CenterAndExpand" WidthRequest="1000" Margin="10"/>
+                    
+                    <Label Text="{x:Static resources:StatisticsResources.DayHours}" FontAttributes="Bold"
+                        VerticalOptions="StartAndExpand" Style="{x:StaticResource SubTitleStyle}" HorizontalOptions="CenterAndExpand"/>
+                    <forms:ChartView  Chart="{Binding DayHours}" HeightRequest="200" HorizontalOptions="CenterAndExpand" WidthRequest="1000" Margin="10"/>
+                    
+                    <Label Text="{x:Static resources:StatisticsResources.DayCount}" FontAttributes="Bold"
+                        VerticalOptions="StartAndExpand" Style="{x:StaticResource SubTitleStyle}" HorizontalOptions="CenterAndExpand"/>
+                    <forms:ChartView  Chart="{Binding DaySleeps}" HeightRequest="200" HorizontalOptions="CenterAndExpand" WidthRequest="1000" Margin="10"/>
+                </StackLayout>
+            </ScrollView>
+        </Grid>
         <views:ChildrenPopupView AbsoluteLayout.LayoutBounds="0, 0, 1, 1" 
              AbsoluteLayout.LayoutFlags="All"
              BackgroundColor="#C0808080" />
