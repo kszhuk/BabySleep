@@ -33,8 +33,13 @@ namespace BabySleep.Application.Services
         public void Save(ChildSleepEntryDto sleepDto)
         {
             var sleep = new Sleep(sleepDto.SleepGuid, sleepDto.ChildGuid, sleepDto.SleepPlace,
-                sleepDto.StartTime, sleepDto.EndTime, sleepDto.FeedingCount, sleepDto.FallAsleepTime, 
+                sleepDto.StartTime, sleepDto.EndTime, sleepDto.FeedingCount, sleepDto.FallAsleepTime,
                 sleepDto.AwakeningCount, sleepDto.Quality, sleepDto.Notes);
+
+            if (!sleep.Validate())
+            {
+                return;
+            }
 
             if (sleep.SleepGuid == Guid.Empty)
             {
@@ -42,10 +47,7 @@ namespace BabySleep.Application.Services
             }
             else
             {
-                if (sleep.Validate())
-                {
-                    sleepRepository.Update(sleep);
-                }
+                sleepRepository.Update(sleep);
             }
         }
     }
