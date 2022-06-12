@@ -29,6 +29,8 @@
                 ItemsSource="{Binding Languages}"
                 ItemDisplayBinding="{Binding Title}"
                 SelectedItem="{Binding SelectedLanguage}"/>
-
+        <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" >
+            <custom:AdMobView AdUnitId="ca-app-pub-3940256099942544/6300978111" AdType="SmartBanner" WidthRequest="320" HeightRequest="50" AdWidth="320"  />
+        </StackLayout>
     </StackLayout>
 </ContentPage>
