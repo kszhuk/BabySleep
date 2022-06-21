@@ -7,6 +7,7 @@
              xmlns:resources="clr-namespace:BabySleep.Resx"
              xmlns:behaviour="clr-namespace:BabySleep.Behaviors"
              xmlns:tabs="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:controls="clr-namespace:MarcTron.Plugin.Controls;assembly=Plugin.MtAdmob"
              x:Class="BabySleep.Views.ChildSleepEntryPage">
 
     <ContentPage.BindingContext>
@@ -67,6 +68,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <StackLayout  Margin="10" VerticalOptions="StartAndExpand" Grid.Row="0">
             <ScrollView>
@@ -118,7 +120,7 @@
                         MaximumDate="{Binding MaximumDate}"
                         IsEnabled="{Binding IsEnabled}"
                         Grid.Row="1" Grid.Column="1"/>
-                    
+
                     <Grid Grid.Row="4" Grid.ColumnSpan="2" >
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
@@ -176,9 +178,9 @@
                             HorizontalOptions="Start" MaxLength="3"
                             Grid.Row="2" Grid.Column="1" Placeholder="{x:Static resources:ChildSleepResources.FallAsleepPlaceholder}"
                             Style="{x:StaticResource ChildSleepEntryStyle}">
-                                <Entry.Behaviors>
-                                    <behaviour:EntryLineValidationBehavior IsValid="{Binding FallAsleep.IsValid}"/>
-                                </Entry.Behaviors>
+                            <Entry.Behaviors>
+                                <behaviour:EntryLineValidationBehavior IsValid="{Binding FallAsleep.IsValid}"/>
+                            </Entry.Behaviors>
                         </custom:ExtendedDateTimeEntry>
 
                         <Label Text="{x:Static resources:ChildSleepResources.Feedings}" VerticalOptions="Center" Grid.Row="3" Grid.Column="0"/>
@@ -188,9 +190,9 @@
                             HorizontalOptions="Start" MaxLength="2"
                             Grid.Row="3" Grid.Column="1" Placeholder="{x:Static resources:ChildSleepResources.FeedingsPlaceholder}" 
                             Style="{x:StaticResource ChildSleepEntryStyle}" >
-                                <Entry.Behaviors>
-                                    <behaviour:EntryLineValidationBehavior IsValid="{Binding FeedingCount.IsValid}"/>
-                                </Entry.Behaviors>
+                            <Entry.Behaviors>
+                                <behaviour:EntryLineValidationBehavior IsValid="{Binding FeedingCount.IsValid}"/>
+                            </Entry.Behaviors>
                         </custom:ExtendedDateTimeEntry>
 
                         <Label Text="{x:Static resources:ChildSleepResources.Awakenings}" VerticalOptions="Center" Grid.Row="4" Grid.Column="0"/>
@@ -200,9 +202,9 @@
                             HorizontalOptions="Start" MaxLength="2"
                             Grid.Row="4" Grid.Column="1" Placeholder="{x:Static resources:ChildSleepResources.AwakeningsPlaceholder}"
                             Style="{x:StaticResource ChildSleepEntryStyle}">
-                                <Entry.Behaviors>
-                                    <behaviour:EntryLineValidationBehavior IsValid="{Binding AwakeningCount.IsValid}"/>
-                                </Entry.Behaviors>
+                            <Entry.Behaviors>
+                                <behaviour:EntryLineValidationBehavior IsValid="{Binding AwakeningCount.IsValid}"/>
+                            </Entry.Behaviors>
                         </custom:ExtendedDateTimeEntry>
 
                         <custom:ExtendedEditor MaxLength="255"
@@ -235,5 +237,9 @@
                 Style="{StaticResource ActiveButtonStyle}"
                 Command="{Binding SaveCommand}"/>
         </StackLayout>
+
+        <controls:MTAdView x:Name="myAds" Grid.Row="2"
+                               AdsId="{OnPlatform Android='ca-app-pub-3940256099942544/6300978111'}"
+                               HeightRequest="50"/>
     </Grid>
 </ContentPage>

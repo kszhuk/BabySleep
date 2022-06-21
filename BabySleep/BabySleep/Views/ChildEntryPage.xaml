@@ -6,6 +6,7 @@
              xmlns:converter="clr-namespace:BabySleep.Convertors"
              xmlns:resources="clr-namespace:BabySleep.Resx"
              xmlns:custom="clr-namespace:BabySleep.CustomControls"
+             xmlns:controls="clr-namespace:MarcTron.Plugin.Controls;assembly=Plugin.MtAdmob"
              x:Class="BabySleep.Views.ChildEntryPage"
              Title="{x:Static resources:ChildEntryResources.Child}">
 
@@ -35,6 +36,7 @@
 
     </ContentPage.Resources>
 
+    <StackLayout>
     <StackLayout Margin="10" VerticalOptions="CenterAndExpand">
 
         <Label
@@ -122,5 +124,9 @@
                 Command="{Binding SaveChildCommand}" 
                 IsVisible="{Binding IsNew}"/>
         </StackLayout>
+        </StackLayout>
+        <controls:MTAdView x:Name="myAds" 
+                               AdsId="{OnPlatform Android='ca-app-pub-3940256099942544/6300978111'}"
+                               HeightRequest="50"/>
     </StackLayout>
 </ContentPage>

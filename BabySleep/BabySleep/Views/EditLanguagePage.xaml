@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:BabySleep.ViewModels"
              xmlns:resources="clr-namespace:BabySleep.Resx"
              xmlns:custom="clr-namespace:BabySleep.CustomControls"
+             xmlns:controls="clr-namespace:MarcTron.Plugin.Controls;assembly=Plugin.MtAdmob"
              x:Class="BabySleep.Views.EditLanguagePage">
     
     <ContentPage.BindingContext>
@@ -19,18 +20,20 @@
         </Style>
     </ContentPage.Resources>
 
-    <StackLayout Margin="10" >
-        <Label
-                HorizontalTextAlignment="Center"
-                Style="{x:StaticResource TitleStyle}"
-                Text="{x:Static resources:MenuResources.EditLanguage }" />
+    <StackLayout >
+        <StackLayout Margin="10" VerticalOptions="StartAndExpand" >
+            <Label
+                    HorizontalTextAlignment="Center"
+                    Style="{x:StaticResource TitleStyle}"
+                    Text="{x:Static resources:MenuResources.EditLanguage }" />
 
-        <custom:ExtendedPicker x:Name="picker" Title= "{x:Static resources:EditSettingsResources.SelectLanguage}"
-                ItemsSource="{Binding Languages}"
-                ItemDisplayBinding="{Binding Title}"
-                SelectedItem="{Binding SelectedLanguage}"/>
-        <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" >
-            <custom:AdMobView AdUnitId="ca-app-pub-3940256099942544/6300978111" AdType="SmartBanner" WidthRequest="320" HeightRequest="50" AdWidth="320"  />
+            <custom:ExtendedPicker x:Name="picker" Title= "{x:Static resources:EditSettingsResources.SelectLanguage}"
+                    ItemsSource="{Binding Languages}"
+                    ItemDisplayBinding="{Binding Title}"
+                    SelectedItem="{Binding SelectedLanguage}"/>
         </StackLayout>
+        <controls:MTAdView x:Name="myAds" 
+                               AdsId="{OnPlatform Android='ca-app-pub-3940256099942544/6300978111'}"
+                               HeightRequest="50"/>
     </StackLayout>
 </ContentPage>

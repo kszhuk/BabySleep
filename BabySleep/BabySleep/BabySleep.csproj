@@ -41,6 +41,7 @@
   <ItemGroup>
     <PackageReference Include="Autofac" Version="6.1.0" />
     <PackageReference Include="Behaviors.XamarinForms" Version="4.0.4" />
+    <PackageReference Include="MarcTron.Admob" Version="1.6.9" />
     <PackageReference Include="Microcharts.Forms" Version="0.9.5.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.2" />
     <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
