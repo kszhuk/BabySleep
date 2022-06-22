@@ -40,12 +40,12 @@ namespace BabySleep.ViewModels
             };
             Picture = child.Picture;
 
-            CrossMTAdmob.Current.LoadInterstitial("ca-app-pub-3940256099942544/1033173712");
 
-            //CrossMTAdmob.Current.OnInterstitialLoaded += (sender, args) =>
-            //{
-            //    CrossMTAdmob.Current.ShowInterstitial();
-            //};
+
+            CrossMTAdmob.Current.OnInterstitialLoaded += (sender, args) =>
+            {
+                CrossMTAdmob.Current.ShowInterstitial();
+            };
         }
 
         public ChildEntryPageViewModel()
@@ -297,7 +297,7 @@ namespace BabySleep.ViewModels
                 };
                 childService.SaveChild(child);
 
-                CrossMTAdmob.Current.ShowInterstitial();
+                CrossMTAdmob.Current.LoadInterstitial("ca-app-pub-3940256099942544/1033173712");
 
                 if (isNewPage)
                 {
