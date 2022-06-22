@@ -13,6 +13,7 @@ using BabySleep.Application.Interfaces;
 using Autofac;
 using BabySleep.Application.DTO;
 using BabySleep.Common.Exceptions.Child;
+using MarcTron.Plugin;
 
 namespace BabySleep.ViewModels
 {
@@ -38,6 +39,13 @@ namespace BabySleep.ViewModels
                 Value = child.BirthWeek
             };
             Picture = child.Picture;
+
+            CrossMTAdmob.Current.LoadInterstitial("ca-app-pub-3940256099942544/1033173712");
+
+            //CrossMTAdmob.Current.OnInterstitialLoaded += (sender, args) =>
+            //{
+            //    CrossMTAdmob.Current.ShowInterstitial();
+            //};
         }
 
         public ChildEntryPageViewModel()
@@ -288,6 +296,8 @@ namespace BabySleep.ViewModels
                     Picture = picture
                 };
                 childService.SaveChild(child);
+
+                CrossMTAdmob.Current.ShowInterstitial();
 
                 if (isNewPage)
                 {

@@ -30767,82 +30767,40 @@ namespace BabySleep.Droid
 			public const int not_set = 2131624043;
 			
 			// aapt resource value: 0x7F0E006C
-			public const int offline_notification_text = 2131624044;
+			public const int overflow_tab_title = 2131624044;
 			
 			// aapt resource value: 0x7F0E006D
-			public const int offline_notification_title = 2131624045;
+			public const int password_toggle_content_description = 2131624045;
 			
 			// aapt resource value: 0x7F0E006E
-			public const int offline_opt_in_confirm = 2131624046;
+			public const int path_password_eye = 2131624046;
 			
 			// aapt resource value: 0x7F0E006F
-			public const int offline_opt_in_confirmation = 2131624047;
+			public const int path_password_eye_mask_strike_through = 2131624047;
 			
 			// aapt resource value: 0x7F0E0070
-			public const int offline_opt_in_decline = 2131624048;
+			public const int path_password_eye_mask_visible = 2131624048;
 			
 			// aapt resource value: 0x7F0E0071
-			public const int offline_opt_in_message = 2131624049;
+			public const int path_password_strike_through = 2131624049;
 			
 			// aapt resource value: 0x7F0E0072
-			public const int offline_opt_in_title = 2131624050;
+			public const int preference_copied = 2131624050;
 			
 			// aapt resource value: 0x7F0E0073
-			public const int overflow_tab_title = 2131624051;
+			public const int search_menu_title = 2131624051;
 			
 			// aapt resource value: 0x7F0E0074
-			public const int password_toggle_content_description = 2131624052;
+			public const int status_bar_notification_info_overflow = 2131624052;
 			
 			// aapt resource value: 0x7F0E0075
-			public const int path_password_eye = 2131624053;
+			public const int summary_collapsed_preference_list = 2131624053;
 			
 			// aapt resource value: 0x7F0E0076
-			public const int path_password_eye_mask_strike_through = 2131624054;
+			public const int v7_preference_off = 2131624054;
 			
 			// aapt resource value: 0x7F0E0077
-			public const int path_password_eye_mask_visible = 2131624055;
-			
-			// aapt resource value: 0x7F0E0078
-			public const int path_password_strike_through = 2131624056;
-			
-			// aapt resource value: 0x7F0E0079
-			public const int preference_copied = 2131624057;
-			
-			// aapt resource value: 0x7F0E007A
-			public const int s1 = 2131624058;
-			
-			// aapt resource value: 0x7F0E007B
-			public const int s2 = 2131624059;
-			
-			// aapt resource value: 0x7F0E007C
-			public const int s3 = 2131624060;
-			
-			// aapt resource value: 0x7F0E007D
-			public const int s4 = 2131624061;
-			
-			// aapt resource value: 0x7F0E007E
-			public const int s5 = 2131624062;
-			
-			// aapt resource value: 0x7F0E007F
-			public const int s6 = 2131624063;
-			
-			// aapt resource value: 0x7F0E0080
-			public const int s7 = 2131624064;
-			
-			// aapt resource value: 0x7F0E0081
-			public const int search_menu_title = 2131624065;
-			
-			// aapt resource value: 0x7F0E0082
-			public const int status_bar_notification_info_overflow = 2131624066;
-			
-			// aapt resource value: 0x7F0E0083
-			public const int summary_collapsed_preference_list = 2131624067;
-			
-			// aapt resource value: 0x7F0E0084
-			public const int v7_preference_off = 2131624068;
-			
-			// aapt resource value: 0x7F0E0085
-			public const int v7_preference_on = 2131624069;
+			public const int v7_preference_on = 2131624055;
 			
 			static String()
 			{
