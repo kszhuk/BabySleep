@@ -120,10 +120,16 @@
   <data name="AddNewChild" xml:space="preserve">
     <value>Додати дитину</value>
   </data>
+  <data name="EditAccountInfo" xml:space="preserve">
+    <value>Редагувати інформацію</value>
+  </data>
   <data name="EditLanguage" xml:space="preserve">
     <value>Вибрати мову</value>
   </data>
   <data name="Main" xml:space="preserve">
     <value>Головна</value>
+  </data>
+  <data name="Sync" xml:space="preserve">
+    <value>Синхронізація</value>
   </data>
 </root>

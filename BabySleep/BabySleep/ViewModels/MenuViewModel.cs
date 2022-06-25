@@ -48,9 +48,21 @@ namespace BabySleep.ViewModels
                         typeof(MenuViewModel).GetTypeInfo().Assembly)
                 },
                 new MenuItemModel(){
-                    Id = MenuItemType.EditSettings,
+                    Id = MenuItemType.EditLanguage,
                     Title = Resx.MenuResources.EditLanguage,
                     Icon = ImageSource.FromResource("BabySleep.Resources.google-translate-icon.png",
+                        typeof(MenuViewModel).GetTypeInfo().Assembly)
+                },
+                new MenuItemModel(){
+                    Id = MenuItemType.EditAccountInfo,
+                    Title = Resx.MenuResources.EditAccountInfo,
+                    Icon = ImageSource.FromResource("BabySleep.Resources.menu-info-item.png",
+                        typeof(MenuViewModel).GetTypeInfo().Assembly)
+                },
+                new MenuItemModel(){
+                    Id = MenuItemType.Sync,
+                    Title = Resx.MenuResources.Sync,
+                    Icon = ImageSource.FromResource("BabySleep.Resources.menu-sync-icon.png",
                         typeof(MenuViewModel).GetTypeInfo().Assembly)
                 }
             };
@@ -63,8 +75,14 @@ namespace BabySleep.ViewModels
                 case MenuItemType.Main:
                     App.NavigateFromMenu(new MainPage());
                     break;
-                case MenuItemType.EditSettings:
+                case MenuItemType.EditLanguage:
                     App.NavigateFromMenu(new EditLanguagePage());
+                    break;
+                case MenuItemType.EditAccountInfo:
+                    App.NavigateFromMenu(new EditAccountInfoPage());
+                    break;
+                case MenuItemType.Sync:
+                    App.NavigateFromMenu(new SyncPage());
                     break;
                 default:
                     break;

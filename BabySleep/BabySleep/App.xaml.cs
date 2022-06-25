@@ -83,6 +83,11 @@ namespace BabySleep
         {
             return DependencyService.Get<IAlertBuilderService>().ShowQuestionAsync(title, message, GeneralResources.Yes, GeneralResources.No);
         }
+
+        public bool IsSubscribedUser()
+        {
+            return true;
+        }
         #endregion
         #endregion
 

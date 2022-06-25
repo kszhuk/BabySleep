@@ -8,7 +8,9 @@ namespace BabySleep.Models
     public enum MenuItemType
     {
         Main,
-        EditSettings
+        EditLanguage,
+        EditAccountInfo,
+        Sync
     }
 
     /// <summary>

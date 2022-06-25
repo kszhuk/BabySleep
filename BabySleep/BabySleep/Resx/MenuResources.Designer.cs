@@ -19,10 +19,10 @@ namespace BabySleep.Resx {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class MenuResources {
+    internal class MenuResources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace BabySleep.Resx {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager {
+        internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("BabySleep.Resx.MenuResources", typeof(MenuResources).Assembly);
@@ -51,7 +51,7 @@ namespace BabySleep.Resx {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Globalization.CultureInfo Culture {
+        internal static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,16 +63,25 @@ namespace BabySleep.Resx {
         /// <summary>
         ///   Looks up a localized string similar to Add new child.
         /// </summary>
-        public static string AddNewChild {
+        internal static string AddNewChild {
             get {
                 return ResourceManager.GetString("AddNewChild", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit Account Info.
+        /// </summary>
+        internal static string EditAccountInfo {
+            get {
+                return ResourceManager.GetString("EditAccountInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit language.
         /// </summary>
-        public static string EditLanguage {
+        internal static string EditLanguage {
             get {
                 return ResourceManager.GetString("EditLanguage", resourceCulture);
             }
@@ -81,9 +90,18 @@ namespace BabySleep.Resx {
         /// <summary>
         ///   Looks up a localized string similar to Main.
         /// </summary>
-        public static string Main {
+        internal static string Main {
             get {
                 return ResourceManager.GetString("Main", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sync.
+        /// </summary>
+        internal static string Sync {
+            get {
+                return ResourceManager.GetString("Sync", resourceCulture);
             }
         }
     }
