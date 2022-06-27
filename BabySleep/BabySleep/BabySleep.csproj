@@ -23,6 +23,8 @@
     <None Remove="Resources\menu-edit-icon.png" />
     <None Remove="Resources\menu-home-icon.png" />
     <None Remove="Resources\menu-info-item.png" />
+    <None Remove="Resources\menu-login-icon.png" />
+    <None Remove="Resources\menu-logout-icon.png" />
     <None Remove="Resources\menu-sync-icon.png" />
     <None Remove="Resources\moon-icon.png" />
     <None Remove="Resources\sun-icon.png" />
@@ -37,6 +39,8 @@
     <EmbeddedResource Include="Resources\menu-edit-icon.png" />
     <EmbeddedResource Include="Resources\menu-home-icon.png" />
     <EmbeddedResource Include="Resources\menu-info-item.png" />
+    <EmbeddedResource Include="Resources\menu-login-icon.png" />
+    <EmbeddedResource Include="Resources\menu-logout-icon.png" />
     <EmbeddedResource Include="Resources\menu-sync-icon.png" />
     <EmbeddedResource Include="Resources\moon-icon.png" />
     <EmbeddedResource Include="Resources\sun-icon.png" />
@@ -76,6 +80,11 @@
       <DependentUpon>EditSettingsResources.uk.resx</DependentUpon>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Resx\MenuResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>MenuResources.resx</DependentUpon>
     </Compile>
     <Compile Update="Resx\MenuResources.ru.Designer.cs">
       <DependentUpon>MenuResources.ru.resx</DependentUpon>
@@ -127,6 +136,11 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
+    <Compile Update="Resx\LoginResources.Designer.cs">
+      <DependentUpon>LoginResources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
     <Compile Update="Resx\StatisticsResources.Designer.cs">
       <DependentUpon>StatisticsResources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
@@ -142,6 +156,9 @@
     </Compile>
     <Compile Update="Views\ChildSleepPage.xaml.cs">
       <DependentUpon>ChildSleepPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\LogInPage.xaml.cs">
+      <DependentUpon>LogInPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\SyncPage.xaml.cs">
       <DependentUpon>SyncPage.xaml</DependentUpon>
@@ -192,20 +209,27 @@
       <LastGenOutput>GeneralResources.Designer.cs</LastGenOutput>
       <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Resx\LoginResources.uk.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Resx\MenuResources.resx">
-      <Generator></Generator>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>MenuResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Resx\MenuResources.ru.resx">
       <LastGenOutput>MenuResources.Designer.cs</LastGenOutput>
       <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Resx\MenuResources.ru.resx">
-      <LastGenOutput>MenuResources.ru.Designer.cs</LastGenOutput>
-      <Generator>PublicResXFileCodeGenerator</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Update="Resx\MenuResources.uk.resx">
       <Generator></Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Resx\LoginResources.resx">
+      <LastGenOutput>LoginResources.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+	  <EmbeddedResource Update="Resx\LoginResources.uk.resx">
+		  <Generator></Generator>
+	  </EmbeddedResource>
     <EmbeddedResource Update="Resx\StatisticsResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>StatisticsResources.Designer.cs</LastGenOutput>

@@ -22,14 +22,14 @@ namespace BabySleep.Resx {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class MenuResources {
+    internal class LoginResources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal MenuResources() {
+        internal LoginResources() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace BabySleep.Resx {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("BabySleep.Resx.MenuResources", typeof(MenuResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("BabySleep.Resx.LoginResources", typeof(LoginResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,65 +61,11 @@ namespace BabySleep.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add new child.
+        ///   Looks up a localized string similar to Only subscribed users can login to application.
         /// </summary>
-        internal static string AddNewChild {
+        internal static string SubscribedException {
             get {
-                return ResourceManager.GetString("AddNewChild", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Edit Account Info.
-        /// </summary>
-        internal static string EditAccountInfo {
-            get {
-                return ResourceManager.GetString("EditAccountInfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Edit language.
-        /// </summary>
-        internal static string EditLanguage {
-            get {
-                return ResourceManager.GetString("EditLanguage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Log In.
-        /// </summary>
-        internal static string LogIn {
-            get {
-                return ResourceManager.GetString("LogIn", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Log Out.
-        /// </summary>
-        internal static string LogOut {
-            get {
-                return ResourceManager.GetString("LogOut", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Main.
-        /// </summary>
-        internal static string Main {
-            get {
-                return ResourceManager.GetString("Main", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Sync.
-        /// </summary>
-        internal static string Sync {
-            get {
-                return ResourceManager.GetString("Sync", resourceCulture);
+                return ResourceManager.GetString("SubscribedException", resourceCulture);
             }
         }
     }

@@ -10,7 +10,9 @@ namespace BabySleep.Models
         Main,
         EditLanguage,
         EditAccountInfo,
-        Sync
+        Sync,
+        LogIn,
+        LogOut
     }
 
     /// <summary>

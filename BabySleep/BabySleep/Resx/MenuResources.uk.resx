@@ -126,6 +126,12 @@
   <data name="EditLanguage" xml:space="preserve">
     <value>Вибрати мову</value>
   </data>
+  <data name="LogIn" xml:space="preserve">
+    <value>Увійти</value>
+  </data>
+  <data name="LogOut" xml:space="preserve">
+    <value>Вийти</value>
+  </data>
   <data name="Main" xml:space="preserve">
     <value>Головна</value>
   </data>

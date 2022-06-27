@@ -73,6 +73,16 @@ namespace BabySleep
             return false;
         }
 
+        public static bool IsSubscribedUser()
+        {
+            return false;
+        }
+
+        public static bool IsLoggedInUser()
+        {
+            return false;
+        }
+
         #region Alerts
         public Task ShowException(string title, string message)
         {
@@ -82,11 +92,6 @@ namespace BabySleep
         public Task<bool> ShowQuestion(string title, string message)
         {
             return DependencyService.Get<IAlertBuilderService>().ShowQuestionAsync(title, message, GeneralResources.Yes, GeneralResources.No);
-        }
-
-        public bool IsSubscribedUser()
-        {
-            return true;
         }
         #endregion
         #endregion

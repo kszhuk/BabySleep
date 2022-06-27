@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using Xamarin.Forms;
 using System.Reflection;
+using BabySleep.Resx;
 
 namespace BabySleep.ViewModels
 {
@@ -43,29 +44,51 @@ namespace BabySleep.ViewModels
             {
                 new MenuItemModel(){
                     Id = MenuItemType.Main,
-                    Title = Resx.MenuResources.Main,
+                    Title = MenuResources.Main,
                     Icon = ImageSource.FromResource("BabySleep.Resources.menu-home-icon.png",
                         typeof(MenuViewModel).GetTypeInfo().Assembly)
                 },
                 new MenuItemModel(){
                     Id = MenuItemType.EditLanguage,
-                    Title = Resx.MenuResources.EditLanguage,
+                    Title = MenuResources.EditLanguage,
                     Icon = ImageSource.FromResource("BabySleep.Resources.google-translate-icon.png",
                         typeof(MenuViewModel).GetTypeInfo().Assembly)
                 },
                 new MenuItemModel(){
                     Id = MenuItemType.EditAccountInfo,
-                    Title = Resx.MenuResources.EditAccountInfo,
+                    Title = MenuResources.EditAccountInfo,
                     Icon = ImageSource.FromResource("BabySleep.Resources.menu-info-item.png",
                         typeof(MenuViewModel).GetTypeInfo().Assembly)
                 },
                 new MenuItemModel(){
                     Id = MenuItemType.Sync,
-                    Title = Resx.MenuResources.Sync,
+                    Title = MenuResources.Sync,
                     Icon = ImageSource.FromResource("BabySleep.Resources.menu-sync-icon.png",
                         typeof(MenuViewModel).GetTypeInfo().Assembly)
                 }
             };
+
+            if(App.IsLoggedInUser())
+            {
+                MenuItemList.Add(new MenuItemModel()
+                {
+                    Id = MenuItemType.LogOut,
+                    Title = MenuResources.LogOut,
+                    Icon = ImageSource.FromResource("BabySleep.Resources.menu-logout-icon.png",
+                        typeof(MenuViewModel).GetTypeInfo().Assembly)
+                                
+                });
+            }
+            else
+            {
+                MenuItemList.Add(new MenuItemModel()
+                {
+                    Id = MenuItemType.LogIn,
+                    Title = MenuResources.LogIn,
+                    Icon = ImageSource.FromResource("BabySleep.Resources.menu-login-icon.png",
+                        typeof(MenuViewModel).GetTypeInfo().Assembly)
+                });
+            }
         }
 
         private void Navigate()
@@ -84,10 +107,35 @@ namespace BabySleep.ViewModels
                 case MenuItemType.Sync:
                     App.NavigateFromMenu(new SyncPage());
                     break;
+                case MenuItemType.LogIn:
+                    NavigateLogin();
+                    break;
+                case MenuItemType.LogOut:
+                    NavigateLogout();
+                    break;
                 default:
                     break;
 
             }
+        }
+
+        private void NavigateLogin()
+        {
+            if(App.IsSubscribedUser())
+            {
+                App.NavigateFromMenu(new LogInPage());
+            }
+            else
+            {
+                ((App)Xamarin.Forms.Application.Current).ShowException(
+                    MenuResources.LogIn, LoginResources.SubscribedException);
+            }
+        }
+
+        private void NavigateLogout()
+        {
+            //Add logout logic
+            App.NavigateFromMenu(new MainPage());
         }
         #endregion
     }
