@@ -7,11 +7,11 @@
              xmlns:behaviour="clr-namespace:BabySleep.Behaviors"
              xmlns:converter="clr-namespace:BabySleep.Convertors"
              xmlns:effect="clr-namespace:BabySleep.Effects"
-             x:Class="BabySleep.Views.LogInPage"
-             Title="{x:Static resources:MenuResources.LogIn}">
+             x:Class="BabySleep.Views.SignUpPage"
+             Title="{x:Static resources:LoginResources.SignUp}">
     
     <ContentPage.BindingContext>
-        <local:LogInViewModel />
+        <local:SignUpViewModel />
     </ContentPage.BindingContext>
 
     <ContentPage.Resources>
@@ -39,7 +39,7 @@
         <Label
                 HorizontalTextAlignment="Center"
                 Style="{x:StaticResource TitleStyle}"
-                Text="{x:Static resources:MenuResources.LogIn }" />
+                Text="{x:Static resources:LoginResources.SignUp }" />
 
         <StackLayout Style="{StaticResource FieldGroup}">
             <custom:ExtendedEntry Placeholder="{x:Static resources:LoginResources.Email}"
@@ -69,31 +69,25 @@
         </StackLayout>
 
         <StackLayout Style="{StaticResource FieldGroup}">
-            <Label Text="{x:Static resources:LoginResources.ForgotPassword}"  
-                   HorizontalOptions="EndAndExpand" Style="{StaticResource LinkStyle}">
-                <Label.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding ResetPasswordCommand}"/>
-                </Label.GestureRecognizers>
-            </Label>
+            <custom:ExtendedEntry Placeholder="{x:Static resources:LoginResources.PasswordConfirm}"
+                Text="{Binding PasswordConfirm.Value}" MaxLength="15" IsPassword="True" >
+                <Entry.Behaviors>
+                    <behaviour:EntryLineValidationBehavior IsValid="{Binding PasswordConfirm.IsValid}"/>
+                </Entry.Behaviors>
+                <Entry.Effects>
+                    <effect:ShowHidePasswordEffect />
+                </Entry.Effects>
+            </custom:ExtendedEntry>
+            <Label Text="{x:Static resources:LoginResources.InvalidPasswordConfirm}"
+                        IsVisible="{Binding PasswordConfirm.IsValid, Converter={StaticResource InverseBoolConverter}}"
+                        Style="{StaticResource ErrorTextStyle}"/>
         </StackLayout>
 
         <StackLayout Style="{StaticResource FieldGroup}">
-            <Button Text="{x:Static resources:LoginResources.Login}"
+            <Button Text="{x:Static resources:LoginResources.SignUp}"
                 Style="{StaticResource ActiveButtonStyle}"
-                Command="{Binding LoginCommand}"
+                Command="{Binding SignUpCommand}"
                 TextTransform="Uppercase"/>
-        </StackLayout>
-
-        <StackLayout Style="{StaticResource FieldGroup}">
-            <StackLayout Orientation="Horizontal" Spacing="0" HorizontalOptions="CenterAndExpand">
-                <Label Text="{x:Static resources:LoginResources.HaveAccount}"/>
-                <Label Text="{x:Static resources:LoginResources.SignUp}"  
-                   Style="{StaticResource LinkStyle}">
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding SignUpCommand}"/>
-                    </Label.GestureRecognizers>
-                </Label>
-            </StackLayout>
         </StackLayout>
     </StackLayout>
 </ContentPage>

@@ -46,6 +46,7 @@ namespace BabySleep
         {
 
             MasterDetail.Detail = new NavigationPage(page);
+            MasterDetail.Flyout = new MenuPage();
             MasterDetail.IsPresented = false;
         }
         #endregion
@@ -75,12 +76,13 @@ namespace BabySleep
 
         public static bool IsSubscribedUser()
         {
-            return false;
+            return true;
         }
 
         public static bool IsLoggedInUser()
         {
-            return false;
+            var authService = DependencyService.Resolve<IFirebaseAuthenticationService>();
+            return authService.IsSignIn();
         }
 
         #region Alerts

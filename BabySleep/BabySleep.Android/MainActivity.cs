@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.IO;
 using Android.Content;
 using Android.Gms.Ads;
+using Firebase;
 
 namespace BabySleep.Droid
 {
@@ -29,6 +30,9 @@ namespace BabySleep.Droid
             global::Xamarin.Forms.Forms.SetFlags("IndicatorView_Experimental");
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             MobileAds.Initialize(ApplicationContext);
+
+            FirebaseApp.InitializeApp(ApplicationContext);
+
             LoadApplication(new App());
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)

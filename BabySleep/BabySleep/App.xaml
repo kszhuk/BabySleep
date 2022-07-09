@@ -35,6 +35,14 @@
             <Setter Property="FontAttributes" Value="Bold"/>
         </Style>
 
+        <Style TargetType="Label" x:Key="LinkStyle"
+            ApplyToDerivedTypes="True"
+            CanCascade="True">
+            <Setter Property="FontSize" Value="Medium" />
+            <Setter Property="TextColor" Value="#4fc3f7"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+        </Style>
+
         <Style TargetType="Button" x:Key="ActiveButtonStyle">
             <Setter Property="CornerRadius" Value = "20"   />
             <Setter Property="BackgroundColor" Value = "#4fc3f7"   />

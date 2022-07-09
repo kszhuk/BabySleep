@@ -1,35 +1,29 @@
 ﻿using BabySleep.Common.Exceptions.Authentication;
-using BabySleep.Common.Helpers;
 using BabySleep.Resx;
 using BabySleep.Services;
 using BabySleep.Validations;
-using BabySleep.Views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace BabySleep.ViewModels
 {
     /// <summary>
-    /// Log in page
+    /// Page for regestering new users
     /// </summary>
-    public class LogInViewModel : INotifyPropertyChanged
+    public class SignUpViewModel : INotifyPropertyChanged
     {
-        public LogInViewModel()
+        public SignUpViewModel()
         {
             authService = DependencyService.Resolve<IFirebaseAuthenticationService>();
 
-            LoginCommand = new Command(Login);
-            ResetPasswordCommand = new Command(ResetPassword);
             SignUpCommand = new Command(SignUp);
 
             AddValidations();
         }
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         #region Properties
@@ -58,11 +52,20 @@ namespace BabySleep.ViewModels
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Password)));
             }
         }
+
+        ValidatableObject<string> passwordConfirm = new ValidatableObject<string>();
+        public ValidatableObject<string> PasswordConfirm
+        {
+            get => passwordConfirm;
+            set
+            {
+                passwordConfirm = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(PasswordConfirm)));
+            }
+        }
         #endregion
 
         #region Commands
-        public Command LoginCommand { get; }
-        public Command ResetPasswordCommand { get; }
         public Command SignUpCommand { get; }
         #endregion
 
@@ -77,71 +80,40 @@ namespace BabySleep.ViewModels
             if (!password.Validations.Any())
             {
                 Password.Validations.Add(new IsNotNullOrEmptyRule<string> { ValidationMessage = LoginResources.EmptyPassword });
+                Password.Validations.Add(new PasswordRule<string> { ValidationMessage = LoginResources.InvalidPassword });
             }
         }
 
-        private bool AreFieldsValid(bool validatePassword = true)
+        private bool AreFieldsValid()
         {
             bool isEmailValid = Email.Validate();
-            bool isPasswordValid = validatePassword ? Password.Validate() : true;
+            bool isPasswordValid = Password.Validate();
 
-            if(!validatePassword)
-            {
-                Password.IsValid = true;
-            }
+            PasswordConfirm.IsValid = (PasswordConfirm.Value ?? "") == (Password.Value ?? "");
 
-            return isEmailValid && isPasswordValid;
+            return isEmailValid && isPasswordValid && PasswordConfirm.IsValid;
         }
 
-        private async void Login()
+        private async void SignUp()
         {
             if (!AreFieldsValid())
             {
                 return;
-            }
+            }           
 
             try
             {
-                await authService.SignIn(Email.Value, Password.Value);
-                App.NavigateFromMenu(new MainPage());
+                await authService.CreateUser(Email.Value, Password.Value);
+                await((App)Xamarin.Forms.Application.Current).ShowException(LoginResources.SignUp, LoginResources.SignUpSuccessful);
+            }
+            catch (AuthUserCollisionException)
+            {
+                await ((App)Xamarin.Forms.Application.Current).ShowException(LoginResources.SignUp, LoginResources.AuthUserCollisionException);
             }
             catch
             {
-                await ((App)Xamarin.Forms.Application.Current).ShowException(LoginResources.Login, LoginResources.LoginFailed);
+                await((App)Xamarin.Forms.Application.Current).ShowException(LoginResources.SignUp, LoginResources.SignUpException);
             }
-        }
-
-        private async void ResetPassword()
-        {
-            if (!AreFieldsValid(false))
-            {
-                return;
-            }
-
-            var result = await ((App)Xamarin.Forms.Application.Current).ShowQuestion(LoginResources.Login, LoginResources.ResetPasswordQuestion);
-            if(!result)
-            {
-                return;
-            }
-
-            try
-            {
-                await authService.ResetPassword(Email.Value);
-                await ((App)Xamarin.Forms.Application.Current).ShowException(LoginResources.Login, LoginResources.PasswordRecoverySent);
-            }
-            catch(AuthInvalidUserException)
-            {
-                await ((App)Xamarin.Forms.Application.Current).ShowException(LoginResources.Login, LoginResources.ResetPasswordInvalidEmail);
-            }
-            catch
-            {
-                await ((App)Xamarin.Forms.Application.Current).ShowException(LoginResources.Login, LoginResources.ResetPasswordException);
-            }
-        }
-
-        private void SignUp()
-        {
-            App.NavigateFromMenu(new SignUpPage());
         }
         #endregion
     }

@@ -141,6 +141,11 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
+	  <Compile Update="Resx\LoginResources.uk.Designer.cs">
+		  <DependentUpon>LoginResources.uk.resx</DependentUpon>
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+	  </Compile>
     <Compile Update="Resx\StatisticsResources.Designer.cs">
       <DependentUpon>StatisticsResources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
@@ -156,6 +161,9 @@
     </Compile>
     <Compile Update="Views\ChildSleepPage.xaml.cs">
       <DependentUpon>ChildSleepPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\SignUpPage.xaml.cs">
+      <DependentUpon>SignUpPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\LogInPage.xaml.cs">
       <DependentUpon>LogInPage.xaml</DependentUpon>
@@ -210,6 +218,7 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Resx\LoginResources.uk.resx">
+		<LastGenOutput>LoginResources.uk.Designer.cs</LastGenOutput>
       <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Resx\MenuResources.resx">
@@ -221,15 +230,13 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Resx\MenuResources.uk.resx">
-      <Generator></Generator>
+		<LastGenOutput>MenuResources.uk.Designer.cs</LastGenOutput>
+		<Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Resx\LoginResources.resx">
       <LastGenOutput>LoginResources.Designer.cs</LastGenOutput>
       <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>
-	  <EmbeddedResource Update="Resx\LoginResources.uk.resx">
-		  <Generator></Generator>
-	  </EmbeddedResource>
     <EmbeddedResource Update="Resx\StatisticsResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>StatisticsResources.Designer.cs</LastGenOutput>

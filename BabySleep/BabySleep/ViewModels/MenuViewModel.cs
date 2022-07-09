@@ -5,6 +5,7 @@ using System.ComponentModel;
 using Xamarin.Forms;
 using System.Reflection;
 using BabySleep.Resx;
+using BabySleep.Services;
 
 namespace BabySleep.ViewModels
 {
@@ -134,7 +135,9 @@ namespace BabySleep.ViewModels
 
         private void NavigateLogout()
         {
-            //Add logout logic
+            var authService = DependencyService.Resolve<IFirebaseAuthenticationService>();
+            authService.SignOut();
+
             App.NavigateFromMenu(new MainPage());
         }
         #endregion
