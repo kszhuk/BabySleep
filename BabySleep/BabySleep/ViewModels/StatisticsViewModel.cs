@@ -141,9 +141,9 @@ namespace BabySleep.ViewModels
 
         #endregion
 
-        #region Private methods
+        #region Public methods
 
-        private void RedrawCharts()
+        public void RedrawCharts()
         {
             var statistics = statisticsService.GetStatistics(App.SelectedChildGuid, StartDate, EndDate);
 
@@ -153,6 +153,10 @@ namespace BabySleep.ViewModels
             DaySleeps = CreateLineChart(statistics.DaySleepsCountStatistics);
 
         }
+
+        #endregion
+
+        #region Private methods
 
         private LineChart CreateLineChart(List<StatisticsEntryDto> statisticsItems)
         {

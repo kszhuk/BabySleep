@@ -34,12 +34,21 @@ namespace BabySleep.Views
         {
             var currentBinding = currentPage.BindingContext as ITabPage;
             if (currentBinding != null)
+            {
                 currentBinding.IsSelected = false;
+            }
 
             currentPage = CurrentPage;
             currentBinding = currentPage.BindingContext as ITabPage;
             if (currentBinding != null)
+            {
                 currentBinding.IsSelected = true;
+            }
+
+            if(currentBinding is StatisticsViewModel)
+            {
+                ((StatisticsViewModel)currentBinding).RedrawCharts();
+            }
 
             UpdateIcons?.Invoke(this, EventArgs.Empty);
         }
