@@ -37,9 +37,9 @@ namespace BabySleep.ViewModels
             IsSaveVisible = false;
 
             SelectedSleepPlace = (short)sleep.SleepPlace;
-            FeedingCount = new ValidatableObject<short?>() 
-            { 
-                Value = sleep.FeedingCount 
+            FeedingCount = new ValidatableObject<short?>()
+            {
+                Value = sleep.FeedingCount
             };
             AwakeningCount = new ValidatableObject<short?>()
             {
@@ -133,10 +133,6 @@ namespace BabySleep.ViewModels
             set
             {
                 startDate = value;
-                if (EndDate < value)
-                {
-                    EndDate = value;
-                }
                 UpdateDuration();
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(StartDate)));
             }
@@ -149,10 +145,6 @@ namespace BabySleep.ViewModels
             set
             {
                 endDate = value;
-                if (StartDate > value)
-                {
-                    StartDate = value;
-                }
                 UpdateDuration();
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(EndDate)));
             }
@@ -331,7 +323,14 @@ namespace BabySleep.ViewModels
 
         private void UpdateDuration()
         {
-            Duration = string.Format("{0:hh\\:mm\\:ss}", EndDate - StartDate);
+            if ((EndDate - StartDate).Ticks < 0)
+            {
+                Duration = "00:00:00";
+            }
+            else
+            {
+                Duration = string.Format("{0:hh\\:mm\\:ss}", EndDate - StartDate);
+            }
         }
 
         private void UpdateDuration(TimeSpan elapsedTime)
@@ -357,6 +356,12 @@ namespace BabySleep.ViewModels
         {
             if (!AreFieldsValid())
             {
+                return;
+            }
+
+            if ((EndDate - StartDate).Ticks < 0)
+            {
+                await ((App)Xamarin.Forms.Application.Current).ShowException(ChildSleepResources.SleepMain, ChildSleepResources.SleepTimeException);
                 return;
             }
 
@@ -386,7 +391,7 @@ namespace BabySleep.ViewModels
             }
             catch (SleepDurationException)
             {
-                await ((App)Xamarin.Forms.Application.Current).ShowException(ChildSleepResources.SleepMain, 
+                await ((App)Xamarin.Forms.Application.Current).ShowException(ChildSleepResources.SleepMain,
                     string.Format(ChildSleepResources.SleepDurationException, Common.Helpers.Constants.MAX_SLEEP_DURATION));
             }
             catch (SleepTimeException)
