@@ -12,5 +12,6 @@ namespace BabySleep.Services
         bool IsSignIn();
         void SignOut();
         Task ResetPassword(string email);
+        string GetEmail();
     }
 }

@@ -57,11 +57,11 @@ namespace BabySleep.Droid.Services
                 var token = await authResult.User.GetIdToken(false).AsAsync<GetTokenResult>();
                 return token.Token;
             }
-            catch(FirebaseAuthInvalidUserException)
+            catch (FirebaseAuthInvalidUserException)
             {
                 throw new AuthInvalidUserException();
             }
-            catch(FirebaseAuthException ex)
+            catch (FirebaseAuthException ex)
             {
                 throw ex;
             }
@@ -69,5 +69,10 @@ namespace BabySleep.Droid.Services
 
         public void SignOut()
             => FirebaseAuth.Instance.SignOut();
+
+        public string GetEmail()
+        { 
+            return FirebaseAuth.Instance.CurrentUser.Email;
+        }
     }
 }

@@ -138,7 +138,7 @@ namespace BabySleep.ViewModels
             var authService = DependencyService.Resolve<IFirebaseAuthenticationService>();
             authService.SignOut();
 
-            App.NavigateFromMenu(new MainPage());
+            App.NavigateFromMenu(new LogInPage());
         }
         #endregion
     }

@@ -17,6 +17,12 @@
             <Setter Property="FontSize" Value="Medium" />
             <Setter Property="Margin" Value="3,0" />
         </Style>
+
+        <Style TargetType="StackLayout" x:Key="FieldGroup"
+            ApplyToDerivedTypes="True"
+            CanCascade="True">
+            <Setter Property="Margin" Value="0,20,0,0" />
+        </Style>
     </ContentPage.Resources>
 
     <StackLayout Margin="10" VerticalOptions="StartAndExpand" >
@@ -24,5 +30,17 @@
                 HorizontalTextAlignment="Center"
                 Style="{x:StaticResource TitleStyle}"
                 Text="{x:Static resources:MenuResources.EditAccountInfo }" />
+
+        <StackLayout Style="{StaticResource FieldGroup}">
+            <custom:ExtendedEntry Placeholder="{x:Static resources:LoginResources.Email}"
+                Text="{Binding Email}" MaxLength="254" IsEnabled="False"/>
+        </StackLayout>
+        
+        <StackLayout Style="{StaticResource FieldGroup}">
+            <Button Text="{x:Static resources:LoginResources.ChangePassword}"
+                Style="{StaticResource ActiveButtonStyle}"
+                Command="{Binding ChangePasswordCommand}"
+                TextTransform="Uppercase" IsEnabled="{Binding IsEnabled}"/>
+        </StackLayout>
     </StackLayout>
 </ContentPage>

@@ -120,6 +120,9 @@
   <data name="AuthUserCollisionException" xml:space="preserve">
     <value>The email address is already in use by another account</value>
   </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Change Password</value>
+  </data>
   <data name="Email" xml:space="preserve">
     <value>Email</value>
   </data>
@@ -176,5 +179,8 @@
   </data>
   <data name="SubscribedException" xml:space="preserve">
     <value>Only subscribed users can login to application</value>
+  </data>
+  <data name="UserNotLogin" xml:space="preserve">
+    <value>User should log in first</value>
   </data>
 </root>

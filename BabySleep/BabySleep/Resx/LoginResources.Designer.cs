@@ -70,6 +70,15 @@ namespace BabySleep.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Change Password.
+        /// </summary>
+        internal static string ChangePassword {
+            get {
+                return ResourceManager.GetString("ChangePassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email.
         /// </summary>
         internal static string Email {
@@ -237,6 +246,15 @@ namespace BabySleep.Resx {
         internal static string SubscribedException {
             get {
                 return ResourceManager.GetString("SubscribedException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User should log in first.
+        /// </summary>
+        internal static string UserNotLogin {
+            get {
+                return ResourceManager.GetString("UserNotLogin", resourceCulture);
             }
         }
     }
