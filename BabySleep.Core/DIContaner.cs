@@ -4,6 +4,8 @@ using BabySleep.Application.Interfaces;
 using BabySleep.Application.Services;
 using BabySleep.EfData;
 using BabySleep.EfData.Interfaces;
+using BabySleep.Infrastructure.Business.Interfaces;
+using BabySleep.Infrastructure.Business.Services;
 using BabySleep.Infrastructure.Data.Interfaces;
 using BabySleep.Infrastructure.Data.Repositories;
 using System.Linq;
@@ -34,6 +36,8 @@ namespace BabySleep.Core
                 .As<IChilidSleepEntryService>();
             builder.RegisterType<StatisticsService>()
                 .As<IStatisticsService>();
+            builder.RegisterType<SyncAWSService>()
+                .As<ISyncAWSService>();
 
             //Application dto assemblers
 

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30503.244
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32602.215
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BabySleep.Android", "BabySleep\BabySleep.Android\BabySleep.Android.csproj", "{5AB615A0-3EB5-4F11-9617-17F3B5DBBCA9}"
 EndProject
@@ -23,10 +23,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BabySleep.Infrastructure", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BabySleep.Application", "BabySleep.Application\BabySleep.Application.csproj", "{7E4F0675-40B3-47F5-9162-43D8B10B77B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BabySleep.Tests", "BabySleep.Tests\BabySleep.Tests.csproj", "{FF9FF625-2C75-4FD6-BA83-1328A662DA17}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BabySleep.Tests", "BabySleep.Tests\BabySleep.Tests.csproj", "{FF9FF625-2C75-4FD6-BA83-1328A662DA17}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3CC4CDD2-7F7A-4ED4-B12E-FB8AAA9D0011} = {3CC4CDD2-7F7A-4ED4-B12E-FB8AAA9D0011}
 	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BabySleep.AWSLambda.SyncData", "BabySleep.AWSLambda.SyncFromServer\BabySleep.AWSLambda.SyncData.csproj", "{3C33DEF2-71E0-416B-985D-583C5AFDE16C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -188,6 +190,18 @@ Global
 		{FF9FF625-2C75-4FD6-BA83-1328A662DA17}.Release|iPhone.Build.0 = Release|Any CPU
 		{FF9FF625-2C75-4FD6-BA83-1328A662DA17}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{FF9FF625-2C75-4FD6-BA83-1328A662DA17}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{3C33DEF2-71E0-416B-985D-583C5AFDE16C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C33DEF2-71E0-416B-985D-583C5AFDE16C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C33DEF2-71E0-416B-985D-583C5AFDE16C}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{3C33DEF2-71E0-416B-985D-583C5AFDE16C}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{3C33DEF2-71E0-416B-985D-583C5AFDE16C}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{3C33DEF2-71E0-416B-985D-583C5AFDE16C}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{3C33DEF2-71E0-416B-985D-583C5AFDE16C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C33DEF2-71E0-416B-985D-583C5AFDE16C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C33DEF2-71E0-416B-985D-583C5AFDE16C}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{3C33DEF2-71E0-416B-985D-583C5AFDE16C}.Release|iPhone.Build.0 = Release|Any CPU
+		{3C33DEF2-71E0-416B-985D-583C5AFDE16C}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{3C33DEF2-71E0-416B-985D-583C5AFDE16C}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

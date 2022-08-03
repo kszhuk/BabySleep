@@ -6,7 +6,11 @@
 
   <ItemGroup>
     <Folder Include="Business\Interfaces\" />
-    <Folder Include="Business\Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AWSSDK.Lambda" Version="3.7.13.29" />
+    <PackageReference Include="log4net" Version="2.0.14" />
   </ItemGroup>
 
   <ItemGroup>

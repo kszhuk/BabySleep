@@ -24,5 +24,10 @@
                 HorizontalTextAlignment="Center"
                 Style="{x:StaticResource TitleStyle}"
                 Text="{x:Static resources:MenuResources.Sync }" />
+
+        <Button Text="{x:Static resources:MenuResources.Sync}"
+                Style="{StaticResource ActiveButtonStyle}"
+                Command="{Binding SyncCommand}"
+                TextTransform="Uppercase"/>
     </StackLayout>
 </ContentPage>

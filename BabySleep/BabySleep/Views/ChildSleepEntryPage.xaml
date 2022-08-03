@@ -175,7 +175,7 @@
                         <custom:ExtendedDateTimeEntry Keyboard="Numeric"
                             Text="{Binding FallAsleep.Value, Mode=TwoWay, Converter={StaticResource NullableIntConverter}}"
                             IsEnabled="{Binding IsEnabled}"
-                            HorizontalOptions="Start" MaxLength="3"
+                            HorizontalOptions="Start" MaxLength="2"
                             Grid.Row="2" Grid.Column="1" Placeholder="{x:Static resources:ChildSleepResources.FallAsleepPlaceholder}"
                             Style="{x:StaticResource ChildSleepEntryStyle}">
                             <Entry.Behaviors>
@@ -207,7 +207,7 @@
                             </Entry.Behaviors>
                         </custom:ExtendedDateTimeEntry>
 
-                        <custom:ExtendedEditor MaxLength="255"
+                        <custom:ExtendedEditor MaxLength="100"
                             HeightRequest="80"
                             Placeholder="{x:Static resources:ChildSleepResources.Notes}"
                             Text="{Binding Notes}"
