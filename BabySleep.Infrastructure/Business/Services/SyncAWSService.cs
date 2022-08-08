@@ -21,9 +21,9 @@ namespace BabySleep.Infrastructure.Business.Services
             {
                 var response = await lambdaClient.InvokeAsync(new Amazon.Lambda.Model.InvokeRequest()
                 {
-                    FunctionName = "SyncData",
-                    InvocationType = Amazon.Lambda.InvocationType.RequestResponse,
-                    Payload = @"{""Name"": ""value1""}"
+                    FunctionName = "GetSleeps",
+                    InvocationType = InvocationType.RequestResponse,
+                    Payload = @"""CDAFE18A-09E4-4AFF-9896-21A9DD17FC9F"""
                 });
 
                 var r = new StreamReader(response.Payload).ReadToEnd();

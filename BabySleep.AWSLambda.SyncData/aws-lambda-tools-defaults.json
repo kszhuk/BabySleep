@@ -12,15 +12,16 @@
     "function-runtime" : "dotnet6",
     "function-memory-size" : 256,
     "function-timeout"     : 30,
-    "function-handler"     : "BabySleep.AWSLambda.SyncData::BabySleep.AWSLambda.SyncData.Function::FunctionHandler",
-    "function-name"        : "SyncData",
+    "function-handler"     : "BabySleep.AWSLambda.SyncData::BabySleep.AWSLambda.SyncData.Function::GetSleepsHandler",
+    "function-name"        : "GetSleeps",
     "framework"            : "net6.0",
     "package-type"         : "Zip",
-    "function-role"        : "arn:aws:iam::558646648864:role/lambda_exec_SyncData",
+    "function-role"        : "arn:aws:iam::558646648864:role/lambda_exec_GetSleeps",
     "function-architecture" : "x86_64",
     "function-subnets"      : "",
     "function-security-groups" : "",
     "tracing-mode"             : "PassThrough",
     "environment-variables"    : "",
-    "image-tag"                : ""
+    "image-tag"                : "",
+    "function-description"     : ""
 }
