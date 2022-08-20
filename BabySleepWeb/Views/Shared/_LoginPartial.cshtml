@@ -1,0 +1,14 @@
+﻿<ul class="navbar-nav">
+    @if (User.Identity.IsAuthenticated)
+    {
+        <li class="nav-item active">
+            <a asp-controller="Login" asp-action="Logout" class="nav-link">Logout</a>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item active">
+            <a asp-controller="Login" asp-action="Login" class="nav-link">Login</a>
+        </li>
+    }
+</ul>

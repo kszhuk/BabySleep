@@ -1,6 +1,6 @@
 ﻿@page
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-@model BabySleepWeb.Pages.LoginModel
+@model BabySleepWeb.Pages.Login2Model
 @{
     Layout = "_Layout";
 }
