@@ -1,5 +1,5 @@
 ﻿using BabySleep.Common.Exceptions.Authentication;
-using BabySleep.Resx;
+using BabySleep.Resources.Resx;
 using BabySleep.Services;
 using System;
 using System.Collections.Generic;

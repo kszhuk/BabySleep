@@ -125,6 +125,10 @@
       <Project>{9C4C9F5E-D3AF-417B-9520-7E4395187E8E}</Project>
       <Name>BabySleep.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\BabySleep.Resources\BabySleep.Resources.csproj">
+      <Project>{C18639EE-C526-4941-81AC-739EA20B82CE}</Project>
+      <Name>BabySleep.Resources</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BabySleep\BabySleep.csproj">
       <Project>{C63600D0-AC45-4B2C-B261-DCB1363E1127}</Project>
       <Name>BabySleep</Name>

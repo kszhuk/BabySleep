@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:BabySleep.ViewModels"
              xmlns:custom="clr-namespace:BabySleep.CustomControls"
              xmlns:converter="clr-namespace:BabySleep.Convertors"
-             xmlns:resources="clr-namespace:BabySleep.Resx"
+             xmlns:resources="clr-namespace:BabySleep.Resources.Resx;assembly=BabySleep.Resources"
              xmlns:behaviour="clr-namespace:BabySleep.Behaviors"
              xmlns:tabs="http://xamarin.com/schemas/2020/toolkit"
              xmlns:controls="clr-namespace:MarcTron.Plugin.Controls;assembly=Plugin.MtAdmob"

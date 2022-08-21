@@ -5,7 +5,7 @@ using BabySleep.Common.Enums;
 using BabySleep.Common.Exceptions.Sleep;
 using BabySleep.Helpers;
 using BabySleep.Models;
-using BabySleep.Resx;
+using BabySleep.Resources.Resx;
 using BabySleep.Validations;
 using System;
 using System.Collections.Generic;

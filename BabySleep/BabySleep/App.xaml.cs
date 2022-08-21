@@ -5,12 +5,12 @@ using Xamarin.Forms;
 using BabySleep.Views;
 using System.Threading.Tasks;
 using System.Globalization;
-using BabySleep.Resx;
 using Autofac;
 using BabySleep.Services;
 using BabySleep.Core;
 using BabySleep.Application.Interfaces;
 using System.Threading;
+using BabySleep.Resources.Resx;
 
 namespace BabySleep
 {

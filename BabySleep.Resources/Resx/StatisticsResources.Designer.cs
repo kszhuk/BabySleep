@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BabySleep.Resx {
+namespace BabySleep.Resources.Resx {
     using System;
     
     
@@ -19,27 +19,27 @@ namespace BabySleep.Resx {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class StatisticsResources_uk {
+    public class StatisticsResources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal StatisticsResources_uk() {
+        internal StatisticsResources() {
         }
         
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("BabySleep.Resx.StatisticsResources.uk", typeof(StatisticsResources_uk).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("BabySleep.Resources.Resx.StatisticsResources", typeof(StatisticsResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -51,7 +51,7 @@ namespace BabySleep.Resx {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace BabySleep.Resx {
         /// <summary>
         ///   Looks up a localized string similar to Day sleeps count.
         /// </summary>
-        internal static string DayCount {
+        public static string DayCount {
             get {
                 return ResourceManager.GetString("DayCount", resourceCulture);
             }
@@ -72,16 +72,25 @@ namespace BabySleep.Resx {
         /// <summary>
         ///   Looks up a localized string similar to Day sleeps hours.
         /// </summary>
-        internal static string DayHours {
+        public static string DayHours {
             get {
                 return ResourceManager.GetString("DayHours", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please, select time interval that not exceeds 30 days.
+        /// </summary>
+        public static string ExceedDaysLimit {
+            get {
+                return ResourceManager.GetString("ExceedDaysLimit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Night sleep hours.
         /// </summary>
-        internal static string NightHours {
+        public static string NightHours {
             get {
                 return ResourceManager.GetString("NightHours", resourceCulture);
             }
@@ -90,7 +99,7 @@ namespace BabySleep.Resx {
         /// <summary>
         ///   Looks up a localized string similar to Total sleeps hours.
         /// </summary>
-        internal static string TotalHours {
+        public static string TotalHours {
             get {
                 return ResourceManager.GetString("TotalHours", resourceCulture);
             }

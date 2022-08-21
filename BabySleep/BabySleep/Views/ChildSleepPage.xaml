@@ -8,7 +8,7 @@
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              x:Class="BabySleep.Views.ChildSleepPage"
              x:Name="ChildSleep"
-             xmlns:resources="clr-namespace:BabySleep.Resx"
+             xmlns:resources="clr-namespace:BabySleep.Resources.Resx;assembly=BabySleep.Resources"
              Icon="{Binding CurrentIcon}">
 
     <ContentPage.BindingContext>

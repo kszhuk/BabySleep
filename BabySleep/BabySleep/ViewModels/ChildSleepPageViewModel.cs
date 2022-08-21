@@ -4,7 +4,7 @@ using BabySleep.Application.Interfaces;
 using BabySleep.Common.Helpers;
 using BabySleep.Helpers;
 using BabySleep.Interfaces;
-using BabySleep.Resx;
+using BabySleep.Resources.Resx;
 using BabySleep.Views;
 using System;
 using System.Collections.Generic;

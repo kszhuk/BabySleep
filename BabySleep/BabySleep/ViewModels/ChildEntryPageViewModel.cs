@@ -1,5 +1,4 @@
 ﻿using BabySleep.Helpers;
-using BabySleep.Resx;
 using BabySleep.Services;
 using BabySleep.Validations;
 using System;
@@ -14,6 +13,7 @@ using Autofac;
 using BabySleep.Application.DTO;
 using BabySleep.Common.Exceptions.Child;
 using MarcTron.Plugin;
+using BabySleep.Resources.Resx;
 
 namespace BabySleep.ViewModels
 {

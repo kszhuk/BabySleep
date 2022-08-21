@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:BabySleep.ViewModels"
              xmlns:behaviour="clr-namespace:BabySleep.Behaviors"
              xmlns:converter="clr-namespace:BabySleep.Convertors"
-             xmlns:resources="clr-namespace:BabySleep.Resx"
+             xmlns:resources="clr-namespace:BabySleep.Resources.Resx;assembly=BabySleep.Resources"
              xmlns:custom="clr-namespace:BabySleep.CustomControls"
              xmlns:controls="clr-namespace:MarcTron.Plugin.Controls;assembly=Plugin.MtAdmob"
              x:Class="BabySleep.Views.ChildEntryPage"

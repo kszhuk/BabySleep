@@ -60,101 +60,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\BabySleep.Core\BabySleep.Core.csproj" />
+    <ProjectReference Include="..\..\BabySleep.Resources\BabySleep.Resources.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Compile Update="CustomControls\ChildMenuView.xaml.cs">
       <DependentUpon>ChildMenuView.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Resx\EditSettingsResources.ru.Designer.cs">
-      <DependentUpon>EditSettingsResources.ru.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
-    <Compile Update="Resx\EditSettingsResources.Designer.cs">
-      <DependentUpon>EditSettingsResources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
-    <Compile Update="Resx\EditSettingsResources.uk.Designer.cs">
-      <DependentUpon>EditSettingsResources.uk.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
-    <Compile Update="Resx\MenuResources.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>MenuResources.resx</DependentUpon>
-    </Compile>
-    <Compile Update="Resx\MenuResources.ru.Designer.cs">
-      <DependentUpon>MenuResources.ru.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
-    <Compile Update="Resx\GeneralResources.Designer.cs">
-      <DependentUpon>GeneralResources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
-    <Compile Update="Resx\GeneralResources.uk.Designer.cs">
-      <DependentUpon>GeneralResources.uk.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
-    <Compile Update="Resx\GeneralResources.ru.Designer.cs">
-      <DependentUpon>GeneralResources.ru.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
-    <Compile Update="Resx\ChildEntryResources.ru.Designer.cs">
-      <DependentUpon>ChildEntryResources.ru.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
-    <Compile Update="Resx\ChildEntryResources.Designer.cs">
-      <DependentUpon>ChildEntryResources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
-    <Compile Update="Resx\ChildEntryResources.uk.Designer.cs">
-      <DependentUpon>ChildEntryResources.uk.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
-    <Compile Update="Resx\ChildSleepResources.ru.Designer.cs">
-      <DependentUpon>ChildSleepResources.ru.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
-    <Compile Update="Resx\ChildSleepResources.Designer.cs">
-      <DependentUpon>ChildSleepResources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
-    <Compile Update="Resx\ChildSleepResources.uk.Designer.cs">
-      <DependentUpon>ChildSleepResources.uk.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
-    <Compile Update="Resx\LoginResources.Designer.cs">
-      <DependentUpon>LoginResources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
-	  <Compile Update="Resx\LoginResources.uk.Designer.cs">
-		  <DependentUpon>LoginResources.uk.resx</DependentUpon>
-		  <DesignTime>True</DesignTime>
-		  <AutoGen>True</AutoGen>
-	  </Compile>
-    <Compile Update="Resx\StatisticsResources.Designer.cs">
-      <DependentUpon>StatisticsResources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
-    <Compile Update="Resx\StatisticsResources.uk.Designer.cs">
-      <DependentUpon>StatisticsResources.uk.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Update="Views\ChildEntryPage.xaml.cs">
       <DependentUpon>ChildEntryPage.xaml</DependentUpon>
@@ -189,62 +100,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Resx\ChildEntryResources.resx">
-      <LastGenOutput>ChildEntryResources.Designer.cs</LastGenOutput>
-      <Generator>PublicResXFileCodeGenerator</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Resx\EditSettingsResources.uk.resx">
-      <LastGenOutput>EditSettingsResources.uk.Designer.cs</LastGenOutput>
-      <Generator>PublicResXFileCodeGenerator</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Resx\EditSettingsResources.ru.resx">
-      <LastGenOutput>EditSettingsResources.ru.Designer.cs</LastGenOutput>
-      <Generator>PublicResXFileCodeGenerator</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Resx\EditSettingsResources.resx">
-      <LastGenOutput>EditSettingsResources.Designer.cs</LastGenOutput>
-      <Generator>PublicResXFileCodeGenerator</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Resx\GeneralResources.resx">
-      <LastGenOutput>GeneralResources.Designer.cs</LastGenOutput>
-      <Generator>PublicResXFileCodeGenerator</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Resx\GeneralResources.uk.resx">
-      <LastGenOutput>GeneralResources.Designer.uk.cs</LastGenOutput>
-      <Generator>PublicResXFileCodeGenerator</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Resx\GeneralResources.ru.resx">
-      <LastGenOutput>GeneralResources.Designer.cs</LastGenOutput>
-      <Generator>PublicResXFileCodeGenerator</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Resx\LoginResources.uk.resx">
-		<LastGenOutput>LoginResources.uk.Designer.cs</LastGenOutput>
-      <Generator>ResXFileCodeGenerator</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Resx\MenuResources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>MenuResources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Resx\MenuResources.ru.resx">
-      <LastGenOutput>MenuResources.Designer.cs</LastGenOutput>
-      <Generator>PublicResXFileCodeGenerator</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Resx\MenuResources.uk.resx">
-		<LastGenOutput>MenuResources.uk.Designer.cs</LastGenOutput>
-		<Generator>PublicResXFileCodeGenerator</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Resx\LoginResources.resx">
-      <LastGenOutput>LoginResources.Designer.cs</LastGenOutput>
-      <Generator>ResXFileCodeGenerator</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Resx\StatisticsResources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>StatisticsResources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Resx\StatisticsResources.uk.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>StatisticsResources.uk.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Update="Views\ChildEntryPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -269,28 +124,8 @@
     <EmbeddedResource Update="Views\MenuPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Resx\ChildEntryResources.uk.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>ChildEntryResources.uk.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Resx\ChildEntryResources.ru.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>ChildEntryResources.ru.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Update="Views\StatisticsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Resx\ChildSleepResources.resx">
-      <LastGenOutput>ChildSleepResources.Designer.cs</LastGenOutput>
-      <Generator>PublicResXFileCodeGenerator</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Resx\ChildSleepResources.ru.resx">
-      <LastGenOutput>ChildSleepResources.ru.Designer.cs</LastGenOutput>
-      <Generator>PublicResXFileCodeGenerator</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Resx\ChildSleepResources.uk.resx">
-      <LastGenOutput>ChildSleepResources.uk.Designer.cs</LastGenOutput>
-      <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
   </ItemGroup>
 </Project>

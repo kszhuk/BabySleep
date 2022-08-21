@@ -13,7 +13,7 @@ using Android.Widget;
 using BabySleep.CustomControls;
 using BabySleep.Droid.CustomControls;
 using BabySleep.Helpers;
-using BabySleep.Resx;
+using BabySleep.Resources.Resx;
 using Java.Util;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;

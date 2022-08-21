@@ -1,6 +1,6 @@
 ﻿using BabySleep.Common.Exceptions.Authentication;
 using BabySleep.Common.Helpers;
-using BabySleep.Resx;
+using BabySleep.Resources.Resx;
 using BabySleep.Services;
 using BabySleep.Validations;
 using BabySleep.Views;

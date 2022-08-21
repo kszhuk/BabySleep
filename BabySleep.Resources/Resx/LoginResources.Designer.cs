@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BabySleep.Resx {
+namespace BabySleep.Resources.Resx {
     using System;
     
     
@@ -22,7 +22,7 @@ namespace BabySleep.Resx {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class LoginResources {
+    public class LoginResources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,10 +36,10 @@ namespace BabySleep.Resx {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("BabySleep.Resx.LoginResources", typeof(LoginResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("BabySleep.Resources.Resx.LoginResources", typeof(LoginResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -51,7 +51,7 @@ namespace BabySleep.Resx {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace BabySleep.Resx {
         /// <summary>
         ///   Looks up a localized string similar to The email address is already in use by another account.
         /// </summary>
-        internal static string AuthUserCollisionException {
+        public static string AuthUserCollisionException {
             get {
                 return ResourceManager.GetString("AuthUserCollisionException", resourceCulture);
             }
@@ -72,7 +72,7 @@ namespace BabySleep.Resx {
         /// <summary>
         ///   Looks up a localized string similar to Change Password.
         /// </summary>
-        internal static string ChangePassword {
+        public static string ChangePassword {
             get {
                 return ResourceManager.GetString("ChangePassword", resourceCulture);
             }
@@ -81,7 +81,7 @@ namespace BabySleep.Resx {
         /// <summary>
         ///   Looks up a localized string similar to Email.
         /// </summary>
-        internal static string Email {
+        public static string Email {
             get {
                 return ResourceManager.GetString("Email", resourceCulture);
             }
@@ -90,7 +90,7 @@ namespace BabySleep.Resx {
         /// <summary>
         ///   Looks up a localized string similar to Password cannot be empty.
         /// </summary>
-        internal static string EmptyPassword {
+        public static string EmptyPassword {
             get {
                 return ResourceManager.GetString("EmptyPassword", resourceCulture);
             }
@@ -99,7 +99,7 @@ namespace BabySleep.Resx {
         /// <summary>
         ///   Looks up a localized string similar to Forgot Password?.
         /// </summary>
-        internal static string ForgotPassword {
+        public static string ForgotPassword {
             get {
                 return ResourceManager.GetString("ForgotPassword", resourceCulture);
             }
@@ -108,7 +108,7 @@ namespace BabySleep.Resx {
         /// <summary>
         ///   Looks up a localized string similar to Don&apos;t have an account?.
         /// </summary>
-        internal static string HaveAccount {
+        public static string HaveAccount {
             get {
                 return ResourceManager.GetString("HaveAccount", resourceCulture);
             }
@@ -117,7 +117,7 @@ namespace BabySleep.Resx {
         /// <summary>
         ///   Looks up a localized string similar to Invalid email.
         /// </summary>
-        internal static string InvalidEmail {
+        public static string InvalidEmail {
             get {
                 return ResourceManager.GetString("InvalidEmail", resourceCulture);
             }
@@ -126,7 +126,7 @@ namespace BabySleep.Resx {
         /// <summary>
         ///   Looks up a localized string similar to Password contains 8-15 characters, including at least one number, special character, both lower and uppercase letters.
         /// </summary>
-        internal static string InvalidPassword {
+        public static string InvalidPassword {
             get {
                 return ResourceManager.GetString("InvalidPassword", resourceCulture);
             }
@@ -135,7 +135,7 @@ namespace BabySleep.Resx {
         /// <summary>
         ///   Looks up a localized string similar to Password and Confirm password doesn&apos;t match.
         /// </summary>
-        internal static string InvalidPasswordConfirm {
+        public static string InvalidPasswordConfirm {
             get {
                 return ResourceManager.GetString("InvalidPasswordConfirm", resourceCulture);
             }
@@ -144,7 +144,7 @@ namespace BabySleep.Resx {
         /// <summary>
         ///   Looks up a localized string similar to Login.
         /// </summary>
-        internal static string Login {
+        public static string Login {
             get {
                 return ResourceManager.GetString("Login", resourceCulture);
             }
@@ -153,7 +153,7 @@ namespace BabySleep.Resx {
         /// <summary>
         ///   Looks up a localized string similar to Invalid email or password.
         /// </summary>
-        internal static string LoginFailed {
+        public static string LoginFailed {
             get {
                 return ResourceManager.GetString("LoginFailed", resourceCulture);
             }
@@ -162,7 +162,7 @@ namespace BabySleep.Resx {
         /// <summary>
         ///   Looks up a localized string similar to Password.
         /// </summary>
-        internal static string Password {
+        public static string Password {
             get {
                 return ResourceManager.GetString("Password", resourceCulture);
             }
@@ -171,7 +171,7 @@ namespace BabySleep.Resx {
         /// <summary>
         ///   Looks up a localized string similar to Confirm password.
         /// </summary>
-        internal static string PasswordConfirm {
+        public static string PasswordConfirm {
             get {
                 return ResourceManager.GetString("PasswordConfirm", resourceCulture);
             }
@@ -180,7 +180,7 @@ namespace BabySleep.Resx {
         /// <summary>
         ///   Looks up a localized string similar to Password recovery sent, check your email.
         /// </summary>
-        internal static string PasswordRecoverySent {
+        public static string PasswordRecoverySent {
             get {
                 return ResourceManager.GetString("PasswordRecoverySent", resourceCulture);
             }
@@ -189,7 +189,7 @@ namespace BabySleep.Resx {
         /// <summary>
         ///   Looks up a localized string similar to An error occurs.
         /// </summary>
-        internal static string ResetPasswordException {
+        public static string ResetPasswordException {
             get {
                 return ResourceManager.GetString("ResetPasswordException", resourceCulture);
             }
@@ -198,7 +198,7 @@ namespace BabySleep.Resx {
         /// <summary>
         ///   Looks up a localized string similar to Account not found.
         /// </summary>
-        internal static string ResetPasswordInvalidEmail {
+        public static string ResetPasswordInvalidEmail {
             get {
                 return ResourceManager.GetString("ResetPasswordInvalidEmail", resourceCulture);
             }
@@ -207,7 +207,7 @@ namespace BabySleep.Resx {
         /// <summary>
         ///   Looks up a localized string similar to Are you really sure you want to reset password?.
         /// </summary>
-        internal static string ResetPasswordQuestion {
+        public static string ResetPasswordQuestion {
             get {
                 return ResourceManager.GetString("ResetPasswordQuestion", resourceCulture);
             }
@@ -216,7 +216,7 @@ namespace BabySleep.Resx {
         /// <summary>
         ///   Looks up a localized string similar to Sign Up.
         /// </summary>
-        internal static string SignUp {
+        public static string SignUp {
             get {
                 return ResourceManager.GetString("SignUp", resourceCulture);
             }
@@ -225,7 +225,7 @@ namespace BabySleep.Resx {
         /// <summary>
         ///   Looks up a localized string similar to An error occurs.
         /// </summary>
-        internal static string SignUpException {
+        public static string SignUpException {
             get {
                 return ResourceManager.GetString("SignUpException", resourceCulture);
             }
@@ -234,7 +234,7 @@ namespace BabySleep.Resx {
         /// <summary>
         ///   Looks up a localized string similar to Sign up is successful. You can login under your new credentials.
         /// </summary>
-        internal static string SignUpSuccessful {
+        public static string SignUpSuccessful {
             get {
                 return ResourceManager.GetString("SignUpSuccessful", resourceCulture);
             }
@@ -243,7 +243,7 @@ namespace BabySleep.Resx {
         /// <summary>
         ///   Looks up a localized string similar to Only subscribed users can login to application.
         /// </summary>
-        internal static string SubscribedException {
+        public static string SubscribedException {
             get {
                 return ResourceManager.GetString("SubscribedException", resourceCulture);
             }
@@ -252,7 +252,7 @@ namespace BabySleep.Resx {
         /// <summary>
         ///   Looks up a localized string similar to User should log in first.
         /// </summary>
-        internal static string UserNotLogin {
+        public static string UserNotLogin {
             get {
                 return ResourceManager.GetString("UserNotLogin", resourceCulture);
             }

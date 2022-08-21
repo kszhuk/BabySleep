@@ -4,7 +4,7 @@
              xmlns:views="clr-namespace:BabySleep.Views"
              x:Class="BabySleep.Views.MainPage"
              Style="{StaticResource MainMenu}"
-             xmlns:resources="clr-namespace:BabySleep.Resx"
+             xmlns:resources="clr-namespace:BabySleep.Resources.Resx;assembly=BabySleep.Resources"
              BarBackgroundColor="#cdeefd">
 
     <views:ChildSleepPage Title="{x:Static resources:GeneralResources.Sleeps}"/>

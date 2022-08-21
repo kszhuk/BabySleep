@@ -7,7 +7,7 @@
              xmlns:custom="clr-namespace:BabySleep.CustomControls"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:forms="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
-             xmlns:resources="clr-namespace:BabySleep.Resx"
+             xmlns:resources="clr-namespace:BabySleep.Resources.Resx;assembly=BabySleep.Resources"
              Icon="{Binding CurrentIcon}"
              x:Name="Statistics">
 

@@ -1,4 +1,5 @@
-﻿using BabySleepWeb.Helpers;
+﻿using BabySleep.Resources.Resx;
+using BabySleepWeb.Helpers;
 using BabySleepWeb.Models;
 using Firebase.Auth;
 using Microsoft.AspNet.Identity;
@@ -51,18 +52,18 @@ namespace BabySleepWeb.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid login or password");
+                    ModelState.AddModelError(string.Empty, LoginResources.LoginFailed);
                 }
             }
             catch (FirebaseAuthException ex)
             {
                 if (ex.Reason == AuthErrorReason.UnknownEmailAddress)
                 {
-                    ModelState.AddModelError(string.Empty, "UnknownEmailAddress");
+                    ModelState.AddModelError(string.Empty, LoginResources.InvalidEmail);
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "LoginFailed");
+                    ModelState.AddModelError(string.Empty, LoginResources.LoginFailed);
                 }
             }
             catch (Exception ex)

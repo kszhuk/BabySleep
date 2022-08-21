@@ -1,29 +1,30 @@
-﻿@model InputLoginModel
+﻿@using MyResources = BabySleep.Resources.Resx;
+@model InputLoginModel
 
 @{
-    ViewData["Title"] = "Login";
+    ViewData["Title"] = @MyResources.MenuResources.LogIn;
 }
 
 <form method="post">
     <div class="row justify-content-center align-items-center">
         <div style="width:400px" class="row justify-content-center align-items-center">
             <div class="row mb-3">
-                <h2 class="text-center">Login</h2>
+                <h2 class="text-center">@MyResources.MenuResources.LogIn</h2>
             </div>
             <div class="mb-3">
-                <input asp-for="Email" class="form-control" placeholder="Email" />
+                <input asp-for="Email" class="form-control" placeholder=@MyResources.LoginResources.Login />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
 
             <div class="mb-3">
-                <input asp-for="Password" class="form-control" placeholder="Password" type="password" />
+                <input asp-for="Password" class="form-control" placeholder=@MyResources.LoginResources.Password type="password" />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
 
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="mb-3">
-                <button type="submit" class="btn btn-primary w-100"><i class="bi bi-box-arrow-in-right"></i> &nbsp; Login</button>
+                <button type="submit" class="btn btn-primary w-100"><i class="bi bi-box-arrow-in-right"></i> &nbsp; @MyResources.LoginResources.Login</button>
             </div>
         </div>
     </div>

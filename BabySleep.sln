@@ -34,6 +34,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BabySleep.AWS.Common", "Bab
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BabySleepWeb", "BabySleepWeb\BabySleepWeb.csproj", "{6C236B99-7A59-429A-B32C-CABE9E3072E4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BabySleep.Resources", "BabySleep.Resources\BabySleep.Resources.csproj", "{C18639EE-C526-4941-81AC-739EA20B82CE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -230,6 +232,18 @@ Global
 		{6C236B99-7A59-429A-B32C-CABE9E3072E4}.Release|iPhone.Build.0 = Release|Any CPU
 		{6C236B99-7A59-429A-B32C-CABE9E3072E4}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{6C236B99-7A59-429A-B32C-CABE9E3072E4}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{C18639EE-C526-4941-81AC-739EA20B82CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C18639EE-C526-4941-81AC-739EA20B82CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C18639EE-C526-4941-81AC-739EA20B82CE}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{C18639EE-C526-4941-81AC-739EA20B82CE}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{C18639EE-C526-4941-81AC-739EA20B82CE}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{C18639EE-C526-4941-81AC-739EA20B82CE}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{C18639EE-C526-4941-81AC-739EA20B82CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C18639EE-C526-4941-81AC-739EA20B82CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C18639EE-C526-4941-81AC-739EA20B82CE}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{C18639EE-C526-4941-81AC-739EA20B82CE}.Release|iPhone.Build.0 = Release|Any CPU
+		{C18639EE-C526-4941-81AC-739EA20B82CE}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{C18639EE-C526-4941-81AC-739EA20B82CE}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

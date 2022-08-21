@@ -3,7 +3,7 @@ using BabySleep.Application.DTO;
 using BabySleep.Application.Interfaces;
 using BabySleep.Helpers;
 using BabySleep.Interfaces;
-using BabySleep.Resx;
+using BabySleep.Resources.Resx;
 using Microcharts;
 using SkiaSharp;
 using System;

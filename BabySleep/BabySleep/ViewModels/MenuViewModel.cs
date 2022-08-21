@@ -4,8 +4,8 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using Xamarin.Forms;
 using System.Reflection;
-using BabySleep.Resx;
 using BabySleep.Services;
+using BabySleep.Resources.Resx;
 
 namespace BabySleep.ViewModels
 {
