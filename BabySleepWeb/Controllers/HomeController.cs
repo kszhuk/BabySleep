@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Globalization;
 
 namespace BabySleepWeb.Controllers
 {
@@ -12,6 +13,13 @@ namespace BabySleepWeb.Controllers
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
+
+            if (CultureInfo.DefaultThreadCurrentCulture == null)
+            {
+                var language = CultureInfo.GetCultureInfo("en");
+                CultureInfo.DefaultThreadCurrentCulture = language;
+                CultureInfo.DefaultThreadCurrentUICulture = language;
+            }
         }
 
         public IActionResult Index()
@@ -29,6 +37,22 @@ namespace BabySleepWeb.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        [AllowAnonymous]
+        public IActionResult ChangeLanguage(string languageName, string returnUrl)
+        {
+            var languages = CultureInfo.GetCultures(CultureTypes.NeutralCultures).ToList();
+            var language = CultureInfo.GetCultures(CultureTypes.NeutralCultures).ToList()
+                .FirstOrDefault(element => element.Name == languageName);
+
+            if (language != null)
+            {
+                CultureInfo.DefaultThreadCurrentCulture = language;
+                CultureInfo.DefaultThreadCurrentUICulture = language;
+            }
+
+            return LocalRedirect(returnUrl);
         }
     }
 }
