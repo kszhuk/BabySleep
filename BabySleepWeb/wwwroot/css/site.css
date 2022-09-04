@@ -16,3 +16,16 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.tab {
+    border-bottom: 2px solid green;
+    margin:0px 15px 0px 15px;
+}
+
+.tab-active {
+    color: blue !important;
+}
+
+.tab-inactive {
+    color: aqua !important;
+}

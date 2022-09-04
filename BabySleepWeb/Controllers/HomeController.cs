@@ -40,7 +40,7 @@ namespace BabySleepWeb.Controllers
         }
 
         [AllowAnonymous]
-        public IActionResult ChangeLanguage(string languageName, string returnUrl)
+        public IActionResult ChangeLanguage(string languageName)
         {
             var languages = CultureInfo.GetCultures(CultureTypes.NeutralCultures).ToList();
             var language = CultureInfo.GetCultures(CultureTypes.NeutralCultures).ToList()
@@ -52,7 +52,7 @@ namespace BabySleepWeb.Controllers
                 CultureInfo.DefaultThreadCurrentUICulture = language;
             }
 
-            return LocalRedirect(returnUrl);
+            return View("Index");
         }
     }
 }
