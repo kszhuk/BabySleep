@@ -1,8 +1,10 @@
 ﻿@using MyResources = BabySleep.Resources.Resx;
 
 <ul class="nav navbar-nav navbar-right">
-    @if (User.Identity !=null && User.Identity.IsAuthenticated)
+    @await Component.InvokeAsync("Language")
+    @if (User.Identity != null && User.Identity.IsAuthenticated)
     {
+        @await Component.InvokeAsync("Children")
         <li class="nav-item active">
             <a asp-controller="Login" asp-action="Logout" class="nav-link">@MyResources.MenuResources.LogOut</a>
         </li>
@@ -13,25 +15,24 @@
             <a asp-controller="Login" asp-action="Login" class="nav-link">@MyResources.MenuResources.LogIn</a>
         </li>
     }
-    @await Component.InvokeAsync("Language")
-@*    <li class="dropdown">
-        <a class="nav-link dropdown-toggle text-uppercase" data-toggle="dropdown" href="#">
-            @System.Globalization.CultureInfo.DefaultThreadCurrentCulture.TwoLetterISOLanguageName
-            <span class="caret"></span>
-        </a>
-        <ul class="dropdown-menu dropdown-menu-end" role="menu">
-            <li class="dropdown-item">
-                <a class="text-decoration-none" asp-controller="Home" asp-action="ChangeLanguage" asp-route-languageName="en"
-                   asp-route-returnUrl=@ViewContext.HttpContext.Request.Path>
-                    @MyResources.EditSettingsResources.English
-                </a>
-            </li>
-            <li class="dropdown-item">
-                <a class="text-decoration-none" asp-controller="Home" asp-action="ChangeLanguage" asp-route-languageName="uk"
-                   asp-route-returnUrl=@ViewContext.HttpContext.Request.Path>
-                    @MyResources.EditSettingsResources.Ukrainian
-                </a>
-            </li>
-        </ul>
+    @*    <li class="dropdown">
+    <a class="nav-link dropdown-toggle text-uppercase" data-toggle="dropdown" href="#">
+    @System.Globalization.CultureInfo.DefaultThreadCurrentCulture.TwoLetterISOLanguageName
+    <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" role="menu">
+    <li class="dropdown-item">
+    <a class="text-decoration-none" asp-controller="Home" asp-action="ChangeLanguage" asp-route-languageName="en"
+    asp-route-returnUrl=@ViewContext.HttpContext.Request.Path>
+    @MyResources.EditSettingsResources.English
+    </a>
+    </li>
+    <li class="dropdown-item">
+    <a class="text-decoration-none" asp-controller="Home" asp-action="ChangeLanguage" asp-route-languageName="uk"
+    asp-route-returnUrl=@ViewContext.HttpContext.Request.Path>
+    @MyResources.EditSettingsResources.Ukrainian
+    </a>
+    </li>
+    </ul>
     </li>*@
 </ul>
