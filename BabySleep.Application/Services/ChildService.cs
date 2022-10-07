@@ -66,5 +66,10 @@ namespace BabySleep.Application.Services
         {
             return childDtoAssembler.WriteChildDto(childRepository.GetFirst());
         }
+
+        public IList<ChildDto> GetChildren(Guid userGuid)
+        {
+            return childDtoAssembler.WriteChildrenDto(childRepository.GetAll(userGuid));
+        }
     }
 }

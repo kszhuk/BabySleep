@@ -9,11 +9,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Amazon.Lambda.APIGatewayEvents" Version="2.4.1" />
     <PackageReference Include="AWSSDK.Lambda" Version="3.7.13.29" />
     <PackageReference Include="log4net" Version="2.0.14" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BabySleep.AWS.Common\BabySleep.AWS.Common.csproj" />
     <ProjectReference Include="..\BabySleep.EfData\BabySleep.EfData.csproj" />
     <ProjectReference Include="..\BabySleep.Domain\BabySleep.Domain.csproj" />
   </ItemGroup>

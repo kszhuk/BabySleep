@@ -1,3 +1,6 @@
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
+using BabySleep.Core;
 using BabySleepWeb.Helpers;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
@@ -20,6 +23,12 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 builder.Services.AddOptions();
 var section = builder.Configuration.GetSection(FirebaseOptions.Firebase);
 builder.Services.Configure<FirebaseOptions>(section);
+
+builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
+
+// Register services directly with Autofac here. Don't
+// call builder.Populate(), that happens in AutofacServiceProviderFactory.
+builder.Host.ConfigureContainer<ContainerBuilder>(builder => builder.RegisterModule(new DIContanerWebModule()));
 
 var app = builder.Build();
 

@@ -78,6 +78,11 @@ namespace BabySleep.Infrastructure.Data.Repositories
             return context.Children.AsNoTracking().OrderBy(c => c.Name).ToList().Select(c => ConvertToDomain(c)).ToList();
         }
 
+        public IList<Child> GetAll(Guid userGuid)
+        {
+            return GetAll();
+        }
+
         public Child GetFirst()
         {
             var children = context.Children.AsNoTracking().OrderBy(c => c.Name).ToList();

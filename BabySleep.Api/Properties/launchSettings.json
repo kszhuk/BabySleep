@@ -1,0 +1,14 @@
+{
+  "profiles": {
+    "BabySleep.Api": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "sqlDebugging": true,
+      "applicationUrl": "https://localhost:55201;http://localhost:55202",
+      "nativeDebugging": true
+    }
+  }
+}

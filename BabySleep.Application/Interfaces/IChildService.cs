@@ -10,6 +10,7 @@ namespace BabySleep.Application.Interfaces
         ChildDto GetChild(Guid childGuid);
         ChildDto GetFirstChild();
         IList<ChildDto> GetChildren();
+        IList<ChildDto> GetChildren(Guid userGuid);
         int GetChildrenCount();
         void SaveChild(ChildDto child);
         void DeleteChild(Guid childGuid);

@@ -15,5 +15,6 @@ namespace BabySleep.Infrastructure.Data.Interfaces
         void Delete(Guid childGuid);
         void Update(Child child);
         IList<Child> GetAll();
+        IList<Child> GetAll(Guid userGuid);
     }
 }
