@@ -42,7 +42,7 @@ namespace BabySleep.Api
                     ChildGuid = Guid.Parse(child.ChildGUID),
                     BirthDate = DateTime.Parse(child.BirthDate),
                     Name = child.Name,
-                    UserGuid = Guid.Parse(userGuid)
+                    UserGuid = Guid.Parse(child.UserGUID)
                 });
             }
 
