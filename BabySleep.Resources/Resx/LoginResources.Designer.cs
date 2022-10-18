@@ -250,6 +250,15 @@ namespace BabySleep.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to User doesn&apos;t have permissions to login to web application. Please, verify that you have subscription in BabySleep app.
+        /// </summary>
+        public static string UserAbsentDynamoDb {
+            get {
+                return ResourceManager.GetString("UserAbsentDynamoDb", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User should log in first.
         /// </summary>
         public static string UserNotLogin {

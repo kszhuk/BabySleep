@@ -1,6 +1,7 @@
 ﻿using BabySleep.Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Security.Claims;
 
 namespace BabySleepWeb.ViewComponents
 {
@@ -17,8 +18,16 @@ namespace BabySleepWeb.ViewComponents
         public async Task<IViewComponentResult> InvokeAsync()
         {
             var childrenListItem = new List<SelectListItem>();
+            
+            var userId = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            var children = _service.GetChildren(new Guid("CDAFE18A-09E4-4AFF-9896-21A9DD17FC9F"));
+            Guid userGuid;
+            if(!Guid.TryParse(userId, out userGuid))
+            {
+                return View("Index", new List<SelectListItem>());
+            }
+
+            var children = _service.GetChildren(new Guid(userId));
 
             foreach (var child in children)
             {

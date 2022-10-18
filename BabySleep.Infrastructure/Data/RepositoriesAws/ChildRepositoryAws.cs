@@ -52,11 +52,11 @@ namespace BabySleep.Infrastructure.Data.RepositoriesAws
                 var request = new GetChildrenRequest() { userGuid = userGuid.ToString() };
                 var jsonRequest = JsonConvert.SerializeObject(request);
                 var jsonResponse = awsHelper.GetLambdaResponse(AwsFunctionsEnum.GetChildren, jsonRequest);
-                var jsconChildren = JsonConvert.DeserializeObject<List<AWS.Common.Models.Child>>(jsonResponse);
+                var jsonChildren = JsonConvert.DeserializeObject<List<AWS.Common.Models.Child>>(jsonResponse);
 
                 var result = new List<Child>();
 
-                foreach(var child in jsconChildren)
+                foreach(var child in jsonChildren)
                 {
                     result.Add(new Child(child.ChildGuid, child.BirthDate, null, child.Name, null));
                 }
@@ -64,12 +64,10 @@ namespace BabySleep.Infrastructure.Data.RepositoriesAws
                 return result;
 
             }
-            catch (Exception ex)
+            catch 
             {
                 return new List<Child>();
             };
-
-            return new List<Child>();
         }
 
         public Child GetFirst()

@@ -1,4 +1,5 @@
-﻿using BabySleep.Resources.Resx;
+﻿using BabySleep.Application.Interfaces;
+using BabySleep.Resources.Resx;
 using BabySleepWeb.Helpers;
 using BabySleepWeb.Models;
 using Firebase.Auth;
@@ -15,11 +16,13 @@ namespace BabySleepWeb.Controllers
     [AllowAnonymous]
     public class LoginController : Controller
     {
-        private FirebaseOptions Config;
+        private readonly FirebaseOptions _config;
+        private readonly IUserService _userService;
 
-        public LoginController(IOptions<FirebaseOptions> options)
+        public LoginController(IOptions<FirebaseOptions> options, IUserService userService)
         {
-            Config = options.Value;
+            _config = options.Value;
+            _userService = userService;
         }
 
         //GET
@@ -39,7 +42,7 @@ namespace BabySleepWeb.Controllers
 
             try
             {
-                var auth = new FirebaseAuthProvider(new FirebaseConfig(Config.ApiKey));
+                var auth = new FirebaseAuthProvider(new FirebaseConfig(_config.ApiKey));
                 var a = await auth.SignInWithEmailAndPasswordAsync(obj.Email, obj.Password);
 
                 string token = a.FirebaseToken;
@@ -47,8 +50,17 @@ namespace BabySleepWeb.Controllers
 
                 if (token != string.Empty)
                 {
-                    await SignInUserAsync(user.Email, token, false);
-                    return RedirectToAction("Index", "Home");
+                    var userGuid = _userService.GetUserGuid(user.Email);
+
+                    if (userGuid != string.Empty)
+                    {
+                        await SignInUserAsync(user.Email, userGuid, token, false);
+                        return RedirectToAction("Index", "Home");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty, LoginResources.UserAbsentDynamoDb);
+                    }
                 }
                 else
                 {
@@ -82,12 +94,13 @@ namespace BabySleepWeb.Controllers
             return RedirectToAction("Login");
         }
 
-        private async Task SignInUserAsync(string email, string token, bool isPersistent)
+        private async Task SignInUserAsync(string email, string userGuid, string token, bool isPersistent)
         {
             var claims = new List<Claim>();
 
             claims.Add(new Claim(ClaimTypes.Email, email));
             claims.Add(new Claim(ClaimTypes.Authentication, token));
+            claims.Add(new Claim(ClaimTypes.NameIdentifier, userGuid));
             var claimIdentity = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
 
             var principal = new ClaimsPrincipal(claimIdentity);

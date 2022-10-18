@@ -25,6 +25,8 @@ namespace BabySleep.Core
                 .As<IStatisticsService>();
             builder.RegisterType<SyncAWSService>()
                 .As<ISyncAWSService>();
+            builder.RegisterType<UserService>()
+                .As<IUserService>();
 
             //Application dto assemblers
 
@@ -43,6 +45,8 @@ namespace BabySleep.Core
                 .As<IChildRepository>();
             builder.RegisterType<SleepRepositoryAws>()
                 .As<ISleepRepository>();
+            builder.RegisterType<UserRepositoryAws>()
+                .As<IUserRepository>();
 
             //Infrastructure services
 

@@ -180,6 +180,9 @@
   <data name="SubscribedException" xml:space="preserve">
     <value>Тільки підписані користувачі можуть увійти</value>
   </data>
+  <data name="UserAbsentDynamoDb" xml:space="preserve">
+    <value>Користувач не має доступу до сайту. Будь ласка, перевірте свою підписку в додатку BabySleep</value>
+  </data>
   <data name="UserNotLogin" xml:space="preserve">
     <value>Користувач має спочатку увійти</value>
   </data>

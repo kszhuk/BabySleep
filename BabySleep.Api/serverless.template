@@ -33,7 +33,7 @@
         }
       }
     },
-    "BabySleepApiChildrenGetChildrenGenerated": {
+    "BabySleepApiUsersGetUserGuidGenerated": {
       "Type": "AWS::Serverless::Function",
       "Metadata": {
         "Tool": "Amazon.Lambda.Annotations",
@@ -49,14 +49,14 @@
         "Policies": [
           "AWSLambdaBasicExecutionRole"
         ],
-        "FunctionName": "GetChildren",
         "PackageType": "Zip",
-        "Handler": "BabySleep.Api::BabySleep.Api.Children_GetChildren_Generated::GetChildren",
+        "FunctionName": "GetUserGuid",
+        "Handler": "BabySleep.Api::BabySleep.Api.Users_GetUserGuid_Generated::GetUserGuid",
         "Events": {
           "RootGet": {
             "Type": "HttpApi",
             "Properties": {
-              "Path": "/getchildren/{userGuid}/",
+              "Path": "/getuserguid/{email}/",
               "Method": "GET",
               "PayloadFormatVersion": "2.0"
             }

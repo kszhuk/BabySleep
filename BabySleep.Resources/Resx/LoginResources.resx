@@ -180,6 +180,9 @@
   <data name="SubscribedException" xml:space="preserve">
     <value>Only subscribed users can login to application</value>
   </data>
+  <data name="UserAbsentDynamoDb" xml:space="preserve">
+    <value>User doesn't have permissions to login to web application. Please, verify that you have subscription in BabySleep app</value>
+  </data>
   <data name="UserNotLogin" xml:space="preserve">
     <value>User should log in first</value>
   </data>
