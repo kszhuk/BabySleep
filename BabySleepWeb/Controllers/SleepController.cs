@@ -8,7 +8,6 @@ namespace BabySleepWeb.Controllers
     {
         public IActionResult Index()
         {
-            //var a = ViewContext.RouteData.Values["controller"];
             return View();
         }
     }

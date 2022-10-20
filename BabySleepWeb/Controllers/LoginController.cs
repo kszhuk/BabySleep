@@ -55,7 +55,7 @@ namespace BabySleepWeb.Controllers
                     if (userGuid != string.Empty)
                     {
                         await SignInUserAsync(user.Email, userGuid, token, false);
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Index", "Sleep");
                     }
                     else
                     {

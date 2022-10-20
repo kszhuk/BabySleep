@@ -1,0 +1,13 @@
+﻿@{
+    bool isCurrentSleep = (string)ViewContext.RouteData.Values["controller"] == "Sleep";
+}
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+        <ul class="navbar-nav nav-fill w-100">
+            <li class="nav-item tab"><a class="@(isCurrentSleep ? "tab-active" : "tab-inactive") nav-link" 
+                asp-controller="Sleep" asp-action="Index">Sleeps</a></li>
+            <li class="nav-item tab"><a class="@(isCurrentSleep ? "tab-inactive" : "tab-active") nav-link" 
+                asp-controller="Statistics" asp-action="Index">Statistics</a></li>
+        </ul>
+    </div>
+</nav>

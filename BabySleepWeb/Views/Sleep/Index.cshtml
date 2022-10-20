@@ -1,14 +1,7 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using MyResources = BabySleep.Resources.Resx;
+
 @{
-    bool isCurrentSleep = (string)ViewContext.RouteData.Values["controller"] == "Sleep";
+    ViewData["Title"] = @MyResources.GeneralResources.Sleeps;
 }
-<nav class="navbar navbar-expand-lg navbar-light">
-    <div class="container">
-        <ul class="navbar-nav nav-fill w-100">
-            <li class="nav-item tab"><a class="@(isCurrentSleep ? "tab-active" : "tab-inactive") nav-link" href="#">Sleeps</a></li>
-            <li class="nav-item tab"><a class="@(isCurrentSleep ? "tab-inactive" : "tab-active") nav-link" href="#">Statistics</a></li>
-        </ul>
-    </div>
-</nav>
+
+<partial name="_SharedTabPartial" />
