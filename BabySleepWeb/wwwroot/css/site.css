@@ -26,9 +26,9 @@ a.tab-active {
     color: var(--bs-link-color) !important;
 }
 
-    a.tab-active:hover {
-        color: var(--bs-link-hover-color) !important;
-    }
+a.tab-active:hover {
+    color: var(--bs-link-hover-color) !important;
+}
 
 a.tab-inactive {
     color: var(--bs-nav-link-color) !important;
@@ -37,3 +37,32 @@ a.tab-inactive {
 a.tab-inactive:hover {
     color: var(--bs-nav-link-hover-color) !important;
 }
+
+.calendar input {
+    color: var(--bs-cyan) !important;
+    font-weight:bold;
+}
+
+div.calendar{
+    width: 280px;
+}
+
+.round {
+    border-bottom-left-radius: 0px !important;
+    -moz-border-radius-bottomleft: 0px !important;
+    -webkit-border-bottom-left-radius: 0px !important;
+    -moz-border-radius-topleft: 0px !important;
+    -webkit-border-top-left-radius: 0px !important;
+    border-top-left-radius: 0px !important;
+}
+/*
+i {
+    font-size: 1rem;
+    color: #333;
+    top: .75rem;
+    left: .75rem
+}*/
+
+/*input {
+    padding-left: 2.5rem;
+}*/
