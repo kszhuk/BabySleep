@@ -2,6 +2,7 @@
 using BabySleep.Domain.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace BabySleep.Application.DTOAssemblers
@@ -31,7 +32,9 @@ namespace BabySleep.Application.DTOAssemblers
         public IList<ChildDto> WriteChildrenDto(IList<Child> children)
         {
             var childrenDto = new List<ChildDto>();
-            foreach(var child in children)
+            var childrenSorted = children.OrderBy(c => c.Name);
+
+            foreach(var child in childrenSorted)
             {
                 childrenDto.Add(WriteChildDto(child));
             }

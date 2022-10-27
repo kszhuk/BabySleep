@@ -29,6 +29,7 @@ builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 // Register services directly with Autofac here. Don't
 // call builder.Populate(), that happens in AutofacServiceProviderFactory.
 builder.Host.ConfigureContainer<ContainerBuilder>(builder => builder.RegisterModule(new DIContanerWebModule()));
+builder.Services.AddTransient<IChildrenHelper, ChildrenHelper>();
 
 var app = builder.Build();
 

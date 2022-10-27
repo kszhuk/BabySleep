@@ -1,6 +1,8 @@
-﻿using BabySleepWeb.Models;
+﻿using BabySleepWeb.Helpers;
+using BabySleepWeb.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 using System.Diagnostics;
 using System.Globalization;
 
@@ -9,10 +11,12 @@ namespace BabySleepWeb.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IMemoryCache _memoryCache;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IMemoryCache memoryCache)
         {
             _logger = logger;
+            _memoryCache = memoryCache;
 
             if (CultureInfo.DefaultThreadCurrentCulture == null)
             {
@@ -51,6 +55,14 @@ namespace BabySleepWeb.Controllers
                 CultureInfo.DefaultThreadCurrentCulture = language;
                 CultureInfo.DefaultThreadCurrentUICulture = language;
             }
+
+            return View("Index");
+        }
+
+        [AllowAnonymous]
+        public IActionResult ChangeChild(Guid childGuid)
+        {
+            _memoryCache.Set(CacheKeys.CurrentChildGuid, childGuid);
 
             return View("Index");
         }

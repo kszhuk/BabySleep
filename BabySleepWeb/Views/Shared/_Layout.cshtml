@@ -49,6 +49,22 @@
                 });
             });
         });
+
+        $(function () {
+            $("#childrenList").change(function () {
+                var returnUrl = '@ViewContext.HttpContext.Request.Path';
+                $.ajax({
+                    type: "Get",
+                    url: "/Home/ChangeChild?childGuid=" + $(this).val(), 
+                    success: function(data) {
+                        window.location.href = returnUrl;
+                    },
+                    error: function (response) {
+                        console.log(response.responseText);
+                    }
+                });
+            });
+        });
     </script>
 </head>
 <body>

@@ -18,11 +18,13 @@ namespace BabySleepWeb.Controllers
     {
         private readonly FirebaseOptions _config;
         private readonly IUserService _userService;
+        private readonly IChildrenHelper _childrenHelper;
 
-        public LoginController(IOptions<FirebaseOptions> options, IUserService userService)
+        public LoginController(IOptions<FirebaseOptions> options, IUserService userService, IChildrenHelper childrenHelper)
         {
             _config = options.Value;
             _userService = userService;
+            _childrenHelper = childrenHelper;
         }
 
         //GET
@@ -55,6 +57,7 @@ namespace BabySleepWeb.Controllers
                     if (userGuid != string.Empty)
                     {
                         await SignInUserAsync(user.Email, userGuid, token, false);
+                        _childrenHelper.LoadChildren(userGuid);
                         return RedirectToAction("Index", "Sleep");
                     }
                     else

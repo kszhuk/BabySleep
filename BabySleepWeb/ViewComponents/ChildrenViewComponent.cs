@@ -11,40 +11,34 @@ namespace BabySleepWeb.ViewComponents
     [ViewComponent(Name = "Children")]
     public class ChildrenViewComponent : ViewComponent
     {
-        private readonly IChildService _service;
         private readonly IMemoryCache _memoryCache;
+        private readonly IChildrenHelper _childrenHelper;
 
-        public ChildrenViewComponent(IChildService service, IMemoryCache memoryCache)
+        public ChildrenViewComponent(IMemoryCache memoryCache, IChildrenHelper childrenHelper)
         {
-            _service = service;
             _memoryCache = memoryCache;
+            _childrenHelper = childrenHelper;
         }
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
             var childrenListItem = new List<SelectListItem>();
 
-            var children = new List<ChildDto>();
-
+            List<ChildDto>? children;
             if (!_memoryCache.TryGetValue(CacheKeys.Children, out children))
             {
                 var userId = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
-                if (Guid.TryParse(userId, out _))
-                {
-                    children = _service.GetChildren(new Guid(userId)).ToList();
-
-                    var cacheEntryOptions = new MemoryCacheEntryOptions()
-                        .SetSlidingExpiration(TimeSpan.FromMinutes(10));
-
-                    _memoryCache.Set(CacheKeys.Children, children, cacheEntryOptions);
-                }
+                _childrenHelper.LoadChildren(userId);
             }
+
+            Guid currentChildGuid;
+            _memoryCache.TryGetValue(CacheKeys.CurrentChildGuid, out currentChildGuid);
 
             if (children != null)
             {
                 foreach (var child in children)
                 {
-                    childrenListItem.Add(new SelectListItem(child.Name, child.ChildGuid.ToString()));
+                    childrenListItem.Add(new SelectListItem(child.Name, child.ChildGuid.ToString(), child.ChildGuid == currentChildGuid));
                 }
             }
 

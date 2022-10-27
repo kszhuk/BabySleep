@@ -2,6 +2,7 @@
 {
     public enum CacheKeys
     {
-        Children
+        Children,
+        CurrentChildGuid
     }
 }

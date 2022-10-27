@@ -6,7 +6,6 @@
 
 <partial name="_SharedTabPartial" />
 
-
 <form method="post">
     <div class="row justify-content-center align-items-center">
         <div class="row justify-content-center align-items-center calendar">
@@ -14,20 +13,27 @@
                 <img src="~/images/arrow_left_icon_blue.png" width="20" height="20" class="align-content-center" id="prev" />
                 <input type="text" class="form-control text-center " style="border:0;">
                 <div class="input-group-append" style="border:0;">
-                    @*          <div class="input-group-text bg-white"  style="border:0;">
-                    <i class="fa fa-calendar"></i>
-                    </div>*@
                 </div>
                 <img src="~/images/arrow_right_icon_blue.png" width="20" height="20" class="align-content-center" id="next" />
             </div>
-            @*<div class="position-relative">
-            <i class="fa fa-calendar position-absolute"></i>
-            <input class="form-control" type="search">
-            </div>*@
-
         </div>
     </div>
 
+    <table cellpadding="0" cellspacing="0">
+        <tr>
+            <th>Start</th>
+            <th>End</th>
+        </tr>
+@*        @foreach (Customer customer in Model)
+        {
+            <tr>
+                <td>@customer.CustomerID</td>
+                <td>@customer.ContactName</td>
+                <td>@customer.City</td>
+                <td>@customer.Country</td>
+            </tr>
+        }*@
+    </table>
 </form>
 
 <script src="~/js/sleeps.js"></script>
