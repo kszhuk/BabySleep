@@ -12,24 +12,15 @@ namespace BabySleep.Api
         /// </summary>
         /// <param name="email"></param>
         /// <returns></returns>
-        [LambdaFunction()]
+        [LambdaFunction(Name = "GetUserGuid")]
         [HttpApi(LambdaHttpMethod.Get, "/getuserguid/{email}/")]
         public string GetUserGuid(string email)
         {
             var contextDb = DynamoDbContextHelper.GetDynamoDbContext();
 
-            var userSearch = contextDb.ScanAsync<DdbModels.User>(
-              new[] {
-            new ScanCondition
-              (
-                nameof(DdbModels.User.Email),
-                ScanOperator.Equal,
-                email.ToLower()
-              )
-              }
-            );
+            var userQuery = contextDb.QueryAsync<DdbModels.User>(email.ToLower());
 
-            var resultUsers = userSearch.GetRemainingAsync().Result;
+            var resultUsers = userQuery.GetRemainingAsync().Result;
 
             if(resultUsers.Any())
             {

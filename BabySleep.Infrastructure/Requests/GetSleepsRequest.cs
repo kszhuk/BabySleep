@@ -4,8 +4,9 @@ using System.Text;
 
 namespace BabySleep.Infrastructure.Requests
 {
-    public class GetChildrenRequest
+    public class GetSleepsRequest
     {
-        public string userGuid { get; set; }
+        public string childGuid { get; set; }
+        public string currentDate { get; set; }
     }
 }

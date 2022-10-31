@@ -20,5 +20,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BabySleep.AWS.Common\BabySleep.AWS.Common.csproj" />
+    <ProjectReference Include="..\BabySleep.Common\BabySleep.Common.csproj" />
   </ItemGroup>
 </Project>

@@ -14,26 +14,16 @@ namespace BabySleep.Api
         /// </summary>
         /// <param name="userGuid"></param>
         /// <returns></returns>
-        [LambdaFunction()]
+        [LambdaFunction(Name = "GetChildren")]
         [HttpApi(LambdaHttpMethod.Get, "/getchildren/{userGuid}/")]
         public List<Child> GetChildren(string userGuid)
         {
             var children = new List<Child>();
 
             var contextDb = DynamoDbContextHelper.GetDynamoDbContext();
+            var childQuery = contextDb.QueryAsync<DdbModels.Child>(userGuid.ToUpper());
 
-            var childSearch = contextDb.ScanAsync<DdbModels.Child>(
-              new[] {
-            new ScanCondition
-              (
-                nameof(DdbModels.Child.UserGUID),
-                ScanOperator.Equal,
-                userGuid.ToUpper()
-              )
-              }
-            );
-
-            var resultChildren = childSearch.GetRemainingAsync().Result;
+            var resultChildren = childQuery.GetRemainingAsync().Result;
 
             foreach (var child in resultChildren)
             {
