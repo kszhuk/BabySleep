@@ -195,10 +195,9 @@ namespace BabySleep.ViewModels
             var wakefulnessCount = sleepMain.ChildSleeps.Count(s => s.Wakefulness != string.Empty);
             CollectionHeightRequest = sleepMain.ChildSleeps.Count * 160 + wakefulnessCount * 20;
 
-            StatisticsDayTotal = string.Format(ChildSleepResources.StatisticsDayTotal, sleepMain.DaySleepsCount,
-                new TimeSpan(sleepMain.DaySleepsTime).ToString(Common.Helpers.Constants.SHORT_TIME_FORMAT));
-            StatisticsNightTotal = new TimeSpan(sleepMain.NightSleepsTime).ToString(Common.Helpers.Constants.SHORT_TIME_FORMAT);
-            StatisticsTotal = new TimeSpan(sleepMain.TotalSleepsTime).ToString(Common.Helpers.Constants.SHORT_TIME_FORMAT);
+            StatisticsDayTotal = sleepMain.StatisticsDayTotal;
+            StatisticsNightTotal = sleepMain.StatisticsNightTotal;
+            StatisticsTotal = sleepMain.StatisticsTotal;
 
             IsStatisticsVisible = ChildSleepsMain != null && ChildSleepsMain.Any();
 

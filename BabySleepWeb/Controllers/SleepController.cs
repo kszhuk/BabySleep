@@ -24,7 +24,8 @@ namespace BabySleepWeb.Controllers
             _memoryCache.TryGetValue(CacheKeys.CurrentChildGuid, out childGuid);
 
             var data = _sleepService.GetChildSleeps(childGuid, DateTime.Now);
-            return View();
+
+            return View(data);
         }
     }
 }

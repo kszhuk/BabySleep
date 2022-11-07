@@ -141,6 +141,9 @@
   <data name="DeleteSleepTitle" xml:space="preserve">
     <value>Delete sleep</value>
   </data>
+  <data name="Duration" xml:space="preserve">
+    <value>Duration</value>
+  </data>
   <data name="EndTime" xml:space="preserve">
     <value>End time</value>
   </data>
@@ -161,6 +164,9 @@
   </data>
   <data name="Parents" xml:space="preserve">
     <value>Parents</value>
+  </data>
+  <data name="Quality" xml:space="preserve">
+    <value>Quality</value>
   </data>
   <data name="SleepAlreadyExistsException" xml:space="preserve">
     <value>Sleep in this time frame already exists</value>

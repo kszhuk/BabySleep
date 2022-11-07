@@ -1,0 +1,31 @@
+﻿.statistics img{
+    width:30px;
+    height:30px;
+    margin: 0px 10px 5px 0px; 
+}
+
+.table-sleeps th, .table-sleeps td {
+    text-align: center;
+}
+
+.table-sleeps img {
+    width: 30px;
+    height: 30px;
+}
+
+.table-sleeps th:first-child, .table-sleeps td:first-child {
+    width: 100px;
+}
+
+#datepicker img {
+    width: 20px;
+    height: 20px;
+}
+
+#datepicker input, #datepicker div {
+    border: 0;
+}
+
+.wakefulness {
+    text-align: right!important;
+}

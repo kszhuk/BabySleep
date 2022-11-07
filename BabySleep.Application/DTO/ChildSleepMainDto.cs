@@ -15,5 +15,8 @@ namespace BabySleep.Application.DTO
         public long DaySleepsCount { get; set; }
         public long NightSleepsTime { get; set; }
         public long TotalSleepsTime { get; set; }
+        public string StatisticsDayTotal { get; set; }
+        public string StatisticsNightTotal { get; set; }
+        public string StatisticsTotal { get; set; }
     }
 }

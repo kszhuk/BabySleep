@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BabySleep.Infrastructure\BabySleep.Infrastructure.csproj" />
+    <ProjectReference Include="..\BabySleep.Resources\BabySleep.Resources.csproj" />
   </ItemGroup>
 
   <ItemGroup>

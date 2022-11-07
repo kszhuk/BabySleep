@@ -2,6 +2,7 @@
 using BabySleep.Common.Enums;
 using BabySleep.Common.Helpers;
 using BabySleep.Domain.Models;
+using BabySleep.Resources.Resx;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,10 @@ namespace BabySleep.Application.DTOAssemblers
             var nightSleepsTime = CalculateNightSleepsTime(sleepsDto, currentDate);
             var totalSleepsTime = daySleepsTime + nightSleepsTime;
             var daySleepsCount = sleepsDto.Count(s => s.IsDaySleep);
+            var statisticsDayTotal = string.Format(ChildSleepResources.StatisticsDayTotal, daySleepsCount,
+                new TimeSpan(daySleepsTime).ToString(Constants.SHORT_TIME_FORMAT));
+            var statisticsNightTotal = new TimeSpan(nightSleepsTime).ToString(Constants.SHORT_TIME_FORMAT);
+            var statisticsTotal = new TimeSpan(totalSleepsTime).ToString(Constants.SHORT_TIME_FORMAT);
 
             return new ChildSleepMainDto()
             {
@@ -33,7 +38,10 @@ namespace BabySleep.Application.DTOAssemblers
                 DaySleepsTime = daySleepsTime,
                 NightSleepsTime = nightSleepsTime,
                 TotalSleepsTime = totalSleepsTime,
-                DaySleepsCount = daySleepsCount
+                DaySleepsCount = daySleepsCount,
+                StatisticsDayTotal = statisticsDayTotal,
+                StatisticsNightTotal = statisticsNightTotal,
+                StatisticsTotal = statisticsTotal
             };
         }
 

@@ -141,6 +141,9 @@
   <data name="DeleteSleepTitle" xml:space="preserve">
     <value>Delete sleep</value>
   </data>
+  <data name="Duration" xml:space="preserve">
+    <value>Час</value>
+  </data>
   <data name="EndTime" xml:space="preserve">
     <value>Закінчення</value>
   </data>
@@ -161,6 +164,9 @@
   </data>
   <data name="Parents" xml:space="preserve">
     <value>Спільний з батьками</value>
+  </data>
+  <data name="Quality" xml:space="preserve">
+    <value>Якість</value>
   </data>
   <data name="SleepAlreadyExistsException" xml:space="preserve">
     <value>Сон у цей період часу вже існує</value>

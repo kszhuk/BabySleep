@@ -21,8 +21,8 @@ namespace BabySleep.Api
             var date = DateTime.Now;
             DateTime.TryParse(currentDate, out date);
 
-            var previousDate = DateTimeHelper.FormatEmptyDate(date.AddDays(-1));
-            var nextDate = DateTimeHelper.FormatEmptyDate(date.AddDays(2));
+            var previousDate = DateTimeHelper.FormatEmptyDateAws(date.AddDays(-1));
+            var nextDate = DateTimeHelper.FormatEndDateAws(date.AddDays(1));
 
             var sleeps = new List<Sleep>();
 
@@ -39,15 +39,15 @@ namespace BabySleep.Api
                     (
                         nameof(DdbModels.Sleep.StartTime),
                         ScanOperator.Between,
-                        previousDate.ToShortDateString(),
-                        nextDate.ToString()
+                        previousDate,
+                        nextDate
                     ),
                     new ScanCondition
                     (
                         nameof(DdbModels.Sleep.EndTime),
                         ScanOperator.Between,
-                        previousDate.ToShortDateString(),
-                        nextDate.ToString()
+                        previousDate,
+                        nextDate
                     )
               }
             );
