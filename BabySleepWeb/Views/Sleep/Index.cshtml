@@ -21,7 +21,7 @@
         </div>
     </div>
     <div class="table-responsive m-4">
-        <table class="table table-hover align-middle mb-0 table-sleeps">
+        <table class="table table-hover align-middle mb-0 table-sleeps" id="sleepsTable">
             <tr class="table-primary">
                 <th class="align-content-center">@MyResources.ChildSleepResources.SleepMain</th>
                 <th>@MyResources.ChildSleepResources.Duration</th>
@@ -29,7 +29,7 @@
             </tr>
             @foreach (ChildSleepMainItemDto sleep in Model.ChildSleeps)
             {
-                <tr>
+                <tr onclick="location.href = '@Url.Action("SleepEntry", "Sleep", new { sleepGuid = sleep.SleepGuid })'">
                     <td>
                         <div class="d-flex align-items-center">
                             @if (@sleep.IsDaySleep)

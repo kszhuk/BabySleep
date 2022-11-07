@@ -27,5 +27,10 @@ namespace BabySleepWeb.Controllers
 
             return View(data);
         }
+
+        public IActionResult SleepEntry(Guid sleepGuid)
+        {
+            return View();
+        }
     }
 }
