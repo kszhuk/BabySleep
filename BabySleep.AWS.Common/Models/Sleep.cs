@@ -11,7 +11,6 @@ namespace BabySleep.AWS.Common.Models
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
         public short Quality { get; set; }
-        public string Note { get; set; }
         public short FeedingCount { get; set; }
         public short FallAsleepTime { get; set; }
         public short AwakeningCount { get; set; }

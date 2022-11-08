@@ -30,6 +30,9 @@ namespace BabySleep.Infrastructure.Helpers
                 case AwsFunctionsEnum.GetSleeps:
                     functionName = AwsFunctionsConstants.GET_SLEEPS;
                     break;
+                case AwsFunctionsEnum.GetSleep:
+                    functionName = AwsFunctionsConstants.GET_SLEEP;
+                    break;
             }
 
             var response = lambdaClient.InvokeAsync(new Amazon.Lambda.Model.InvokeRequest()
@@ -51,6 +54,7 @@ namespace BabySleep.Infrastructure.Helpers
     {
         GetChildren,
         GetUserGuid,
-        GetSleeps
+        GetSleeps,
+        GetSleep
     }
 }

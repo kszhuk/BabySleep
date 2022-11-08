@@ -70,7 +70,6 @@ namespace BabySleep.Api
                         SleepPlace = sleep.SleepPlace,
                         FeedingCount = sleep.FeedingCount,
                         FallAsleepTime = sleep.FallAsleepTime,
-                        Note = sleep.Note,
                         Quality = sleep.Quality,
                         StartTime = startTime,
                         EndTime = endTime
@@ -79,6 +78,50 @@ namespace BabySleep.Api
             }
 
             return sleeps;
+        }
+
+        /// <summary>
+        /// Returns sleepby sleepGuid
+        /// </summary>
+        /// <param name="sleepGuid"></param>
+        /// <returns></returns>
+        [LambdaFunction(Name = "GetSleep")]
+        [HttpApi(LambdaHttpMethod.Get, "/getsleep/{sleepGuid}/")]
+        public Sleep GetSleep(string sleepGuid)
+        {
+            var contextDb = DynamoDbContextHelper.GetDynamoDbContext();
+            var sleepQuery = contextDb.ScanAsync<DdbModels.Sleep>(new[] {
+                    new ScanCondition
+                    (
+                        nameof(DdbModels.Sleep.SleepGuid),
+                        ScanOperator.Equal,
+                        sleepGuid.ToUpper()
+                    )
+              }
+            );
+
+            var resultSleep = sleepQuery.GetRemainingAsync().Result;
+
+            if (resultSleep.Any())
+            {
+                var firstSleep = resultSleep.First();
+                var sleep = new Sleep()
+                {
+                    AwakeningCount = firstSleep.AwakeningCount,
+                    ChildGuid = Guid.Parse(firstSleep.ChildGuid),
+                    SleepGuid = Guid.Parse(firstSleep.SleepGuid),
+                    StartTime = DateTime.Parse(firstSleep.StartTime),
+                    EndTime = DateTime.Parse(firstSleep.EndTime),
+                    Status = firstSleep.Status,
+                    FallAsleepTime = firstSleep.FallAsleepTime,
+                    FeedingCount = firstSleep.FeedingCount,
+                    Quality = firstSleep.Quality,
+                    SleepPlace = firstSleep.SleepPlace
+                };
+                return sleep;
+            }
+
+            return new Sleep();
         }
     }
 }

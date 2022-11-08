@@ -125,6 +125,37 @@
           }
         }
       }
+    },
+    "GetSleep": {
+      "Type": "AWS::Serverless::Function",
+      "Metadata": {
+        "Tool": "Amazon.Lambda.Annotations",
+        "SyncedEvents": [
+          "RootGet"
+        ]
+      },
+      "Properties": {
+        "Runtime": "dotnet6",
+        "CodeUri": ".",
+        "MemorySize": 256,
+        "Timeout": 30,
+        "Policies": [
+          "AWSLambdaBasicExecutionRole"
+        ],
+        "PackageType": "Zip",
+        "FunctionName": "GetSleep",
+        "Handler": "BabySleep.Api::BabySleep.Api.Sleeps_GetSleep_Generated::GetSleep",
+        "Events": {
+          "RootGet": {
+            "Type": "HttpApi",
+            "Properties": {
+              "Path": "/getsleep/{sleepGuid}/",
+              "Method": "GET",
+              "PayloadFormatVersion": "2.0"
+            }
+          }
+        }
+      }
     }
   },
   "Outputs": {

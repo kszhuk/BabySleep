@@ -11,11 +11,13 @@ namespace BabySleepWeb.Controllers
     {
         private readonly IMemoryCache _memoryCache;
         private readonly IChildSleepMainService _sleepService;
+        private readonly IChilidSleepEntryService _sleepEntryService;
 
-        public SleepController(IMemoryCache memoryCache, IChildSleepMainService sleepService)
+        public SleepController(IMemoryCache memoryCache, IChildSleepMainService sleepService, IChilidSleepEntryService sleepEntryService)
         {
             _memoryCache = memoryCache;
             _sleepService = sleepService;
+            _sleepEntryService = sleepEntryService;
         }
 
         public IActionResult Index()
@@ -30,7 +32,9 @@ namespace BabySleepWeb.Controllers
 
         public IActionResult SleepEntry(Guid sleepGuid)
         {
-            return View();
+            var sleep = _sleepEntryService.GetSleep(sleepGuid);
+
+            return View(sleep);
         }
     }
 }
