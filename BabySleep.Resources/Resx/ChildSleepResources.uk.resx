@@ -186,6 +186,12 @@
   <data name="SleepTimeException" xml:space="preserve">
     <value>Початок сну має бути раніше ніж закінчення</value>
   </data>
+  <data name="SleepTitleAdd" xml:space="preserve">
+    <value>Додавання сну</value>
+  </data>
+  <data name="SleepTitleEdit" xml:space="preserve">
+    <value>Редагування сну</value>
+  </data>
   <data name="Start" xml:space="preserve">
     <value>Старт</value>
   </data>

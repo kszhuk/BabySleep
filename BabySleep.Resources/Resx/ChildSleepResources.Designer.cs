@@ -268,6 +268,24 @@ namespace BabySleep.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add sleep.
+        /// </summary>
+        public static string SleepTitleAdd {
+            get {
+                return ResourceManager.GetString("SleepTitleAdd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit sleep.
+        /// </summary>
+        public static string SleepTitleEdit {
+            get {
+                return ResourceManager.GetString("SleepTitleEdit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Start.
         /// </summary>
         public static string Start {

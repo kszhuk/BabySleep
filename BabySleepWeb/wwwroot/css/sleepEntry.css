@@ -1,0 +1,14 @@
+﻿input[type="radio"] {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    border: 0px;
+}
+
+label.sleep-place {
+    opacity: .3;
+}
+
+input[type="radio"]:checked + label {
+    opacity: 1;
+}

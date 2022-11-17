@@ -26,4 +26,13 @@
     <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="C:\Users\kseniia\.nuget\packages\tempusdominus\6.2.7\contentFiles\any\any\wwwroot\js\tempus-dominus.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\css\tempus-dominus.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

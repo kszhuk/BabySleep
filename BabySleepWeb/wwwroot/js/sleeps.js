@@ -28,4 +28,13 @@ $("#next").click(function (e) {
 
 function cleanDate(date) {
     return date.setHours(0, 0, 0, 0);
+};
+
+function AddEditSleep(sleepGuid) {
+    var url = "/Sleep/AddEditSleep?sleepGuid=" + sleepGuid;
+
+    $("#modalSleepEntry").load(url, function () {
+        $("#modalSleepEntry").modal("show");
+
+    })
 }

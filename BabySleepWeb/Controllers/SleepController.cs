@@ -1,4 +1,5 @@
-﻿using BabySleep.Application.Interfaces;
+﻿using BabySleep.Application.DTO;
+using BabySleep.Application.Interfaces;
 using BabySleepWeb.Helpers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -30,11 +31,26 @@ namespace BabySleepWeb.Controllers
             return View(data);
         }
 
-        public IActionResult SleepEntry(Guid sleepGuid)
+        public IActionResult AddEditSleep(Guid sleepGuid)
         {
-            var sleep = _sleepEntryService.GetSleep(sleepGuid);
+            var sleep = new ChildSleepEntryDto();
 
-            return View(sleep);
+            if(sleepGuid == Guid.Empty)
+            {
+                sleep.StartTime = DateTime.Now;
+                sleep.EndTime = DateTime.Now;
+            }
+            else
+            {
+                sleep = _sleepEntryService.GetSleep(sleepGuid);
+            }
+
+            return PartialView("SleepEntry", sleep);
+        }
+
+        public IActionResult SleepEntry(ChildSleepEntryDto sleep)
+        {
+            return View(new ChildSleepEntryDto());
         }
     }
 }
