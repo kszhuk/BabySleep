@@ -120,6 +120,12 @@
   <data name="AddSleep" xml:space="preserve">
     <value>+ Add Sleep</value>
   </data>
+  <data name="AwakeningCountRange" xml:space="preserve">
+    <value>Please, enter awakenings count in range 0-30</value>
+  </data>
+  <data name="AwakeningCountRequired" xml:space="preserve">
+    <value>Please, enter awakenings count</value>
+  </data>
   <data name="Awakenings" xml:space="preserve">
     <value>Awakenings</value>
   </data>
@@ -153,6 +159,18 @@
   <data name="FallAsleepPlaceholder" xml:space="preserve">
     <value>Enter fall asleep time</value>
   </data>
+  <data name="FallAsleepTimeRange" xml:space="preserve">
+    <value>Please, enter fall asleep time in range 0-60</value>
+  </data>
+  <data name="FallAsleepTimeRequired" xml:space="preserve">
+    <value>Please, enter fall asleep time</value>
+  </data>
+  <data name="FeedingCountRange" xml:space="preserve">
+    <value>Please, enter feedings count in range 0-30</value>
+  </data>
+  <data name="FeedingCountRequired" xml:space="preserve">
+    <value>Please, enter feedings count</value>
+  </data>
   <data name="Feedings" xml:space="preserve">
     <value>Feedings</value>
   </data>
@@ -179,6 +197,9 @@
   </data>
   <data name="SleepPlace" xml:space="preserve">
     <value>Sleep place</value>
+  </data>
+  <data name="SleepPlaceError" xml:space="preserve">
+    <value>Please, select sleep place</value>
   </data>
   <data name="SleepQuality" xml:space="preserve">
     <value>Sleep quality</value>

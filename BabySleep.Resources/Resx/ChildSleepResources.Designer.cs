@@ -70,6 +70,24 @@ namespace BabySleep.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please, enter awakenings count in range 0-30.
+        /// </summary>
+        public static string AwakeningCountRange {
+            get {
+                return ResourceManager.GetString("AwakeningCountRange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please, enter awakenings count.
+        /// </summary>
+        public static string AwakeningCountRequired {
+            get {
+                return ResourceManager.GetString("AwakeningCountRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Awakenings.
         /// </summary>
         public static string Awakenings {
@@ -169,6 +187,42 @@ namespace BabySleep.Resources.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please, enter fall asleep time in range 0-60.
+        /// </summary>
+        public static string FallAsleepTimeRange {
+            get {
+                return ResourceManager.GetString("FallAsleepTimeRange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please, enter fall asleep time.
+        /// </summary>
+        public static string FallAsleepTimeRequired {
+            get {
+                return ResourceManager.GetString("FallAsleepTimeRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please, enter feedings count in range 0-30.
+        /// </summary>
+        public static string FeedingCountRange {
+            get {
+                return ResourceManager.GetString("FeedingCountRange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please, enter feedings count.
+        /// </summary>
+        public static string FeedingCountRequired {
+            get {
+                return ResourceManager.GetString("FeedingCountRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Feedings.
         /// </summary>
         public static string Feedings {
@@ -246,6 +300,15 @@ namespace BabySleep.Resources.Resx {
         public static string SleepPlace {
             get {
                 return ResourceManager.GetString("SleepPlace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please, select sleep place.
+        /// </summary>
+        public static string SleepPlaceError {
+            get {
+                return ResourceManager.GetString("SleepPlaceError", resourceCulture);
             }
         }
         

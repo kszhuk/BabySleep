@@ -1,9 +1,9 @@
 ﻿@using BabySleep.Application.DTO
 @using MyResources = BabySleep.Resources.Resx;
-@model ChildSleepEntryDto
+@model InputSleepModel
 
 @{
-    @if (Model.SleepGuid == Guid.Empty)
+    @if (Model.IsNew)
     {
         ViewData["Title"] = @MyResources.ChildSleepResources.SleepTitleAdd;
     }
@@ -13,113 +13,109 @@
     }
 }
 
-<form method="post">
-    <div class="modal-dialog">
-        <div class="modal-content" style="width:600px;">
-            <div class="modal-header">
-                <h4 class="modal-title">
-                    @if (Model.SleepGuid == Guid.Empty)
-                    {
-                        @MyResources.ChildSleepResources.SleepTitleAdd
-                        ;
-                    }
-                    else
-                    {
-                        @MyResources.ChildSleepResources.SleepTitleEdit
-                        ;
-                    }
-                </h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" />
-            </div>
-            <div class="modal-body">
-                <div class="justify-content-center align-items-center">
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <label for="datetimepicker1Input" class="form-label">Start</label>
-                            <div class="input-group log-event" id="datetimepicker1" data-td-target-input="nearest" data-td-target-toggle="nearest">
-                                <input id="datetimepicker1Input" type="text" class="form-control" data-td-target="#datetimepicker1"
-                                       value="@Model.StartTime.ToString("MM/dd/yy, hh:mm tt")">
-                                <span class="input-group-text" data-td-target="#datetimepicker1" data-td-toggle="datetimepicker">
-                                    <i class="fas fa-calendar"></i>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="datetimepicker2Input" class="form-label">End</label>
-                            <div class="input-group log-event" id="datetimepicker2" data-td-target-input="nearest" data-td-target-toggle="nearest">
-                                <input id="datetimepicker2Input" type="text" class="form-control" data-td-target="#datetimepicker2"
-                                       value="@Model.EndTime.ToString("MM/dd/yy, hh:mm tt")">
-                                <span class="input-group-text" data-td-target="#datetimepicker2" data-td-toggle="datetimepicker">
-                                    <i class="fas fa-calendar"></i>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <label asp-for="SleepPlace">@MyResources.ChildSleepResources.SleepPlace</label>
-                            <div id="radios">
-                                <input type="radio" name="sleepPlace" id="sleepPlace1" value="Crib" class="form-check-input" asp-for="SleepPlace">
-                                <label for="sleepPlace1" class="sleep-place">
-                                    <img src="~/images/crib_icon.png" width="25px" height="25px" />
-                                </label>
-
-                                <input type="radio" name="sleepPlace" id="sleepPlace2" value="Parents" class="form-check-input" asp-for="SleepPlace">
-                                <label for="sleepPlace2" class="sleep-place">
-                                    <img src="~/images/bed_icon.png" width="25px" height="25px" />
-                                </label>
-
-                                <input type="radio" name="sleepPlace" id="sleepPlace3" value="BabyStroller" class="form-check-input" asp-for="SleepPlace">
-                                <label for="sleepPlace3" class="sleep-place">
-                                    <img src="~/images/stroller_icon.png" width="25px" height="25px" />
-                                </label>
-
-                                <input type="radio" name="sleepPlace" id="sleepPlace4" value="Car" class="form-check-input" asp-for="SleepPlace">
-                                <label for="sleepPlace4" class="sleep-place">
-                                    <img src="~/images/car_icon.png" width="25px" height="25px" />
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <label asp-for="Quality">@MyResources.ChildSleepResources.SleepQuality</label>
-                            <input asp-for="Quality" type="range" class="form-range" id="customRange1" min="0" max="10" />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <label asp-for="FallAsleepTime">@MyResources.ChildSleepResources.FallAsleep</label>
-                            <input asp-for="FallAsleepTime" class="form-control" placeholder=@MyResources.ChildSleepResources.FallAsleep />
-                            <span asp-validation-for="FallAsleepTime" class="text-danger"></span>
-                        </div>
-                        <div class="col-md-4">
-                            <label asp-for="FallAsleepTime">@MyResources.ChildSleepResources.Feedings</label>
-                            <input asp-for="FeedingCount" class="form-control" placeholder=@MyResources.ChildSleepResources.Feedings />
-                            <span asp-validation-for="FeedingCount" class="text-danger"></span>
-                        </div>
-                        <div class="col-md-4">
-                            <label asp-for="FallAsleepTime">@MyResources.ChildSleepResources.Awakenings</label>
-                            <input asp-for="AwakeningCount" class="form-control" placeholder=@MyResources.ChildSleepResources.Awakenings />
-                            <span asp-validation-for="AwakeningCount" class="text-danger"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                @if (Model.SleepGuid == Guid.Empty)
+<div class="modal-dialog">
+    <div class="modal-content" style="width:600px;">
+        <div class="modal-header">
+            <h4 class="modal-title">
+                @if (Model.IsNew)
                 {
-                    <button type="button" class="btn btn-primary">@MyResources.GeneralResources.Save</button>
+                    @MyResources.ChildSleepResources.SleepTitleAdd
                 }
                 else
                 {
-                    <button type="button" class="btn btn-primary">@MyResources.GeneralResources.Update</button>
-                    <button type="button" class="btn btn-danger">@MyResources.GeneralResources.Delete</button>
+                    @MyResources.ChildSleepResources.SleepTitleEdit
                 }
+            </h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" />
+        </div>
+        <div class="modal-body">
+            <div class="justify-content-center align-items-center">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="datetimepicker1Input" class="form-label">Start</label>
+                        <div class="input-group log-event" id="datetimepicker1" data-td-target-input="nearest" data-td-target-toggle="nearest">
+                            <input id="datetimepicker1Input" type="text" class="form-control dateTimePickerCustom" readonly="readonly" data-td-target="#datetimepicker1"
+                                   value="@Model.StartTime.ToString("MM/dd/yyyy, hh:mm tt")" asp-for="StartTime">
+                            <span class="input-group-text" data-td-target="#5002" data-td-toggle="datetimepicker">
+                                <i class="fas fa-calendar"></i>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="datetimepicker2Input" class="form-label">End</label>
+                        <div class="input-group log-event" id="datetimepicker2" data-td-target-input="nearest" data-td-target-toggle="nearest">
+                            <input id="datetimepicker2Input" type="text" class="form-control dateTimePickerCustom" readonly="readonly" data-td-target="#datetimepicker2"
+                                   value="@Model.EndTime.ToString("MM/dd/yyyy, hh:mm tt")" asp-for="EndTime">
+                            <span class="input-group-text" data-td-target="#datetimepicker2" data-td-toggle="datetimepicker">
+                                <i class="fas fa-calendar"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label asp-for="SleepPlaceValue">@MyResources.ChildSleepResources.SleepPlace</label>
+                        <div id="radios">
+                            <input type="radio" id="sleepPlace1" value="1" class="form-check-input" asp-for="SleepPlaceValue">
+                            <label for="sleepPlace1" class="sleep-place">
+                                <img src="~/images/crib_icon.png" width="25px" height="25px" />
+                            </label>
+
+                            <input type="radio" id="sleepPlace2" value="2" class="form-check-input" asp-for="SleepPlaceValue">
+                            <label for="sleepPlace2" class="sleep-place">
+                                <img src="~/images/bed_icon.png" width="25px" height="25px" />
+                            </label>
+
+                            <input type="radio" id="sleepPlace3" value="3" class="form-check-input" asp-for="SleepPlaceValue">
+                            <label for="sleepPlace3" class="sleep-place">
+                                <img src="~/images/stroller_icon.png" width="25px" height="25px" />
+                            </label>
+
+                            <input type="radio" id="sleepPlace4" value="4" class="form-check-input" asp-for="SleepPlaceValue">
+                            <label for="sleepPlace4" class="sleep-place">
+                                <img src="~/images/car_icon.png" width="25px" height="25px" />
+                            </label>
+                        </div>
+                        <span asp-validation-for="SleepPlaceValue" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <label asp-for="Quality">@MyResources.ChildSleepResources.SleepQuality</label>
+                        <input asp-for="Quality" type="range" class="form-range" id="customRange1" min="0" max="10" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label asp-for="FallAsleepTime">@MyResources.ChildSleepResources.FallAsleep</label>
+                        <input asp-for="FallAsleepTime" class="form-control" placeholder=@MyResources.ChildSleepResources.FallAsleep />
+                        <span asp-validation-for="FallAsleepTime" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-4">
+                        <label asp-for="FallAsleepTime">@MyResources.ChildSleepResources.Feedings</label>
+                        <input asp-for="FeedingCount" class="form-control" placeholder=@MyResources.ChildSleepResources.Feedings />
+                        <span asp-validation-for="FeedingCount" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-4">
+                        <label asp-for="FallAsleepTime">@MyResources.ChildSleepResources.Awakenings</label>
+                        <input asp-for="AwakeningCount" class="form-control" placeholder=@MyResources.ChildSleepResources.Awakenings />
+                        <span asp-validation-for="AwakeningCount" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
         </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            @if (Model.IsNew)
+            {
+                <button type="submit" class="btn btn-primary" id="sleepEntrySave">@MyResources.GeneralResources.Save</button>
+            }
+            else
+            {
+                <button type="submit" class="btn btn-primary">@MyResources.GeneralResources.Update</button>
+                <button type="button" class="btn btn-danger">@MyResources.GeneralResources.Delete</button>
+            }
+        </div>
     </div>
-</form>
+</div>
 
 
-<script src="~/js/sleepEntry.js" type="module"></script>
-<link rel="stylesheet" href="~/css/sleepEntry.css" />

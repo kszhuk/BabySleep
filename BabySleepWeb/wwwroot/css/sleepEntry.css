@@ -12,3 +12,7 @@ label.sleep-place {
 input[type="radio"]:checked + label {
     opacity: 1;
 }
+
+.dateTimePickerCustom{
+    background-color:white!important;
+}

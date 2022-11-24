@@ -1,6 +1,9 @@
-﻿using BabySleep.Application.DTO;
+﻿using AutoMapper;
+using BabySleep.Application.DTO;
 using BabySleep.Application.Interfaces;
+using BabySleep.Resources.Resx;
 using BabySleepWeb.Helpers;
+using BabySleepWeb.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
@@ -31,6 +34,11 @@ namespace BabySleepWeb.Controllers
             return View(data);
         }
 
+        //public IActionResult AddEditSleep()
+        //{
+        //    return PartialView("SleepEntry", new InputSleepModel());
+        //}
+
         public IActionResult AddEditSleep(Guid sleepGuid)
         {
             var sleep = new ChildSleepEntryDto();
@@ -45,12 +53,29 @@ namespace BabySleepWeb.Controllers
                 sleep = _sleepEntryService.GetSleep(sleepGuid);
             }
 
-            return PartialView("SleepEntry", sleep);
+            var config = new MapperConfiguration(cfg =>
+                    cfg.CreateMap<ChildSleepEntryDto, InputSleepModel>()
+                    .ForMember(dest => dest.SleepPlaceValue, act => act.MapFrom(src => (short)src.SleepPlace)));
+            var mapper = new Mapper(config);
+            var inputSleep = mapper.Map<InputSleepModel>(sleep);
+
+            return PartialView("SleepEntry", inputSleep);
         }
 
-        public IActionResult SleepEntry(ChildSleepEntryDto sleep)
+        [HttpPost]
+        public IActionResult SleepEntry(InputSleepModel sleep)
         {
-            return View(new ChildSleepEntryDto());
+            if (!ModelState.IsValid)
+            {
+                return PartialView("SleepEntry", sleep);
+            }
+
+            if ((sleep.EndTime - sleep.StartTime).Ticks < 0)
+            {
+                ModelState.AddModelError(string.Empty, ChildSleepResources.SleepTimeException);
+            }
+
+            return PartialView("SleepEntry", sleep);
         }
     }
 }

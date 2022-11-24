@@ -120,6 +120,12 @@
   <data name="AddSleep" xml:space="preserve">
     <value>+ Додати сон</value>
   </data>
+  <data name="AwakeningCountRange" xml:space="preserve">
+    <value>Будь ласка,  введіть кількість пробуджень в проміжку 0-30</value>
+  </data>
+  <data name="AwakeningCountRequired" xml:space="preserve">
+    <value>Будь ласка,  введіть кількість пробуджень</value>
+  </data>
   <data name="Awakenings" xml:space="preserve">
     <value>Пробудження</value>
   </data>
@@ -153,6 +159,18 @@
   <data name="FallAsleepPlaceholder" xml:space="preserve">
     <value>Введіть час засинання</value>
   </data>
+  <data name="FallAsleepTimeRange" xml:space="preserve">
+    <value>Будь ласка,  введіть час засинання в проміжку 0-60</value>
+  </data>
+  <data name="FallAsleepTimeRequired" xml:space="preserve">
+    <value>Будь ласка, введіть час засинання</value>
+  </data>
+  <data name="FeedingCountRange" xml:space="preserve">
+    <value>Будь ласка,  введіть кількість годувань в проміжку 0-30</value>
+  </data>
+  <data name="FeedingCountRequired" xml:space="preserve">
+    <value>Будь ласка,  введіть кількість годувань</value>
+  </data>
   <data name="Feedings" xml:space="preserve">
     <value>Годування</value>
   </data>
@@ -179,6 +197,9 @@
   </data>
   <data name="SleepPlace" xml:space="preserve">
     <value>Місце сну</value>
+  </data>
+  <data name="SleepPlaceError" xml:space="preserve">
+    <value>Будь ласка, виберіть місце сну</value>
   </data>
   <data name="SleepQuality" xml:space="preserve">
     <value>Якість сну</value>
