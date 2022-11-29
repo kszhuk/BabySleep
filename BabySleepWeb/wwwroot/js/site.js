@@ -1,4 +1,7 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿function ShowBusyIndicator() {
+    document.getElementById("loading").style.display = "block";
+};
 
-// Write your JavaScript code.
+function HideBusyIndicator() {
+    document.getElementById("loading").style.display = "none";
+};

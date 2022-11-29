@@ -1,36 +1,34 @@
 ﻿$(document).on('submit', '#partialform', function (e) {
     if (e.originalEvent.submitter.name == "Delete") {
-        $.ajax({
-            url: "/Sleep/DeleteSleep",
-            type: this.method,
-            data: $(this).serialize(),
-            success: function (result) {
-                if (result.redirectToUrl != null) {
-                    window.location.href = result.redirectToUrl;
-                }
-                $("#modalSleepEntry").html(result);
-                LoadDateTimePickers();
-            }
-        });
+        CallLambda("/Sleep/DeleteSleep", this.method, $(this).serialize());
     }
 
     var isValid = $('form').valid();
     e.preventDefault();
     if (isValid) {
-        $.ajax({
-            url: this.action,
-            type: this.method,
-            data: $(this).serialize(), 
-            success: function (result) {
-                if (result.redirectToUrl != null) {
-                    window.location.href = result.redirectToUrl;
-                }
-                $("#modalSleepEntry").html(result);
-                LoadDateTimePickers();
-            }
-        });
+        CallLambda(this.action, this.method, $(this).serialize());
     }
 }); 
+
+function CallLambda(urlAction, method, dataSerialized) {
+    ShowBusyIndicator();
+    $.ajax({
+        url: urlAction,
+        type: method,
+        data: dataSerialized,
+        success: function (result) {
+            if (result.redirectToUrl != null) {
+                window.location.href = result.redirectToUrl;
+            }
+            $("#modalSleepEntry").html(result);
+            LoadDateTimePickers();
+            HideBusyIndicator();
+        },
+        error: function (response) {
+            HideBusyIndicator();
+        }
+    });
+}
 
 $(function () {
     $('#datepicker').datepicker({
@@ -74,6 +72,7 @@ function cleanDate(date) {
 };
 
 function AddEditSleep(sleepGuid) {
+    ShowBusyIndicator();
     var url = "/Sleep/AddEditSleep?sleepGuid=" + sleepGuid;
 
     $.ajax({
@@ -81,7 +80,11 @@ function AddEditSleep(sleepGuid) {
         type: 'GET',
         success: function (result) {
             $("#modalSleepEntry").html(result);
-            $("#modalSleepEntry").modal("show");  
+            $("#modalSleepEntry").modal("show");
+            HideBusyIndicator();
+        },
+        error: function () {
+            HideBusyIndicator();
         }
     }); 
 };
