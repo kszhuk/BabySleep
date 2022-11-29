@@ -11,13 +11,17 @@ namespace BabySleep.Api.Helpers
         {
             if (context == null)
             {
-                var clientConfig = new AmazonDynamoDBClient("AKIAYEEPPMAQHJZKUYHD", "1Bge87vU9hgLM0nmUaEfS9JC5+GcSdT6q163Zwu6",
-                    RegionEndpoint.EUWest1);
+                var clientConfig = GetAmazonDynamoDBClient();
 
                 context = new DynamoDBContext(clientConfig);
             }
 
             return context;
+        }
+        public static AmazonDynamoDBClient GetAmazonDynamoDBClient()
+        {
+            return new AmazonDynamoDBClient("AKIAYEEPPMAQNU3HK77C", "D5n5+ZGtC6XLTFTHcucujCOMTAwbeWW+dSPti4AI",
+                    RegionEndpoint.EUWest1);
         }
     }
 }

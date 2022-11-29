@@ -10,5 +10,8 @@ namespace BabySleep.Infrastructure.Helpers
         internal static string GET_USER_GUID = "GetUserGuid";
         internal static string GET_SLEEPS = "GetSleeps";
         internal static string GET_SLEEP = "GetSleep";
+        internal static string ADD_SLEEP = "AddSleep";
+        internal static string UPDATE_SLEEP = "UpdateSleep";
+        internal static string DELETE_SLEEP = "DeleteSleep";
     }
 }

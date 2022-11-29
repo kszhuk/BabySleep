@@ -33,6 +33,15 @@ namespace BabySleep.Infrastructure.Helpers
                 case AwsFunctionsEnum.GetSleep:
                     functionName = AwsFunctionsConstants.GET_SLEEP;
                     break;
+                case AwsFunctionsEnum.AddSleep:
+                    functionName = AwsFunctionsConstants.ADD_SLEEP;
+                    break;
+                case AwsFunctionsEnum.UpdateSleep:
+                    functionName = AwsFunctionsConstants.UPDATE_SLEEP;
+                    break;
+                case AwsFunctionsEnum.DeleteSleep:
+                    functionName = AwsFunctionsConstants.DELETE_SLEEP;
+                    break;
             }
 
             var response = lambdaClient.InvokeAsync(new Amazon.Lambda.Model.InvokeRequest()
@@ -55,6 +64,9 @@ namespace BabySleep.Infrastructure.Helpers
         GetChildren,
         GetUserGuid,
         GetSleeps,
-        GetSleep
+        GetSleep,
+        AddSleep,
+        UpdateSleep,
+        DeleteSleep
     }
 }

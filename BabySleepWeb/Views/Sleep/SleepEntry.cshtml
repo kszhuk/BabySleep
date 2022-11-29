@@ -14,7 +14,7 @@
 }
 
 <div class="modal-dialog">
-    <div class="modal-content" style="width:600px;">
+    <div class="modal-content" style="width:600px;" id="modalContent">
         <div class="modal-header">
             <h4 class="modal-title">
                 @if (Model.IsNew)
@@ -100,6 +100,7 @@
                         <input asp-for="AwakeningCount" class="form-control" placeholder=@MyResources.ChildSleepResources.Awakenings />
                         <span asp-validation-for="AwakeningCount" class="text-danger"></span>
                     </div>
+                    <input type="hidden" asp-for="SleepGuid" />
                 </div>
             </div>
         </div>
@@ -112,10 +113,27 @@
             else
             {
                 <button type="submit" class="btn btn-primary">@MyResources.GeneralResources.Update</button>
-                <button type="button" class="btn btn-danger">@MyResources.GeneralResources.Delete</button>
+                <button type="button" id="deleteBtn" class="btn btn-danger" onclick="    $('#modalDelete').modal('show'); $('#modalContent')[0].classList.add('modal-blocked');">@MyResources.GeneralResources.Delete</button>
             }
         </div>
     </div>
 </div>
-
+<!-- Bootstrap modal popup -->
+<div class="modal fade" id="modalDelete" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content" style="border: solid 2px #c71c22">
+            <div class="modal-header alert alert-warning">
+                <h4 class="modal-title alert-heading" id="myModalLabel">@MyResources.ChildSleepResources.DeleteSleepTitle</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="refreshModal();"/>
+            </div>
+            <div class="modal-body">
+                <p class="success-message">@MyResources.ChildSleepResources.DeleteSleepQuestion</p>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-danger" name="Delete">@MyResources.GeneralResources.Yes</button>
+                <button type="button" class="btn" onclick="refreshModal();">@MyResources.GeneralResources.No</button>
+            </div>
+        </div>
+    </div>
+</div>
 

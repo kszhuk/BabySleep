@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using BabySleep.Application.DTO;
 using BabySleep.Application.Interfaces;
+using BabySleep.Common.Enums;
+using BabySleep.Common.Exceptions.Sleep;
 using BabySleep.Resources.Resx;
 using BabySleepWeb.Helpers;
 using BabySleepWeb.Models;
@@ -33,11 +35,6 @@ namespace BabySleepWeb.Controllers
 
             return View(data);
         }
-
-        //public IActionResult AddEditSleep()
-        //{
-        //    return PartialView("SleepEntry", new InputSleepModel());
-        //}
 
         public IActionResult AddEditSleep(Guid sleepGuid)
         {
@@ -73,6 +70,60 @@ namespace BabySleepWeb.Controllers
             if ((sleep.EndTime - sleep.StartTime).Ticks < 0)
             {
                 ModelState.AddModelError(string.Empty, ChildSleepResources.SleepTimeException);
+                return PartialView("SleepEntry", sleep);
+            }
+
+            try
+            {
+                var childGuid = Guid.Empty;
+                _memoryCache.TryGetValue(CacheKeys.CurrentChildGuid, out childGuid);
+
+                var childSleep = new ChildSleepEntryDto()
+                {
+                    AwakeningCount = sleep.AwakeningCount,
+                    EndTime = sleep.EndTime,
+                    FallAsleepTime = sleep.FallAsleepTime,
+                    FeedingCount = sleep.FeedingCount,
+                    Quality = sleep.Quality,
+                    SleepGuid = sleep.SleepGuid,
+                    SleepPlace = (SleepPlace)sleep.SleepPlaceValue,
+                    StartTime = sleep.StartTime,
+                    ChildGuid = childGuid
+                };
+                _sleepEntryService.Save(childSleep);
+                return Json(new { redirectToUrl = Url.Action("Index", "Sleep") });
+            }
+            catch (SleepAlreadyExistsException)
+            {
+                ModelState.AddModelError(string.Empty, ChildSleepResources.SleepAlreadyExistsException);
+            }
+            catch (SleepDurationException)
+            {
+                ModelState.AddModelError(string.Empty, string.Format(ChildSleepResources.SleepDurationException, BabySleep.Common.Helpers.Constants.MAX_SLEEP_DURATION));
+            }
+            catch (SleepTimeException)
+            {
+                ModelState.AddModelError(string.Empty, ChildSleepResources.SleepTimeException);
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, ex.Message);
+            }
+
+            return PartialView("SleepEntry", sleep);
+        }
+
+        [HttpPost]
+        public IActionResult DeleteSleep(InputSleepModel sleep)
+        {
+            try
+            {
+                _sleepEntryService.Delete(sleep.SleepGuid);
+                return Json(new { redirectToUrl = Url.Action("Index", "Sleep") });
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, ex.Message);
             }
 
             return PartialView("SleepEntry", sleep);

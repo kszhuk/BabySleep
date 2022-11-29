@@ -1,4 +1,5 @@
-﻿using BabySleep.Common.Enums;
+﻿using AutoMapper;
+using BabySleep.Common.Enums;
 using BabySleep.Domain.Models;
 using BabySleep.Infrastructure.Data.Interfaces;
 using BabySleep.Infrastructure.Helpers;
@@ -21,12 +22,25 @@ namespace BabySleep.Infrastructure.Data.RepositoriesAws
 
         public void Add(Sleep sleep)
         {
-            throw new NotImplementedException();
+            var config = new MapperConfiguration(cfg =>
+                    cfg.CreateMap<Sleep, AWS.Common.Models.Sleep>()
+                    .ForMember(dest => dest.SleepPlace, act => act.MapFrom(src => (short)src.SleepPlace))
+                    .ForMember(dest => dest.StartTime, act => act.MapFrom(src => src.SleepTime.StartTime))
+                    .ForMember(dest => dest.EndTime, act => act.MapFrom(src => src.SleepTime.EndTime))
+                    .ForMember(dest => dest.Quality, act => act.MapFrom(src => src.CustomerInfo.Quality)));
+            var mapper = new Mapper(config);
+            var inputSleep = mapper.Map<AWS.Common.Models.Sleep>(sleep);
+
+            var request = new AddSleepRequest() { sleep = JsonConvert.SerializeObject(inputSleep) };
+            var jsonRequest = JsonConvert.SerializeObject(request);
+            var jsonResponse = awsHelper.GetLambdaResponse(AwsFunctionsEnum.AddSleep, jsonRequest);
         }
 
         public void Delete(Guid sleepGuid)
         {
-            throw new NotImplementedException();
+            var request = new DeleteRequest() { sleepGuid = sleepGuid };
+            var jsonRequest = JsonConvert.SerializeObject(request);
+            var jsonResponse = awsHelper.GetLambdaResponse(AwsFunctionsEnum.DeleteSleep, jsonRequest);
         }
 
         public Sleep Get(Guid sleepGuid)
@@ -84,7 +98,18 @@ namespace BabySleep.Infrastructure.Data.RepositoriesAws
 
         public void Update(Sleep sleep)
         {
-            throw new NotImplementedException();
+            var config = new MapperConfiguration(cfg =>
+                    cfg.CreateMap<Sleep, AWS.Common.Models.Sleep>()
+                    .ForMember(dest => dest.SleepPlace, act => act.MapFrom(src => (short)src.SleepPlace))
+                    .ForMember(dest => dest.StartTime, act => act.MapFrom(src => src.SleepTime.StartTime))
+                    .ForMember(dest => dest.EndTime, act => act.MapFrom(src => src.SleepTime.EndTime))
+                    .ForMember(dest => dest.Quality, act => act.MapFrom(src => src.CustomerInfo.Quality)));
+            var mapper = new Mapper(config);
+            var inputSleep = mapper.Map<AWS.Common.Models.Sleep>(sleep);
+
+            var request = new AddSleepRequest() { sleep = JsonConvert.SerializeObject(inputSleep) };
+            var jsonRequest = JsonConvert.SerializeObject(request);
+            var jsonResponse = awsHelper.GetLambdaResponse(AwsFunctionsEnum.UpdateSleep, jsonRequest);
         }
     }
 }

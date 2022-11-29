@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace BabySleep.Api.DdbModels
 {
     [DynamoDBTable("Sleeps")]
-    internal class Sleep
+    internal class Sleeps
     {
         [DynamoDBHashKey("ChildGuid")]
         public string ChildGuid { get; set; }
