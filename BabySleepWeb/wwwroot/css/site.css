@@ -68,7 +68,7 @@ div.calendar{
 
 .spinner {
     position: fixed;
-    z-index: 999;
+    z-index: 9999;
     height: 100%;
     width: 100%;
     top: 0;

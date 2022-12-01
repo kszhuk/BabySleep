@@ -53,6 +53,11 @@ namespace BabySleep.Infrastructure.Helpers
 
             var responseStr = new StreamReader(response.Payload).ReadToEnd();
 
+            if(responseStr.Contains(typeof(Common.Exceptions.Sleep.SleepAlreadyExistsException).Name))
+            {
+                throw new Common.Exceptions.Sleep.SleepAlreadyExistsException();
+            }
+
             var jsonResponse = JsonConvert.DeserializeObject<APIGatewayHttpApiV2ProxyResponse>(responseStr);
 
             return jsonResponse.Body;

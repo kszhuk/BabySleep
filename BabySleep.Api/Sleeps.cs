@@ -4,6 +4,7 @@ using Amazon.DynamoDBv2.Model;
 using Amazon.Lambda.Annotations;
 using BabySleep.Api.Helpers;
 using BabySleep.AWS.Common.Models;
+using BabySleep.Common.Exceptions.Sleep;
 using BabySleep.Common.Helpers;
 using Newtonsoft.Json;
 
@@ -137,7 +138,15 @@ namespace BabySleep.Api
         [HttpApi(LambdaHttpMethod.Post, "/addSleep/{sleep}/")]
         public void AddSleep(string sleep)
         {
-            var stringParsed = JsonConvert.DeserializeObject<Sleep>(sleep);
+            var sleepParsed = JsonConvert.DeserializeObject<Sleep>(sleep);
+
+            if (sleepParsed == null)
+            {
+                return;
+            }
+
+            ValidateSleepTime(sleepParsed.StartTime, sleepParsed.EndTime, sleepParsed.SleepGuid.ToString(), sleepParsed.ChildGuid.ToString());
+
             var dbClient = DynamoDbContextHelper.GetAmazonDynamoDBClient();
 
             var putItemRequest = new PutItemRequest
@@ -147,7 +156,7 @@ namespace BabySleep.Api
                 {
                     {
                       nameof(DdbModels.Sleeps.ChildGuid),
-                      new AttributeValue(stringParsed.ChildGuid.ToString().ToUpper())
+                      new AttributeValue(sleepParsed.ChildGuid.ToString().ToUpper())
                     },
                     {
                       nameof(DdbModels.Sleeps.SleepGuid),
@@ -155,31 +164,31 @@ namespace BabySleep.Api
                     },
                     {
                       nameof(DdbModels.Sleeps.AwakeningCount),
-                      new AttributeValue{N = stringParsed.AwakeningCount.ToString() }
+                      new AttributeValue{N = sleepParsed.AwakeningCount.ToString() }
                     },
                     {
                       nameof(DdbModels.Sleeps.StartTime),
-                      new AttributeValue(stringParsed.StartTime.ToString("yyyy-MM-ddTHH:mm:ss"))
+                      new AttributeValue(sleepParsed.StartTime.ToString("yyyy-MM-ddTHH:mm:ss"))
                     },
                     {
                       nameof(DdbModels.Sleeps.EndTime),
-                      new AttributeValue(stringParsed.EndTime.ToString("yyyy-MM-ddTHH:mm:ss"))
+                      new AttributeValue(sleepParsed.EndTime.ToString("yyyy-MM-ddTHH:mm:ss"))
                     },
                     {
                       nameof(DdbModels.Sleeps.FallAsleepTime),
-                      new AttributeValue{N = stringParsed.FallAsleepTime.ToString() }
+                      new AttributeValue{N = sleepParsed.FallAsleepTime.ToString() }
                     },
                     {
                       nameof(DdbModels.Sleeps.FeedingCount),
-                      new AttributeValue{N = stringParsed.FeedingCount.ToString() }
+                      new AttributeValue{N = sleepParsed.FeedingCount.ToString() }
                     },
                     {
                       nameof(DdbModels.Sleeps.Quality),
-                      new AttributeValue{N = stringParsed.Quality.ToString() }
+                      new AttributeValue{N = sleepParsed.Quality.ToString() }
                     },
                     {
                       nameof(DdbModels.Sleeps.SleepPlace),
-                      new AttributeValue{N = stringParsed.SleepPlace.ToString() }
+                      new AttributeValue{N = sleepParsed.SleepPlace.ToString() }
                     },
                 }
             };
@@ -196,7 +205,14 @@ namespace BabySleep.Api
         [HttpApi(LambdaHttpMethod.Put, "/updateSleep/{sleep}/")]
         public void UpdateSleep(string sleep)
         {
-            var stringParsed = JsonConvert.DeserializeObject<Sleep>(sleep);
+            var sleepParsed = JsonConvert.DeserializeObject<Sleep>(sleep);
+
+            if (sleepParsed == null)
+            {
+                return;
+            }
+
+            ValidateSleepTime(sleepParsed.StartTime, sleepParsed.EndTime, sleepParsed.SleepGuid.ToString(), sleepParsed.ChildGuid.ToString());
 
             var contextDb = DynamoDbContextHelper.GetDynamoDbContext();
 
@@ -205,7 +221,7 @@ namespace BabySleep.Api
                     (
                         nameof(DdbModels.Sleeps.SleepGuid),
                         ScanOperator.Equal,
-                        stringParsed.SleepGuid.ToString().ToUpper()
+                        sleepParsed.SleepGuid.ToString().ToUpper()
                     )
               }
             );
@@ -217,13 +233,13 @@ namespace BabySleep.Api
                 return;
             }
 
-            resultSleep.SleepPlace = stringParsed.SleepPlace;
-            resultSleep.FallAsleepTime = stringParsed.FallAsleepTime;
-            resultSleep.AwakeningCount = stringParsed.AwakeningCount;
-            resultSleep.EndTime = stringParsed.EndTime.ToString("yyyy-MM-ddTHH:mm:ss");
-            resultSleep.FeedingCount = stringParsed.FeedingCount;
-            resultSleep.Quality = stringParsed.Quality;
-            resultSleep.StartTime = stringParsed.StartTime.ToString("yyyy-MM-ddTHH:mm:ss");
+            resultSleep.SleepPlace = sleepParsed.SleepPlace;
+            resultSleep.FallAsleepTime = sleepParsed.FallAsleepTime;
+            resultSleep.AwakeningCount = sleepParsed.AwakeningCount;
+            resultSleep.EndTime = sleepParsed.EndTime.ToString("yyyy-MM-ddTHH:mm:ss");
+            resultSleep.FeedingCount = sleepParsed.FeedingCount;
+            resultSleep.Quality = sleepParsed.Quality;
+            resultSleep.StartTime = sleepParsed.StartTime.ToString("yyyy-MM-ddTHH:mm:ss");
 
             contextDb.SaveAsync(resultSleep).GetAwaiter().GetResult();
         }
@@ -250,12 +266,42 @@ namespace BabySleep.Api
 
             var resultSleep = sleepQuery.GetRemainingAsync().Result.FirstOrDefault();
 
-            if(resultSleep == null)
+            if (resultSleep == null)
             {
                 return;
             }
 
             contextDb.DeleteAsync(resultSleep).GetAwaiter().GetResult();
+        }
+
+        private void ValidateSleepTime(DateTime startDate, DateTime endDate, string sleepGuid, string childGuid)
+        {
+            var contextDb = DynamoDbContextHelper.GetDynamoDbContext();
+
+            var sleepQuery = contextDb.QueryAsync<DdbModels.Sleeps>(childGuid.ToUpper());
+
+            var resultSleeps = sleepQuery.GetRemainingAsync().Result.Where(s => s.SleepGuid != sleepGuid.ToUpper());
+
+            var sleeps = new List<Sleep>();
+            foreach (var sleep in resultSleeps)
+            {
+                var startTime = DateTime.Parse(sleep.StartTime);
+                var endTime = DateTime.Parse(sleep.EndTime);
+
+                sleeps.Add(new Sleep()
+                {
+                    StartTime = startTime,
+                    EndTime = endTime
+                });
+            }
+
+            var startIntersectionSleeps = sleeps.Where(s => s.StartTime >= startDate && s.StartTime <= endDate).ToList();
+            var endIntersectionSleeps = sleeps.Where(s => s.EndTime >= startDate && s.EndTime <= endDate).ToList();
+            var wholeIntersectionSleeps = sleeps.Where(s => s.StartTime <= startDate && s.EndTime >= endDate).ToList();
+            if (startIntersectionSleeps.Any() || endIntersectionSleeps.Any() || wholeIntersectionSleeps.Any())
+            {
+                throw new SleepAlreadyExistsException();
+            }
         }
     }
 }

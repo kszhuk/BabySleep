@@ -205,7 +205,6 @@
           "AWSLambdaBasicExecutionRole"
         ],
         "PackageType": "Zip",
-        "FunctionName": "UpdateSleep",
         "Handler": "BabySleep.Api::BabySleep.Api.Sleeps_UpdateSleep_Generated::UpdateSleep",
         "Events": {
           "RootPut": {
@@ -236,7 +235,6 @@
           "AWSLambdaBasicExecutionRole"
         ],
         "PackageType": "Zip",
-        "FunctionName": "DeleteSleep",
         "Handler": "BabySleep.Api::BabySleep.Api.Sleeps_DeleteSleep_Generated::DeleteSleep",
         "Events": {
           "RootDelete": {

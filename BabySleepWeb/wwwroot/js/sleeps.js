@@ -68,7 +68,7 @@ function ChangeDate(date) {
     ShowBusyIndicator();
 
     $.ajax({
-        url: "/Sleep/ChangeDate?date=" + date.toISOString() + "",
+        url: "/Sleep/ChangeDate?date=" + date.toLocaleDateString("en-US"),
         type: 'GET',
         success: function (result) {
             $("#sleepsInfo").html(result);
