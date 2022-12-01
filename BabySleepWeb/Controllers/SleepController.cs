@@ -36,6 +36,16 @@ namespace BabySleepWeb.Controllers
             return View(data);
         }
 
+        public IActionResult ChangeDate(DateTime date)
+        {
+            var childGuid = Guid.Empty;
+            _memoryCache.TryGetValue(CacheKeys.CurrentChildGuid, out childGuid);
+
+            var data = _sleepService.GetChildSleeps(childGuid, date);
+
+            return PartialView("_Sleeps", data);
+        }
+
         public IActionResult AddEditSleep(Guid sleepGuid)
         {
             var sleep = new ChildSleepEntryDto();
@@ -56,7 +66,7 @@ namespace BabySleepWeb.Controllers
             var mapper = new Mapper(config);
             var inputSleep = mapper.Map<InputSleepModel>(sleep);
 
-            return PartialView("SleepEntry", inputSleep);
+            return PartialView("_SleepEntry", inputSleep);
         }
 
         [HttpPost]
@@ -64,13 +74,13 @@ namespace BabySleepWeb.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return PartialView("SleepEntry", sleep);
+                return PartialView("_SleepEntry", sleep);
             }
 
             if ((sleep.EndTime - sleep.StartTime).Ticks < 0)
             {
                 ModelState.AddModelError(string.Empty, ChildSleepResources.SleepTimeException);
-                return PartialView("SleepEntry", sleep);
+                return PartialView("_SleepEntry", sleep);
             }
 
             try
@@ -110,7 +120,7 @@ namespace BabySleepWeb.Controllers
                 ModelState.AddModelError(string.Empty, ex.Message);
             }
 
-            return PartialView("SleepEntry", sleep);
+            return PartialView("_SleepEntry", sleep);
         }
 
         [HttpPost]
@@ -126,7 +136,7 @@ namespace BabySleepWeb.Controllers
                 ModelState.AddModelError(string.Empty, ex.Message);
             }
 
-            return PartialView("SleepEntry", sleep);
+            return PartialView("_SleepEntry", sleep);
         }
     }
 }

@@ -1,0 +1,75 @@
+﻿@using BabySleep.Application.DTO
+@using MyResources = BabySleep.Resources.Resx;
+@model ChildSleepMainDto
+
+
+<div class="table-responsive m-4">
+    <button type="button" class="btn btn-primary float-end mb-2"
+            onclick="AddEditSleep('@Guid.Empty')">
+        @MyResources.ChildSleepResources.AddSleep
+    </button>
+    <table class="table table-hover align-middle mb-0 table-sleeps" id="sleepsTable">
+        <tr class="table-primary">
+            <th class="align-content-center">@MyResources.ChildSleepResources.SleepMain</th>
+            <th>@MyResources.ChildSleepResources.Duration</th>
+            <th>@MyResources.ChildSleepResources.Quality</th>
+        </tr>
+        @foreach (ChildSleepMainItemDto sleep in Model.ChildSleeps)
+        {
+            <tr onclick="AddEditSleep('@sleep.SleepGuid')">
+                <td>
+                    <div class="d-flex align-items-center">
+                        @if (@sleep.IsDaySleep)
+                        {
+                            <img src="~/images/sun-icon.png" />
+                        }
+                        else
+                        {
+                            <img src="~/images/moon-icon.png" />
+                        }
+                        <div class="ms-3 align-items-center">
+                            <p class="m-0">@sleep.StartTime.ToString("HH\\:mm")</p>
+                            <p class="m-0">@sleep.EndTime.ToString("HH\\:mm")</p>
+                        </div>
+                    </div>
+                </td>
+                <td>@sleep.Duration</td>
+                <td>@sleep.Quality</td>
+            </tr>
+            @if (sleep.Wakefulness != string.Empty)
+            {
+                <tr class="table-secondary">
+                    <td colspan="3" class="wakefulness">
+                        @MyResources.ChildSleepResources.Wakefulness @sleep.Wakefulness
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+</div>
+
+@if (Model.ChildSleeps != null && Model.ChildSleeps.Any())
+{
+    <div class="accordion m-4" id="accordionExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    @MyResources.GeneralResources.Statistics
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample" style="">
+                <div class="accordion-body statistics">
+                    <div>
+                        <img src="~/images/sun-icon.png" />@Model.StatisticsDayTotal
+                    </div>
+                    <div>
+                        <img src="~/images/moon-icon.png" />@Model.StatisticsNightTotal
+                    </div>
+                    <div>
+                        <img src="~/images/clock-icon.png" />@Model.StatisticsTotal
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

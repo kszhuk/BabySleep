@@ -79,6 +79,8 @@ namespace BabySleep.Api
                 }
             }
 
+            sleeps = sleeps.Where(s => DateTimeHelper.AreEqualDates(date, s.StartTime) || DateTimeHelper.AreEqualDates(date, s.EndTime)).ToList();
+
             return sleeps;
         }
 

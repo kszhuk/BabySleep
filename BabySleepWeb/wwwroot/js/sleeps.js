@@ -37,7 +37,9 @@ $(function () {
         immediateUpdates: true,
         startDate: new Date(new Date().setDate(new Date().getDate() - 30)),  
         endDate: new Date(new Date().setDate(new Date().getDate() + 1))
-    }).datepicker("setDate", new Date());
+    }).datepicker("setDate", new Date()).on('changeDate', function (e) {
+        ChangeDate(e.date);
+    });;
 
     $('#modalSleepEntry').on('shown.bs.modal', function () {
         LoadDateTimePickers();
@@ -62,6 +64,22 @@ $("#next").click(function (e) {
     e.preventDefault();
 });
 
+function ChangeDate(date) {
+    ShowBusyIndicator();
+
+    $.ajax({
+        url: "/Sleep/ChangeDate?date=" + date.toISOString() + "",
+        type: 'GET',
+        success: function (result) {
+            $("#sleepsInfo").html(result);
+            HideBusyIndicator();
+        },
+        error: function (result) {
+            HideBusyIndicator();
+        }
+    });
+};
+
 function refreshModal() {
     $('#modalContent')[0].classList.remove('modal-blocked');
     $('#modalDelete').modal('hide');
@@ -73,7 +91,6 @@ function cleanDate(date) {
 
 function AddEditSleep(sleepGuid) {
     ShowBusyIndicator();
-    var url = "/Sleep/AddEditSleep?sleepGuid=" + sleepGuid;
 
     $.ajax({
         url: "/Sleep/AddEditSleep?sleepGuid=" + sleepGuid,
