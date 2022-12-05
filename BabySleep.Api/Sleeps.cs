@@ -250,7 +250,7 @@ namespace BabySleep.Api
         /// <param name="sleepGuid"></param>
         /// <returns></returns>
         [LambdaFunction(Name = "DeleteSleep")]
-        [HttpApi(LambdaHttpMethod.Delete, "/updateSleep/{sleepGuid}/")]
+        [HttpApi(LambdaHttpMethod.Delete, "/deleteSleep/{sleepGuid}/")]
         public void DeleteSleep(string sleepGuid)
         {
             var contextDb = DynamoDbContextHelper.GetDynamoDbContext();
