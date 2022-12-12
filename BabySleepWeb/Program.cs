@@ -3,6 +3,7 @@ using Autofac.Extensions.DependencyInjection;
 using BabySleep.Core;
 using BabySleepWeb.Helpers;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,7 +32,19 @@ builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 builder.Host.ConfigureContainer<ContainerBuilder>(builder => builder.RegisterModule(new DIContanerWebModule()));
 builder.Services.AddTransient<IChildrenHelper, ChildrenHelper>();
 
+//builder.Logging.AddSerilog(logger);
+
+builder.Host.UseSerilog(
+    (ctx, lc) => lc
+        .WriteTo.Console()
+        .ReadFrom.Configuration(ctx.Configuration));
+
 var app = builder.Build();
+
+//var loggerFactory = app.Services.GetService<ILoggerFactory>();
+//loggerFactory.AddFile(builder.Configuration["Logging:LogFilePath"].ToString());
+
+app.UseSerilogRequestLogging();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

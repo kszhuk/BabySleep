@@ -19,9 +19,12 @@ namespace BabySleepWeb.Controllers
         private readonly FirebaseOptions _config;
         private readonly IUserService _userService;
         private readonly IChildrenHelper _childrenHelper;
+        private readonly ILogger<LoginController> _logger;
 
-        public LoginController(IOptions<FirebaseOptions> options, IUserService userService, IChildrenHelper childrenHelper)
+        public LoginController(ILogger<LoginController> logger, IOptions<FirebaseOptions> options, 
+            IUserService userService, IChildrenHelper childrenHelper)
         {
+            _logger = logger;
             _config = options.Value;
             _userService = userService;
             _childrenHelper = childrenHelper;
@@ -58,16 +61,19 @@ namespace BabySleepWeb.Controllers
                     {
                         await SignInUserAsync(user.Email, userGuid, token, false);
                         _childrenHelper.LoadChildren(userGuid);
+                        _logger.LogInformation(string.Format("User {0} is logged in", obj.Email));
                         return RedirectToAction("Index", "Sleep");
                     }
                     else
                     {
                         ModelState.AddModelError(string.Empty, LoginResources.UserAbsentDynamoDb);
+                        _logger.LogError(string.Format("UserAbsentDynamoDb {0}", obj.Email));
                     }
                 }
                 else
                 {
                     ModelState.AddModelError(string.Empty, LoginResources.LoginFailed);
+                    _logger.LogError(string.Format("LoginFailed {0}", obj.Email));
                 }
             }
             catch (FirebaseAuthException ex)
@@ -79,11 +85,13 @@ namespace BabySleepWeb.Controllers
                 else
                 {
                     ModelState.AddModelError(string.Empty, LoginResources.LoginFailed);
+                    _logger.LogError(string.Format("LoginFailed Firebase exception {0} {1}", obj.Email, ex.Message));
                 }
             }
             catch (Exception ex)
             {
                 ModelState.AddModelError(string.Empty, ex.Message);
+                _logger.LogError(string.Format("LoginFailed exception {0} {1}", obj.Email, ex.Message));
             }
 
             return View(obj);

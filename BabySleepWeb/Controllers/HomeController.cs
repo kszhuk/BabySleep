@@ -1,6 +1,7 @@
 ﻿using BabySleepWeb.Helpers;
 using BabySleepWeb.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 using System.Diagnostics;
@@ -40,20 +41,30 @@ namespace BabySleepWeb.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
+            var error = HttpContext.Features.Get<IExceptionHandlerFeature>();
+            _logger.LogError(string.Format(@"Global exception Message : {0}; \r\n StackTrace : {1}", error.Error.Message, error.Error.StackTrace));
+
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
         [AllowAnonymous]
         public IActionResult ChangeLanguage(string languageName)
         {
-            var languages = CultureInfo.GetCultures(CultureTypes.NeutralCultures).ToList();
-            var language = CultureInfo.GetCultures(CultureTypes.NeutralCultures).ToList()
-                .FirstOrDefault(element => element.Name == languageName);
-
-            if (language != null)
+            try
             {
-                CultureInfo.DefaultThreadCurrentCulture = language;
-                CultureInfo.DefaultThreadCurrentUICulture = language;
+                var languages = CultureInfo.GetCultures(CultureTypes.NeutralCultures).ToList();
+                var language = CultureInfo.GetCultures(CultureTypes.NeutralCultures).ToList()
+                    .FirstOrDefault(element => element.Name == languageName);
+
+                if (language != null)
+                {
+                    CultureInfo.DefaultThreadCurrentCulture = language;
+                    CultureInfo.DefaultThreadCurrentUICulture = language;
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(string.Format("ChangeLanguage exception {0}", ex.Message));
             }
 
             return View("Index");

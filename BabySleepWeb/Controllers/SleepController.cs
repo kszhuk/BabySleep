@@ -18,53 +18,85 @@ namespace BabySleepWeb.Controllers
         private readonly IMemoryCache _memoryCache;
         private readonly IChildSleepMainService _sleepService;
         private readonly IChilidSleepEntryService _sleepEntryService;
+        private readonly ILogger<LoginController> _logger;
 
-        public SleepController(IMemoryCache memoryCache, IChildSleepMainService sleepService, IChilidSleepEntryService sleepEntryService)
+        public SleepController(ILogger<LoginController> logger, IMemoryCache memoryCache,
+            IChildSleepMainService sleepService, IChilidSleepEntryService sleepEntryService)
         {
             _memoryCache = memoryCache;
             _sleepService = sleepService;
             _sleepEntryService = sleepEntryService;
+            _logger = logger;
         }
 
         public IActionResult Index()
         {
+            var data = new ChildSleepMainDto();
+
             var childGuid = Guid.Empty;
             _memoryCache.TryGetValue(CacheKeys.CurrentChildGuid, out childGuid);
 
-            var data = _sleepService.GetChildSleeps(childGuid, DateTime.Now);
+            try
+            {
+                data = _sleepService.GetChildSleeps(childGuid, DateTime.Now);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(string.Format("Main sleep for child {0} exception {1}", childGuid, ex.Message));
+            }
+
+            throw new Exception("test");
 
             return View(data);
         }
 
         public IActionResult ChangeDate(DateTime date)
         {
+            var data = new ChildSleepMainDto();
+
             var childGuid = Guid.Empty;
             _memoryCache.TryGetValue(CacheKeys.CurrentChildGuid, out childGuid);
 
-            var data = _sleepService.GetChildSleeps(childGuid, date);
+            try
+            {
+                data = _sleepService.GetChildSleeps(childGuid, date);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(string.Format("Main sleep change date for child {0} exception {1}", childGuid, ex.Message));
+            }
 
             return PartialView("_Sleeps", data);
         }
 
         public IActionResult AddEditSleep(Guid sleepGuid)
         {
-            var sleep = new ChildSleepEntryDto();
+            var inputSleep = new InputSleepModel();
 
-            if(sleepGuid == Guid.Empty)
+            try
             {
-                sleep.StartTime = DateTime.Now;
-                sleep.EndTime = DateTime.Now;
-            }
-            else
-            {
-                sleep = _sleepEntryService.GetSleep(sleepGuid);
-            }
+                var sleep = new ChildSleepEntryDto();
 
-            var config = new MapperConfiguration(cfg =>
-                    cfg.CreateMap<ChildSleepEntryDto, InputSleepModel>()
-                    .ForMember(dest => dest.SleepPlaceValue, act => act.MapFrom(src => (short)src.SleepPlace)));
-            var mapper = new Mapper(config);
-            var inputSleep = mapper.Map<InputSleepModel>(sleep);
+                if (sleepGuid == Guid.Empty)
+                {
+                    sleep.StartTime = DateTime.Now;
+                    sleep.EndTime = DateTime.Now;
+                }
+                else
+                {
+                    sleep = _sleepEntryService.GetSleep(sleepGuid);
+                }
+
+                var config = new MapperConfiguration(cfg =>
+                        cfg.CreateMap<ChildSleepEntryDto, InputSleepModel>()
+                        .ForMember(dest => dest.SleepPlaceValue, act => act.MapFrom(src => (short)src.SleepPlace)));
+                var mapper = new Mapper(config);
+                inputSleep = mapper.Map<InputSleepModel>(sleep);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(string.Format("AddEditSleep for sleepGuid {0} exception {1}", sleepGuid, ex.Message));
+            }
 
             return PartialView("_SleepEntry", inputSleep);
         }
@@ -83,11 +115,11 @@ namespace BabySleepWeb.Controllers
                 return PartialView("_SleepEntry", sleep);
             }
 
+            var childGuid = Guid.Empty;
+            _memoryCache.TryGetValue(CacheKeys.CurrentChildGuid, out childGuid);
+
             try
             {
-                var childGuid = Guid.Empty;
-                _memoryCache.TryGetValue(CacheKeys.CurrentChildGuid, out childGuid);
-
                 var childSleep = new ChildSleepEntryDto()
                 {
                     AwakeningCount = sleep.AwakeningCount,
@@ -118,6 +150,8 @@ namespace BabySleepWeb.Controllers
             catch (Exception ex)
             {
                 ModelState.AddModelError(string.Empty, ex.Message);
+                _logger.LogError(string.Format("SaveSleep for sleepGuid {0} && childGuid {1} exception {2}", 
+                    sleep.SleepGuid, childGuid, ex.Message));;
             }
 
             return PartialView("_SleepEntry", sleep);
@@ -134,6 +168,7 @@ namespace BabySleepWeb.Controllers
             catch (Exception ex)
             {
                 ModelState.AddModelError(string.Empty, ex.Message);
+                _logger.LogError(string.Format("DeleteSleep for sleepGuid {0} exception {1}", sleep.SleepGuid, ex.Message));
             }
 
             return PartialView("_SleepEntry", sleep);

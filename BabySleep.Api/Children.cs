@@ -1,6 +1,7 @@
 ﻿using Amazon.DynamoDBv2.DataModel;
 using Amazon.DynamoDBv2.DocumentModel;
 using Amazon.Lambda.Annotations;
+using Amazon.Lambda.Core;
 using BabySleep.Api.Helpers;
 using BabySleep.AWS.Common.Models;
 
@@ -20,20 +21,27 @@ namespace BabySleep.Api
         {
             var children = new List<Child>();
 
-            var contextDb = DynamoDbContextHelper.GetDynamoDbContext();
-            var childQuery = contextDb.QueryAsync<DdbModels.Child>(userGuid.ToUpper());
-
-            var resultChildren = childQuery.GetRemainingAsync().Result;
-
-            foreach (var child in resultChildren)
+            try
             {
-                children.Add(new Child()
+                var contextDb = DynamoDbContextHelper.GetDynamoDbContext();
+                var childQuery = contextDb.QueryAsync<DdbModels.Child>(userGuid.ToUpper());
+
+                var resultChildren = childQuery.GetRemainingAsync().Result;
+
+                foreach (var child in resultChildren)
                 {
-                    ChildGuid = Guid.Parse(child.ChildGUID),
-                    BirthDate = DateTime.Parse(child.BirthDate),
-                    Name = child.Name,
-                    UserGuid = Guid.Parse(child.UserGUID)
-                });
+                    children.Add(new Child()
+                    {
+                        ChildGuid = Guid.Parse(child.ChildGUID),
+                        BirthDate = DateTime.Parse(child.BirthDate),
+                        Name = child.Name,
+                        UserGuid = Guid.Parse(child.UserGUID)
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                LambdaLogger.Log(string.Format("Failed Children.GetChildren by {0}: {1}", userGuid, ex.Message));
             }
 
             return children;
