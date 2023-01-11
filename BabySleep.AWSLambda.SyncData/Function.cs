@@ -85,7 +85,7 @@ public class Function
                 AwakeningCount = sleep.AwakeningCount,
                 FallAsleepTime = sleep.FallAsleepTime,
                 FeedingCount = sleep.FeedingCount,
-                Note = sleep.Note,
+                //Note = sleep.Note,
                 SleepPlace = sleep.SleepPlace,
                 Status = sleep.Status
             });

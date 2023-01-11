@@ -4,7 +4,7 @@ using Amazon.DynamoDBv2.DataModel;
 
 namespace BabySleep.Api.Helpers
 {
-    internal class DynamoDbContextHelper
+    public class DynamoDbContextHelper
     {
         private static DynamoDBContext context;
         public static DynamoDBContext GetDynamoDbContext()
@@ -18,6 +18,14 @@ namespace BabySleep.Api.Helpers
 
             return context;
         }
+
+        //public static DynamoDBContext GetDynamoDbContext(IAmazonDynamoDB client)
+        //{
+        //    context = new DynamoDBContext(client);
+
+        //    return context;
+        //}
+
         public static AmazonDynamoDBClient GetAmazonDynamoDBClient()
         {
             return new AmazonDynamoDBClient("AKIAYEEPPMAQNU3HK77C", "D5n5+ZGtC6XLTFTHcucujCOMTAwbeWW+dSPti4AI",
