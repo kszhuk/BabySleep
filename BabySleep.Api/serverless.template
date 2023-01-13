@@ -20,6 +20,7 @@
           "AWSLambdaBasicExecutionRole"
         ],
         "PackageType": "Zip",
+        "FunctionName": "GetChildren",
         "Handler": "BabySleep.Api::BabySleep.Api.Children_GetChildren_Generated::GetChildren",
         "Events": {
           "RootGet": {
@@ -27,148 +28,6 @@
             "Properties": {
               "Path": "/getchildren/{userGuid}/",
               "Method": "GET",
-              "PayloadFormatVersion": "2.0"
-            }
-          }
-        }
-      }
-    },
-    "AddSleep": {
-      "Properties": {
-        "PackageType": "Zip",
-        "CodeUri": ".",
-        "Handler": "BabySleep.Api::BabySleep.Api.Sleeps_AddSleep_Generated::AddSleep",
-        "Events": {
-          "RootPost": {
-            "Type": "HttpApi",
-            "Properties": {
-              "Path": "/addSleep/{sleep}/",
-              "Method": "POST",
-              "PayloadFormatVersion": "2.0"
-            }
-          }
-        }
-      },
-      "Metadata": {
-        "SyncedEvents": [
-          "RootPost"
-        ]
-      }
-    },
-    "GetSleeps": {
-      "Type": "AWS::Serverless::Function",
-      "Metadata": {
-        "Tool": "Amazon.Lambda.Annotations",
-        "SyncedEvents": [
-          "RootGet"
-        ]
-      },
-      "Properties": {
-        "Runtime": "dotnet6",
-        "CodeUri": ".",
-        "MemorySize": 256,
-        "Timeout": 30,
-        "Policies": [
-          "AWSLambdaBasicExecutionRole"
-        ],
-        "PackageType": "Zip",
-        "Handler": "BabySleep.Api::BabySleep.Api.Sleeps_GetSleeps_Generated::GetSleeps",
-        "Events": {
-          "RootGet": {
-            "Type": "HttpApi",
-            "Properties": {
-              "Path": "/getsleeps/{childGuid}/{currentDate}/",
-              "Method": "GET",
-              "PayloadFormatVersion": "2.0"
-            }
-          }
-        }
-      }
-    },
-    "UpdateSleep": {
-      "Type": "AWS::Serverless::Function",
-      "Metadata": {
-        "Tool": "Amazon.Lambda.Annotations",
-        "SyncedEvents": [
-          "RootPut"
-        ]
-      },
-      "Properties": {
-        "Runtime": "dotnet6",
-        "CodeUri": ".",
-        "MemorySize": 256,
-        "Timeout": 30,
-        "Policies": [
-          "AWSLambdaBasicExecutionRole"
-        ],
-        "PackageType": "Zip",
-        "Handler": "BabySleep.Api::BabySleep.Api.Sleeps_UpdateSleep_Generated::UpdateSleep",
-        "Events": {
-          "RootPut": {
-            "Type": "HttpApi",
-            "Properties": {
-              "Path": "/updateSleep/{sleep}/",
-              "Method": "PUT",
-              "PayloadFormatVersion": "2.0"
-            }
-          }
-        }
-      }
-    },
-    "GetSleep": {
-      "Type": "AWS::Serverless::Function",
-      "Metadata": {
-        "Tool": "Amazon.Lambda.Annotations",
-        "SyncedEvents": [
-          "RootGet"
-        ]
-      },
-      "Properties": {
-        "Runtime": "dotnet6",
-        "CodeUri": ".",
-        "MemorySize": 256,
-        "Timeout": 30,
-        "Policies": [
-          "AWSLambdaBasicExecutionRole"
-        ],
-        "PackageType": "Zip",
-        "Handler": "BabySleep.Api::BabySleep.Api.Sleeps_GetSleep_Generated::GetSleep",
-        "Events": {
-          "RootGet": {
-            "Type": "HttpApi",
-            "Properties": {
-              "Path": "/getsleep/{sleepGuid}/",
-              "Method": "GET",
-              "PayloadFormatVersion": "2.0"
-            }
-          }
-        }
-      }
-    },
-    "DeleteSleep": {
-      "Type": "AWS::Serverless::Function",
-      "Metadata": {
-        "Tool": "Amazon.Lambda.Annotations",
-        "SyncedEvents": [
-          "RootDelete"
-        ]
-      },
-      "Properties": {
-        "Runtime": "dotnet6",
-        "CodeUri": ".",
-        "MemorySize": 256,
-        "Timeout": 30,
-        "Policies": [
-          "AWSLambdaBasicExecutionRole"
-        ],
-        "PackageType": "Zip",
-        "Handler": "BabySleep.Api::BabySleep.Api.Sleeps_DeleteSleep_Generated::DeleteSleep",
-        "Events": {
-          "RootDelete": {
-            "Type": "HttpApi",
-            "Properties": {
-              "Path": "/deleteSleep/{sleepGuid}/",
-              "Method": "DELETE",
               "PayloadFormatVersion": "2.0"
             }
           }
@@ -192,6 +51,7 @@
           "AWSLambdaBasicExecutionRole"
         ],
         "PackageType": "Zip",
+        "FunctionName": "DeleteOldData",
         "Handler": "BabySleep.Api::BabySleep.Api.Triggers_DeleteOldData_Generated::DeleteOldData",
         "Events": {
           "RootDelete": {
@@ -222,6 +82,7 @@
           "AWSLambdaBasicExecutionRole"
         ],
         "PackageType": "Zip",
+        "FunctionName": "GetUserGuid",
         "Handler": "BabySleep.Api::BabySleep.Api.Users_GetUserGuid_Generated::GetUserGuid",
         "Events": {
           "RootGet": {
@@ -259,6 +120,186 @@
             "Properties": {
               "Path": "/",
               "Method": "GET",
+              "PayloadFormatVersion": "2.0"
+            }
+          }
+        }
+      }
+    },
+    "GetSleeps": {
+      "Type": "AWS::Serverless::Function",
+      "Metadata": {
+        "Tool": "Amazon.Lambda.Annotations",
+        "SyncedEvents": [
+          "RootGet"
+        ]
+      },
+      "Properties": {
+        "Runtime": "dotnet6",
+        "CodeUri": ".",
+        "MemorySize": 256,
+        "Timeout": 30,
+        "Policies": [
+          "AWSLambdaBasicExecutionRole"
+        ],
+        "PackageType": "Zip",
+        "Handler": "BabySleep.Api::BabySleep.Api.Sleeps_GetSleeps_Generated::GetSleeps",
+        "Events": {
+          "RootGet": {
+            "Type": "HttpApi",
+            "Properties": {
+              "Path": "/getsleeps/{childGuid}/{currentDate}/",
+              "Method": "GET",
+              "PayloadFormatVersion": "2.0"
+            }
+          }
+        }
+      }
+    },
+    "GetSleepsDates": {
+      "Type": "AWS::Serverless::Function",
+      "Metadata": {
+        "Tool": "Amazon.Lambda.Annotations",
+        "SyncedEvents": [
+          "RootGet"
+        ]
+      },
+      "Properties": {
+        "Runtime": "dotnet6",
+        "CodeUri": ".",
+        "MemorySize": 256,
+        "Timeout": 30,
+        "Policies": [
+          "AWSLambdaBasicExecutionRole"
+        ],
+        "PackageType": "Zip",
+        "Handler": "BabySleep.Api::BabySleep.Api.Sleeps_GetSleepsDates_Generated::GetSleepsDates",
+        "Events": {
+          "RootGet": {
+            "Type": "HttpApi",
+            "Properties": {
+              "Path": "/getsleepsdates/{childGuid}/{startDate}/{endDate}/",
+              "Method": "GET",
+              "PayloadFormatVersion": "2.0"
+            }
+          }
+        }
+      }
+    },
+    "GetSleep": {
+      "Type": "AWS::Serverless::Function",
+      "Metadata": {
+        "Tool": "Amazon.Lambda.Annotations",
+        "SyncedEvents": [
+          "RootGet"
+        ]
+      },
+      "Properties": {
+        "Runtime": "dotnet6",
+        "CodeUri": ".",
+        "MemorySize": 256,
+        "Timeout": 30,
+        "Policies": [
+          "AWSLambdaBasicExecutionRole"
+        ],
+        "PackageType": "Zip",
+        "Handler": "BabySleep.Api::BabySleep.Api.Sleeps_GetSleep_Generated::GetSleep",
+        "Events": {
+          "RootGet": {
+            "Type": "HttpApi",
+            "Properties": {
+              "Path": "/getsleep/{sleepGuid}/",
+              "Method": "GET",
+              "PayloadFormatVersion": "2.0"
+            }
+          }
+        }
+      }
+    },
+    "AddSleep": {
+      "Type": "AWS::Serverless::Function",
+      "Metadata": {
+        "Tool": "Amazon.Lambda.Annotations",
+        "SyncedEvents": [
+          "RootPost"
+        ]
+      },
+      "Properties": {
+        "Runtime": "dotnet6",
+        "CodeUri": ".",
+        "MemorySize": 256,
+        "Timeout": 30,
+        "Policies": [
+          "AWSLambdaBasicExecutionRole"
+        ],
+        "PackageType": "Zip",
+        "Handler": "BabySleep.Api::BabySleep.Api.Sleeps_AddSleep_Generated::AddSleep",
+        "Events": {
+          "RootPost": {
+            "Type": "HttpApi",
+            "Properties": {
+              "Path": "/addSleep/{sleep}/",
+              "Method": "POST",
+              "PayloadFormatVersion": "2.0"
+            }
+          }
+        }
+      }
+    },
+    "UpdateSleep": {
+      "Type": "AWS::Serverless::Function",
+      "Metadata": {
+        "Tool": "Amazon.Lambda.Annotations",
+        "SyncedEvents": [
+          "RootPut"
+        ]
+      },
+      "Properties": {
+        "Runtime": "dotnet6",
+        "CodeUri": ".",
+        "MemorySize": 256,
+        "Timeout": 30,
+        "Policies": [
+          "AWSLambdaBasicExecutionRole"
+        ],
+        "PackageType": "Zip",
+        "Handler": "BabySleep.Api::BabySleep.Api.Sleeps_UpdateSleep_Generated::UpdateSleep",
+        "Events": {
+          "RootPut": {
+            "Type": "HttpApi",
+            "Properties": {
+              "Path": "/updateSleep/{sleep}/",
+              "Method": "PUT",
+              "PayloadFormatVersion": "2.0"
+            }
+          }
+        }
+      }
+    },
+    "DeleteSleep": {
+      "Type": "AWS::Serverless::Function",
+      "Metadata": {
+        "Tool": "Amazon.Lambda.Annotations",
+        "SyncedEvents": [
+          "RootDelete"
+        ]
+      },
+      "Properties": {
+        "Runtime": "dotnet6",
+        "CodeUri": ".",
+        "MemorySize": 256,
+        "Timeout": 30,
+        "Policies": [
+          "AWSLambdaBasicExecutionRole"
+        ],
+        "PackageType": "Zip",
+        "Handler": "BabySleep.Api::BabySleep.Api.Sleeps_DeleteSleep_Generated::DeleteSleep",
+        "Events": {
+          "RootDelete": {
+            "Type": "HttpApi",
+            "Properties": {
+              "Path": "/deleteSleep/{sleepGuid}/",
+              "Method": "DELETE",
               "PayloadFormatVersion": "2.0"
             }
           }

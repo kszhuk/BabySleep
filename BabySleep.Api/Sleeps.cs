@@ -32,33 +32,7 @@ namespace BabySleep.Api
                 var previousDate = DateTimeHelper.FormatEmptyDateAws(date.AddDays(-1));
                 var nextDate = DateTimeHelper.FormatEndDateAws(date.AddDays(1));
 
-                var contextDb = DynamoDbContextHelper.GetDynamoDbContext();
-
-                var sleepSearch = contextDb.ScanAsync<DdbModels.Sleeps>(new[] {
-                    new ScanCondition
-                    (
-                        nameof(DdbModels.Sleeps.ChildGuid),
-                        ScanOperator.Equal,
-                        childGuid.ToUpper()
-                    ),
-                    new ScanCondition
-                    (
-                        nameof(DdbModels.Sleeps.StartTime),
-                        ScanOperator.Between,
-                        previousDate,
-                        nextDate
-                    ),
-                    new ScanCondition
-                    (
-                        nameof(DdbModels.Sleeps.EndTime),
-                        ScanOperator.Between,
-                        previousDate,
-                        nextDate
-                    )
-              }
-                );
-
-                var resultSleeps = sleepSearch.GetRemainingAsync().Result;
+                var resultSleeps = GetSleepsDdb(childGuid, previousDate, nextDate);
 
                 foreach (var sleep in resultSleeps)
                 {
@@ -88,6 +62,58 @@ namespace BabySleep.Api
             catch (Exception ex)
             {
                 LambdaLogger.Log(string.Format("Failed Sleeps.GetSleeps by {0}, {1}: {2}", childGuid, currentDate, ex.Message));
+            }
+
+            return sleeps;
+        }
+
+        /// <summary>
+        /// Returns all sleeps for child between dates
+        /// </summary>
+        /// <param name="childGuid"></param>
+        /// <returns>Sleeps for child</returns>
+        [LambdaFunction(Name = "GetSleepsDates")]
+        [HttpApi(LambdaHttpMethod.Get, "/getsleepsdates/{childGuid}/{startDate}/{endDate}/")]
+        public List<Sleep> GetSleepsDates(string childGuid, string startDate, string endDate)
+        {
+            var sleeps = new List<Sleep>();
+
+            try
+            {
+                var dateStart = DateTime.Now;
+                DateTime.TryParse(startDate, out dateStart);
+
+                var dateEnd = DateTime.Now;
+                DateTime.TryParse(endDate, out dateEnd);
+
+                var previousDate = DateTimeHelper.FormatEmptyDateAws(dateStart.AddDays(-1));
+                var nextDate = DateTimeHelper.FormatEndDateAws(dateEnd.AddDays(1));
+
+                var resultSleeps = GetSleepsDdb(childGuid, previousDate, nextDate);
+
+                foreach (var sleep in resultSleeps)
+                {
+                    var startTime = DateTime.Parse(sleep.StartTime);
+                    var endTime = DateTime.Parse(sleep.EndTime);
+
+                    sleeps.Add(new Sleep()
+                    {
+                        ChildGuid = Guid.Parse(sleep.ChildGuid),
+                        SleepGuid = Guid.Parse(sleep.SleepGuid),
+                        AwakeningCount = sleep.AwakeningCount,
+                        Status = sleep.Status,
+                        SleepPlace = sleep.SleepPlace,
+                        FeedingCount = sleep.FeedingCount,
+                        FallAsleepTime = sleep.FallAsleepTime,
+                        Quality = sleep.Quality,
+                        StartTime = startTime,
+                        EndTime = endTime
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                LambdaLogger.Log(string.Format("Failed Sleeps.GetSleeps by {0}, {1}, {2}: {3}", childGuid, startDate, endDate, ex.Message));
             }
 
             return sleeps;
@@ -338,6 +364,41 @@ namespace BabySleep.Api
             {
                 throw new SleepAlreadyExistsException();
             }
+        }
+
+        private List<DdbModels.Sleeps> GetSleepsDdb(string childGuid, string previousDate, string nextDate)
+        {
+            var sleeps = new List<Sleep>();
+
+            var contextDb = DynamoDbContextHelper.GetDynamoDbContext();
+
+            var sleepSearch = contextDb.ScanAsync<DdbModels.Sleeps>(new[] {
+                    new ScanCondition
+                    (
+                        nameof(DdbModels.Sleeps.ChildGuid),
+                        ScanOperator.Equal,
+                        childGuid.ToUpper()
+                    ),
+                    new ScanCondition
+                    (
+                        nameof(DdbModels.Sleeps.StartTime),
+                        ScanOperator.Between,
+                        previousDate,
+                        nextDate
+                    ),
+                    new ScanCondition
+                    (
+                        nameof(DdbModels.Sleeps.EndTime),
+                        ScanOperator.Between,
+                        previousDate,
+                        nextDate
+                    )
+              }
+            );
+
+            var resultSleeps = sleepSearch.GetRemainingAsync().Result;
+
+            return resultSleeps;
         }
     }
 }

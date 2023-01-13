@@ -13,5 +13,6 @@ namespace BabySleep.Infrastructure.Helpers
         internal static string ADD_SLEEP = "AddSleep";
         internal static string UPDATE_SLEEP = "UpdateSleep";
         internal static string DELETE_SLEEP = "DeleteSleep";
+        internal static string GET_SLEEPS_DATES = "GetSleepsDates";
     }
 }

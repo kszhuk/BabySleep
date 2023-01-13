@@ -5,3 +5,35 @@
 }
 
 <partial name="_SharedTabPartial" />
+
+<div class="row justify-content-center align-items-center">
+    <div class="col-md-5 float-end">
+        <div class="input-group date calendar float-end" id="datepicker1">
+            <input id="datepicker1Input" type="text" class="form-control text-end p-0" >
+            <div class="input-group-append">
+            </div>
+        </div>
+    </div>
+    <div class="col-md-1 align-items-center align-content-center ps-0">
+        <span id="divider"> - </span>
+    </div>
+    <div class="col-md-5">
+        <div class="input-group date calendar" id="datepicker2">
+            <input id="datepicker2Input" type="text" class="form-control text-start p-0" >
+            <div class="input-group-append">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="width:70%; margin:0 auto; " class="pt-3">
+    <canvas id="statisticsChart" style="width:70%"></canvas>
+</div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+<script src="~/js/statistics.js"></script>
+<link rel="stylesheet" href="~/css/statistics.css" />

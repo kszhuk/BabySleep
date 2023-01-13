@@ -45,7 +45,7 @@ namespace BabySleepWeb.Controllers
                 _logger.LogError(string.Format("Main sleep for child {0} exception {1}", childGuid, ex.Message));
             }
 
-            throw new Exception("test");
+            //throw new Exception("test");
 
             return View(data);
         }

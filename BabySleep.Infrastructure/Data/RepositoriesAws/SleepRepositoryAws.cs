@@ -93,7 +93,30 @@ namespace BabySleep.Infrastructure.Data.RepositoriesAws
 
         public IList<Sleep> Take(Guid childGuid, DateTime startDate, DateTime endDate)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var request = new GetSleepsDatesRequest() { childGuid = childGuid.ToString(),
+                    startDate = startDate.ToString(), endDate = endDate.ToString()
+                };
+                var jsonRequest = JsonConvert.SerializeObject(request);
+                var jsonResponse = awsHelper.GetLambdaResponse(AwsFunctionsEnum.GetSleepsDates, jsonRequest);
+                var jsonSleeps = JsonConvert.DeserializeObject<List<AWS.Common.Models.Sleep>>(jsonResponse).OrderBy(s => s.StartTime);
+
+                var result = new List<Sleep>();
+
+                foreach (var sleep in jsonSleeps)
+                {
+                    result.Add(new Sleep(sleep.SleepGuid, sleep.ChildGuid, (SleepPlace)sleep.SleepPlace, sleep.StartTime, sleep.EndTime,
+                        sleep.FeedingCount, sleep.FallAsleepTime, sleep.AwakeningCount, sleep.Quality, String.Empty));
+                }
+
+                return result;
+
+            }
+            catch
+            {
+                return new List<Sleep>();
+            };
         }
 
         public void Update(Sleep sleep)

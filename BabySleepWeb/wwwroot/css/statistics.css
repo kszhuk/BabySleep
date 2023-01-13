@@ -1,0 +1,17 @@
+﻿#datepicker1 img, #datepicker2 img {
+    width: 20px;
+    height: 20px;
+}
+
+#datepicker1 input, #datepicker2 input {
+    border: 0;
+}
+
+#divider {
+    color: #2fa4e7;
+    font-weight: bold;
+    display: table;
+    margin: 0 auto;
+}
+
+

@@ -39,7 +39,7 @@ $(function () {
         endDate: new Date(new Date().setDate(new Date().getDate() + 1))
     }).datepicker("setDate", new Date()).on('changeDate', function (e) {
         ChangeDate(e.date);
-    });;
+    });
 
     $('#modalSleepEntry').on('shown.bs.modal', function () {
         LoadDateTimePickers();
