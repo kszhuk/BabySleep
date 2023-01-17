@@ -8,6 +8,13 @@
         <li class="nav-item active">
             <a asp-controller="Login" asp-action="Logout" class="nav-link">@MyResources.MenuResources.LogOut</a>
         </li>
+        <li class="nav-item active">
+            <button class="navbar-toggler " type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+        </li>
     }
     else
     {
@@ -15,24 +22,4 @@
             <a asp-controller="Login" asp-action="Login" class="nav-link">@MyResources.MenuResources.LogIn</a>
         </li>
     }
-    @*    <li class="dropdown">
-    <a class="nav-link dropdown-toggle text-uppercase" data-toggle="dropdown" href="#">
-    @System.Globalization.CultureInfo.DefaultThreadCurrentCulture.TwoLetterISOLanguageName
-    <span class="caret"></span>
-    </a>
-    <ul class="dropdown-menu dropdown-menu-end" role="menu">
-    <li class="dropdown-item">
-    <a class="text-decoration-none" asp-controller="Home" asp-action="ChangeLanguage" asp-route-languageName="en"
-    asp-route-returnUrl=@ViewContext.HttpContext.Request.Path>
-    @MyResources.EditSettingsResources.English
-    </a>
-    </li>
-    <li class="dropdown-item">
-    <a class="text-decoration-none" asp-controller="Home" asp-action="ChangeLanguage" asp-route-languageName="uk"
-    asp-route-returnUrl=@ViewContext.HttpContext.Request.Path>
-    @MyResources.EditSettingsResources.Ukrainian
-    </a>
-    </li>
-    </ul>
-    </li>*@
 </ul>

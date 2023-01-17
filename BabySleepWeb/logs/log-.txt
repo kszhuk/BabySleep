@@ -29,3 +29,6 @@
 2023-01-13 14:43:58.297 [INF] User kszhuk@gmail.com is logged in
 2023-01-13 14:58:48.987 [INF] User kszhuk@gmail.com is logged in
 2023-01-13 15:00:45.913 [INF] User kszhuk@gmail.com is logged in
+2023-01-16 14:19:11.240 [ERR] An unhandled exception has occurred while executing the request.
+2023-01-17 11:07:18.547 [ERR] An unhandled exception has occurred while executing the request.
+2023-01-17 14:19:43.149 [INF] User kszhuk@gmail.com is logged in

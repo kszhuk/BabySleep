@@ -1,0 +1,11 @@
+﻿@using MyResources = BabySleep.Resources.Resx;
+
+@if (User.Identity != null && User.Identity.IsAuthenticated)
+{
+    <div class="collapse navbar-collapse" id="navbarToggleExternalContent">
+        <div class="navbar-nav navbar bg-primary">
+            <a class="nav-link" asp-controller="Sleep" asp-action="Index">@MyResources.GeneralResources.Sleeps</a>
+            <a class="nav-link" asp-controller="Statistics" asp-action="Index">@MyResources.GeneralResources.Statistics</a>
+        </div>
+    </div>
+}

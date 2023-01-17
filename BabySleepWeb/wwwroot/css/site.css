@@ -84,3 +84,11 @@ div.calendar{
     top: 50%;
     left: 50%;
 }
+
+.navbar-toggler {
+    display: block !important;
+}
+
+#navbarToggleExternalContent a{
+    color:white;
+}
