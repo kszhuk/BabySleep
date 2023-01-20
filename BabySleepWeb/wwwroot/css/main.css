@@ -1,0 +1,35 @@
+﻿.container {
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+}
+
+.app-button {
+    width: 200px;
+    height: 60px;
+    border-radius: 13px;
+    padding-left: 10px;
+    box-shadow: 0 0 40px rgba(51, 51, 51, .1)
+}
+
+.app-button i {
+    font-size: 35px;
+    margin-right: 10px;
+}
+
+.header-blue {
+    background-image: linear-gradient(#50b3eb 20%, #2fa4e7 60%, #2c9ad9);
+    width: 100%
+}
+
+.header-blue h1 {
+    color: #03386c
+}
+
+.header-blue p {
+    color: #2b5b89
+}
+
+.header-blue {
+    color: #033c73
+}
