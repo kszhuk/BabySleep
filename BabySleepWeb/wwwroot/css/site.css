@@ -92,3 +92,14 @@ div.calendar{
 #navbarToggleExternalContent a{
     color:white;
 }
+
+.text-decoration-none-footer {
+    color: white;
+    font-size: 13px;
+    text-decoration: none !important;
+}
+
+.copy-footer {
+    color: #03386c !important;
+    font-size: 13px
+}

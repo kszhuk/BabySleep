@@ -1,10 +1,4 @@
-﻿.container {
-    margin: 0;
-    padding: 0;
-    max-width: 100%;
-}
-
-.app-button {
+﻿.app-button {
     width: 200px;
     height: 60px;
     border-radius: 13px;
