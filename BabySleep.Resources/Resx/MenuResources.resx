@@ -120,6 +120,9 @@
   <data name="AddNewChild" xml:space="preserve">
     <value>Add new child</value>
   </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Contact</value>
+  </data>
   <data name="EditAccountInfo" xml:space="preserve">
     <value>Edit Account Info</value>
   </data>

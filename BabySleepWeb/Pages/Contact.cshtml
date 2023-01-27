@@ -1,0 +1,118 @@
+﻿@page
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model BabySleepWeb.Pages.ContactModel
+@using MyResources = BabySleep.Resources.Resx;
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = @MyResources.MenuResources.Contact;
+}
+
+<form method="post">
+    <div class="row align-items-center justify-content-center pt-5">
+        <div class="col-md-6">
+            <h3>@MyResources.ContactResources.Header</h3>
+            <p>@MyResources.ContactResources.Message1</p>
+            <p>
+                @MyResources.ContactResources.Message2
+                <a href="mailto:support@babysleepweb@gmail.com">babysleepweb@gmail.com</a>
+                .
+            </p>
+        </div>
+        <div class="col-md-6">
+            <div class="mb-3">
+                <input asp-for="Message.From" class="form-control" placeholder=@MyResources.ContactResources.Email />
+                <span asp-validation-for="Message.From" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <input asp-for="Message.Subject" class="form-control" placeholder=@MyResources.ContactResources.Subject />
+                <span asp-validation-for="Message.Subject" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <textarea asp-for="Message.Body" class="form-control" rows="4" placeholder=@MyResources.ContactResources.Message></textarea>
+                <span asp-validation-for="Message.Body" class="text-danger"></span>
+            </div>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <button type="button" class="btn btn-primary" onclick="    SendEmail();"><i class="bi bi-envelope pe-1"></i>@MyResources.ContactResources.Send</button>
+        </div>
+    </div>
+    <!-- Bootstrap modal popup -->
+    <div class="modal fade" id="modalSendFail" aria-hidden="true" data-bs-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header alert alert-warning">
+                    <h4 class="modal-title alert-heading" id="myModalLabel">@MyResources.MenuResources.Contact</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" />
+                </div>
+                <div class="modal-body">
+                    <p class="success-message">@MyResources.ContactResources.ErrorSending</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn" onclick="$('#modalSendFail').modal('hide');">@MyResources.GeneralResources.Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modalSendSuccess" aria-hidden="true" data-bs-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header alert alert-success">
+                    <h4 class="modal-title alert-heading" id="myModalLabel">@MyResources.MenuResources.Contact</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" />
+                </div>
+                <div class="modal-body">
+                    <p class="success-message">@MyResources.ContactResources.EmailSend</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn" onclick="$('#modalSendSuccess').modal('hide');">@MyResources.GeneralResources.Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script type="text/javascript">
+
+
+    function SendEmail() {
+        var isValid = $('form').valid();
+        if (isValid) {
+            ShowBusyIndicator();
+
+            var email = ($("#Message_From")).val();
+            var body = ($("#Message_Body")).val();
+            var subject = ($("#Message_Subject")).val();
+
+            $.ajax({
+                url: "/Contact?handler=SendEmail",
+                type: 'Post',
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader("XSRF-TOKEN",
+                        $('input:hidden[name="__RequestVerificationToken"]').val());
+                },
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: JSON.stringify({ Body: body, Subject: subject, From: email }),
+                success: function(result) {
+                    if (result) {
+                        $('#modalSendSuccess').modal('show');
+                    }
+                    else{
+                        $('#modalSendFail').modal('show');
+                    }
+                    HideBusyIndicator();
+                },
+                error: function(err) {
+                    $('#modalSendFail').modal('show');
+                    HideBusyIndicator();
+                }
+            });
+        }
+    }
+</script>
+
+@section Scripts
+    {
+    @{
+    <partial name="_ValidationScriptsPartial" />
+    }
+    }

@@ -21,6 +21,11 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
+    <Compile Update="Resx\ContactResources.Designer.cs">
+      <DependentUpon>ContactResources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
     <Compile Update="Resx\GeneralResources.Designer.cs">
       <DependentUpon>GeneralResources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
@@ -54,6 +59,10 @@
     </EmbeddedResource>
     <EmbeddedResource Update="Resx\EditSettingsResources.resx">
       <LastGenOutput>EditSettingsResources.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resx\ContactResources.resx">
+      <LastGenOutput>ContactResources.Designer.cs</LastGenOutput>
       <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Resx\GeneralResources.resx">

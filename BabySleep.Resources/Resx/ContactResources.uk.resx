@@ -117,28 +117,43 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AddNewChild" xml:space="preserve">
-    <value>Додати дитину</value>
+  <data name="Email" xml:space="preserve">
+    <value>Електронна пошта</value>
   </data>
-  <data name="Contact" xml:space="preserve">
-    <value>Контакти</value>
+  <data name="EmailSend" xml:space="preserve">
+    <value>Лист був відправлений</value>
   </data>
-  <data name="EditAccountInfo" xml:space="preserve">
-    <value>Редагувати інформацію</value>
+  <data name="EmptyBody" xml:space="preserve">
+    <value>Пусте повідомлення</value>
   </data>
-  <data name="EditLanguage" xml:space="preserve">
-    <value>Вибрати мову</value>
+  <data name="EmptyEmail" xml:space="preserve">
+    <value>Пуста електронна пошта</value>
   </data>
-  <data name="LogIn" xml:space="preserve">
-    <value>Увійти</value>
+  <data name="EmptySubject" xml:space="preserve">
+    <value>Пуста тема</value>
   </data>
-  <data name="LogOut" xml:space="preserve">
-    <value>Вийти</value>
+  <data name="ErrorSending" xml:space="preserve">
+    <value>Помилка при відправленні листа</value>
   </data>
-  <data name="Main" xml:space="preserve">
-    <value>Головна</value>
+  <data name="Header" xml:space="preserve">
+    <value>Зв'яжіться з нами</value>
   </data>
-  <data name="Sync" xml:space="preserve">
-    <value>Синхронізація</value>
+  <data name="InvalidEmail" xml:space="preserve">
+    <value>Неправильна електронна пошта</value>
+  </data>
+  <data name="Message" xml:space="preserve">
+    <value>Повідомлення</value>
+  </data>
+  <data name="Message1" xml:space="preserve">
+    <value>Якщо у вас є якісь питання або відгуки, ви можете використати форму справа, щоб зв'язатися з нами.</value>
+  </data>
+  <data name="Message2" xml:space="preserve">
+    <value>Або можете зв'язатися з нами напряму за адресою </value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>Відправити</value>
+  </data>
+  <data name="Subject" xml:space="preserve">
+    <value>Тема</value>
   </data>
 </root>

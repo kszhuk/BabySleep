@@ -22,14 +22,14 @@ namespace BabySleep.Resources.Resx {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class MenuResources {
+    public class ContactResources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal MenuResources() {
+        internal ContactResources() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace BabySleep.Resources.Resx {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("BabySleep.Resources.Resx.MenuResources", typeof(MenuResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("BabySleep.Resources.Resx.ContactResources", typeof(ContactResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,74 +61,119 @@ namespace BabySleep.Resources.Resx {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add new child.
+        ///   Looks up a localized string similar to Email.
         /// </summary>
-        public static string AddNewChild {
+        public static string Email {
             get {
-                return ResourceManager.GetString("AddNewChild", resourceCulture);
+                return ResourceManager.GetString("Email", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Contact.
+        ///   Looks up a localized string similar to Email was send successfully.
         /// </summary>
-        public static string Contact {
+        public static string EmailSend {
             get {
-                return ResourceManager.GetString("Contact", resourceCulture);
+                return ResourceManager.GetString("EmailSend", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Edit Account Info.
+        ///   Looks up a localized string similar to Empty body.
         /// </summary>
-        public static string EditAccountInfo {
+        public static string EmptyBody {
             get {
-                return ResourceManager.GetString("EditAccountInfo", resourceCulture);
+                return ResourceManager.GetString("EmptyBody", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Edit language.
+        ///   Looks up a localized string similar to Empty email.
         /// </summary>
-        public static string EditLanguage {
+        public static string EmptyEmail {
             get {
-                return ResourceManager.GetString("EditLanguage", resourceCulture);
+                return ResourceManager.GetString("EmptyEmail", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Log In.
+        ///   Looks up a localized string similar to Empty subject.
         /// </summary>
-        public static string LogIn {
+        public static string EmptySubject {
             get {
-                return ResourceManager.GetString("LogIn", resourceCulture);
+                return ResourceManager.GetString("EmptySubject", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Log Out.
+        ///   Looks up a localized string similar to Error while sending email.
         /// </summary>
-        public static string LogOut {
+        public static string ErrorSending {
             get {
-                return ResourceManager.GetString("LogOut", resourceCulture);
+                return ResourceManager.GetString("ErrorSending", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Main.
+        ///   Looks up a localized string similar to Contact Us.
         /// </summary>
-        public static string Main {
+        public static string Header {
             get {
-                return ResourceManager.GetString("Main", resourceCulture);
+                return ResourceManager.GetString("Header", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sync.
+        ///   Looks up a localized string similar to Invalid email.
         /// </summary>
-        public static string Sync {
+        public static string InvalidEmail {
             get {
-                return ResourceManager.GetString("Sync", resourceCulture);
+                return ResourceManager.GetString("InvalidEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Message.
+        /// </summary>
+        public static string Message {
+            get {
+                return ResourceManager.GetString("Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If you have any questions or feedback on our App, you can use the form on the right to contact us..
+        /// </summary>
+        public static string Message1 {
+            get {
+                return ResourceManager.GetString("Message1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If you prefer, you can contact us directly at.
+        /// </summary>
+        public static string Message2 {
+            get {
+                return ResourceManager.GetString("Message2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Send.
+        /// </summary>
+        public static string Send {
+            get {
+                return ResourceManager.GetString("Send", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Subject.
+        /// </summary>
+        public static string Subject {
+            get {
+                return ResourceManager.GetString("Subject", resourceCulture);
             }
         }
     }

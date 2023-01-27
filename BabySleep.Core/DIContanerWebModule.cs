@@ -27,6 +27,8 @@ namespace BabySleep.Core
                 .As<ISyncAWSService>();
             builder.RegisterType<UserService>()
                 .As<IUserService>();
+            builder.RegisterType<SmtpMailService>()
+                .As<ISmtpMailService>();
 
             //Application dto assemblers
 
@@ -47,6 +49,8 @@ namespace BabySleep.Core
                 .As<ISleepRepository>();
             builder.RegisterType<UserRepositoryAws>()
                 .As<IUserRepository>();
+            builder.RegisterType<SmtpMailBusinessService>()
+                .As<ISmtpMailBusinessService>();
 
             //Infrastructure services
 
