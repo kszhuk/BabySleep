@@ -1,0 +1,49 @@
+﻿@using Microsoft.AspNetCore.Http.Features
+@using MyResources = BabySleep.Resources.Resx;
+
+@{
+    var consentFeature = Context.Features.Get<ITrackingConsentFeature>();
+    var showBanner = !consentFeature?.CanTrack ?? false;
+    var cookieString = consentFeature?.CreateConsentCookie();
+}
+
+@if (showBanner)
+{
+    <div id="cookieConsent" class="cookie-consent fade show text-center" data-dismiss="alert">
+
+        @MyResources.FooterResources.CookiesUse.&nbsp;
+        <a asp-controller="Home" asp-action="Privacy">@MyResources.FooterResources.CookiesLearn</a>
+
+        <button type="button" class="btn btn-primary btn-sm accept-policy close" data-dismiss="alert" data-cookie-string="@cookieString">
+            <span aria-hidden="true">@MyResources.GeneralResources.Accept</span>
+        </button>
+    </div>
+    <script>
+        (function() {
+            var button = document.querySelector("#cookieConsent button[data-cookie-string]");
+            button.addEventListener("click", function(event) {
+                document.cookie = button.dataset.cookieString;
+                $('#cookieConsent').toast('hide')
+            }, false);
+        })();
+    </script>
+    <style>
+        .cookie-consent {
+            position: fixed;
+            bottom: 1px;
+            width: 100%;
+            padding-top: 7px;
+            height: 50px;
+            color: #fff;
+            line-height: 20px;
+            padding-left: 10px;
+            padding-right: 10px;
+            font-size: 14px;
+            background: #033c73;
+            z-index: 120;
+            cursor: pointer;
+            border-radius: 3px;
+            opacity:80%;
+        }
+    </style>
+}

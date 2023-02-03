@@ -1,4 +1,6 @@
-﻿<div class="container pt-3">
+﻿@using MyResources = BabySleep.Resources.Resx;
+
+<div class="container pt-3">
     <div class="row align-items-top">
         <div class="col-md-6">
             <ul class="list-unstyled float-end">
@@ -6,23 +8,20 @@
                     <a asp-area="" asp-controller="Home" asp-action="Index" class="text-decoration-none-footer">BabySleepWeb</a>
                 </li>
                 <li>
-                    <a asp-area="" asp-page="/Contact" class="text-decoration-none-footer">Contact</a>
+                    <a asp-area="" asp-page="/Contact" class="text-decoration-none-footer">@MyResources.FooterResources.Contact</a>
                 </li>
             </ul>
         </div>
         <div class="col-md-6">
             <ul class="list-unstyled float-start">
                 <li>
-                    <a asp-area="" asp-controller="Home" asp-action="Privacy" class="text-decoration-none-footer">Terms & Conditions</a>
+                    <a asp-area="" asp-controller="Home" asp-action="Privacy" class="text-decoration-none-footer">@MyResources.FooterResources.TermsConditions</a>
                 </li>
                 <li>
-                    <a asp-area="" asp-controller="Home" asp-action="Privacy" class="text-decoration-none-footer">Privacy Policy</a>
+                    <a asp-area="" asp-controller="Home" asp-action="Privacy" class="text-decoration-none-footer">@MyResources.FooterResources.PrivacyPolicy</a>
                 </li>
                 <li>
-                    <a asp-area="" asp-controller="Home" asp-action="Privacy" class="text-decoration-none-footer">Cookie Policy</a>
-                </li>
-                <li>
-                    <a asp-area="" asp-controller="Home" asp-action="Privacy" class="text-decoration-none-footer">Third Party Notices</a>
+                    <a asp-area="" asp-controller="Home" asp-action="Privacy" class="text-decoration-none-footer">@MyResources.FooterResources.ThirdPartyNotices</a>
                 </li>
             </ul>
         </div>

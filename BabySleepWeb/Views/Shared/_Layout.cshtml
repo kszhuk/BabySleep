@@ -90,7 +90,9 @@
         </nav>
         <partial name="_MenuPartial" />
     </header>
+
     @RenderSection("featured", required: false)
+
     <div class="pt-5 wrapper flex-grow-1 container">
         <main role="main" class="pb-3 pt-2">
             @RenderBody()
@@ -98,9 +100,11 @@
     </div>
 
     <footer class="border-top footer text-muted bg-primary">
-        <partial name="_FooterPartial"/>
+
+        <partial name="_FooterPartial" />
     </footer>
     <partial name="_LoadingPartial" />
+    <partial name="_CookieConsentPartial" />
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>

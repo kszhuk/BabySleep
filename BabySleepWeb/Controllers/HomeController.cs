@@ -32,7 +32,8 @@ namespace BabySleepWeb.Controllers
             return View();
         }
 
-        [Authorize]
+        [AllowAnonymous]
+
         public IActionResult Privacy()
         {
             return View();

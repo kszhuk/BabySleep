@@ -117,31 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Accept" xml:space="preserve">
-    <value>Погодитися</value>
+  <data name="Contact" xml:space="preserve">
+    <value>Contact</value>
   </data>
-  <data name="Delete" xml:space="preserve">
-    <value>Видалити</value>
+  <data name="CookiesLearn" xml:space="preserve">
+    <value>Learn more</value>
   </data>
-  <data name="No" xml:space="preserve">
-    <value>Ні</value>
+  <data name="CookiesUse" xml:space="preserve">
+    <value>We use cookies to ensure you get the best experience on our website.</value>
   </data>
-  <data name="Ok" xml:space="preserve">
-    <value>Ок</value>
+  <data name="PrivacyPolicy" xml:space="preserve">
+    <value>Privacy Policy</value>
   </data>
-  <data name="Save" xml:space="preserve">
-    <value>Зберегти</value>
+  <data name="TermsConditions" xml:space="preserve">
+    <value>Terms &amp; Conditions</value>
   </data>
-  <data name="Sleeps" xml:space="preserve">
-    <value>Сни</value>
-  </data>
-  <data name="Statistics" xml:space="preserve">
-    <value>Статистика</value>
-  </data>
-  <data name="Update" xml:space="preserve">
-    <value>Оновити</value>
-  </data>
-  <data name="Yes" xml:space="preserve">
-    <value>Так</value>
+  <data name="ThirdPartyNotices" xml:space="preserve">
+    <value>Third Party Notices</value>
   </data>
 </root>
