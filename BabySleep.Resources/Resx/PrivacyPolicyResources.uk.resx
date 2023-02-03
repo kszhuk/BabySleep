@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ChangesH" xml:space="preserve">
+    <value>Зміни до Політики у сфері конфіденційності</value>
+  </data>
+  <data name="ChangesP1" xml:space="preserve">
+    <value>Ми зберігаємо за собою правило змінювати Політику у сфері конфіденційності час від часу без нотифікації. Подібні зміни стають дійснити після опублікування на нашому веб сайті. Продовжуючи використовувати BabySleepApp або відвідуючи наш веб сайт після опублікування цих змін, ви приймаєте Політику у сфері конфіденційності як відредаговану.</value>
+  </data>
+  <data name="CollectionH" xml:space="preserve">
+    <value>Збереження вашої персональної інформаціх</value>
+  </data>
+  <data name="CollectionP1" xml:space="preserve">
+    <value>Ми зберігаємо персональну інформацію виключно на законних підставах.  Ми зберігаємо інформацію отриману виключно від Pro користувачів.</value>
+  </data>
+  <data name="CollectionP2" xml:space="preserve">
+    <value>Може бути збережена така персональна інформація (і не тільки) як, ваша електронна пошта, імена ваших дітей, дати народження дітей, і т.д. Після того як ваш персональний акаунт створено, ви маєте змогу переглядати або редагувати ваші дані, якщо вони змінилися.</value>
+  </data>
+  <data name="CollectionP3" xml:space="preserve">
+    <value>Якщо ви зконтактуєте з нами через Контакти, ми можемо записати вашу контактну інформацію, і можемо використати вашу електронну пошту, і будь яку іншу інформацію, яку ви нам надасте, щоб відповісти вам.</value>
+  </data>
+  <data name="CollectionP4" xml:space="preserve">
+    <value>Ми не продаємо, не пересилаємо і не відкриваємо вашу персональну інформацію будь яким третім особам за виключенням окремих випадків описаних в цій Політиці у сфері конфіденційності.</value>
+  </data>
+  <data name="CookiesH" xml:space="preserve">
+    <value>Cookies</value>
+  </data>
+  <data name="CookiesP1" xml:space="preserve">
+    <value>Ми зберігаємо cookies (невеликі текстові файли, які використовуються вашим браузером) на вашому компютері, щоб покращити ваш досвід взаємодії з BabySleep вебсайтом для Pro користувачів. Наприклад, ми викортстовуємо cookies для авторизації.</value>
+  </data>
+  <data name="CookiesP2" xml:space="preserve">
+    <value>Ви можете відмовитися використовувати cookies змінивши налаштування на вашому пристрої. Хоча, якщо ви відмовитеся, то не зможете мати доступ до деякої функціональності BabySleep веб сайту.</value>
+  </data>
+  <data name="General" xml:space="preserve">
+    <value>Ця Політика у сфері конфіденційності описує, як ми зберігаємо і опрацьовуємо інформацію яку ви нам надаєте, використовуючи BabySleepApp або відвідуючи наш сайт www.babysleepapp.com. Тому ви маєте ретельно прочитати перед тим як використовувати наші сервіси.</value>
+  </data>
+  <data name="QuestionsH" xml:space="preserve">
+    <value>Питання і скарги</value>
+  </data>
+  <data name="QuestionsP1" xml:space="preserve">
+    <value>Якщо ви вважаєте, що будь-які ваші права, повязані з вашою персональною інформацією, були порушені нами, будь ласка напишіть нам, використовуючі електронну пошту зі сторінки Контакти</value>
+  </data>
+  <data name="SecurityH" xml:space="preserve">
+    <value>Безпека</value>
+  </data>
+  <data name="SecurityP1" xml:space="preserve">
+    <value>Ми зберігаємо вашу персональну інформацію на безпечному хмарному сервері.</value>
+  </data>
+  <data name="SecurityP2" xml:space="preserve">
+    <value>Ми приймаємо всі розумно необхідні міри, щоб захистити від  несанкціонованого доступу, використання, зміни чи знищення інформації, яка потенційно може ідентифікувати особу.</value>
+  </data>
+  <data name="SecurityP3" xml:space="preserve">
+    <value>Ви повинні пам’ятати, що жодна Інтернет транзакція ніколи не є повністю безпечною чи безпомилковою. Якщо ви надсилаєте нам електронний лист, пам’ятайте, що електронний лист не обов’язково захищений від перехоплення іншою стороною.</value>
+  </data>
+</root>

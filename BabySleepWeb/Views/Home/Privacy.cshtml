@@ -1,6 +1,31 @@
-﻿@{
-    ViewData["Title"] = "Privacy Policy";
-}
-<h1>@ViewData["Title"]</h1>
+﻿@using MyResources = BabySleep.Resources.Resx;
 
-<p>Use this page to detail your site's privacy policy.</p>
+@{
+    ViewData["Title"] = MyResources.FooterResources.PrivacyPolicy;
+}
+
+<div class="pt-5">
+    <h2 class="text-center">@MyResources.FooterResources.PrivacyPolicy</h2>
+    <p>@MyResources.PrivacyPolicyResources.General</p>
+
+    <h5>@MyResources.PrivacyPolicyResources.CollectionH</h5>
+    <p>@MyResources.PrivacyPolicyResources.CollectionP1</p>
+    <p>@MyResources.PrivacyPolicyResources.CollectionP2</p>
+    <p>@MyResources.PrivacyPolicyResources.CollectionP3</p>
+    <p>@MyResources.PrivacyPolicyResources.CollectionP4</p>
+
+    <h5>@MyResources.PrivacyPolicyResources.SecurityH</h5>
+    <p>@MyResources.PrivacyPolicyResources.SecurityP1</p>
+    <p>@MyResources.PrivacyPolicyResources.SecurityP2</p>
+    <p>@MyResources.PrivacyPolicyResources.SecurityP3</p>
+
+    <h5>@MyResources.PrivacyPolicyResources.CookiesH</h5>
+    <p>@MyResources.PrivacyPolicyResources.CookiesP1</p>
+    <p>@MyResources.PrivacyPolicyResources.CookiesP2</p>
+    
+    <h5>@MyResources.PrivacyPolicyResources.QuestionsH</h5>
+    <p>@MyResources.PrivacyPolicyResources.QuestionsP1</p>
+
+    <h5>@MyResources.PrivacyPolicyResources.ChangesH</h5>
+    <p>@MyResources.PrivacyPolicyResources.ChangesP1</p>
+</div>

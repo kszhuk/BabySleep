@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ChangesH" xml:space="preserve">
+    <value>Changes to this Privacy Policy</value>
+  </data>
+  <data name="ChangesP1" xml:space="preserve">
+    <value>We reserve the right to change this Privacy Policy from time to time without notification. Such changes will be effective when posted on our website. By continuing to use the BabySleepApp or visit our website after we post such changes, you accept the Private Policy as modified.</value>
+  </data>
+  <data name="CollectionH" xml:space="preserve">
+    <value>Collection of your personal information</value>
+  </data>
+  <data name="CollectionP1" xml:space="preserve">
+    <value>We only collect personal information by lawful and fair means.  We collect personal information directly from Pro users.</value>
+  </data>
+  <data name="CollectionP2" xml:space="preserve">
+    <value>Personally identifiable information may include, but is not limited to, your email address, your baby’s name, baby’s date of birth, etc. Once your account exists, you have the ability to review, update, and correct your personal information, in the event it changes.</value>
+  </data>
+  <data name="CollectionP3" xml:space="preserve">
+    <value>If you contact us through Contact, we may keep a record of your contact information and correspondence, and may use you email address, and any information that you provide to us in your message, to respond to you.</value>
+  </data>
+  <data name="CollectionP4" xml:space="preserve">
+    <value>We do not sell, transfer, or disclose your personal information to any third parties other than for the limited purposes described in this policy.</value>
+  </data>
+  <data name="CookiesH" xml:space="preserve">
+    <value>Cookies</value>
+  </data>
+  <data name="CookiesP1" xml:space="preserve">
+    <value>We store cookies (small text files managed by your web browser) on your computer in order to improve your experience with BabySleep website for Pro users. For example, we use cookies for authorization.</value>
+  </data>
+  <data name="CookiesP2" xml:space="preserve">
+    <value>You may refuse to accept cookies by changing the settings on your device. However, if you refuse it you may be unable to access certain parts of BabySleep website.</value>
+  </data>
+  <data name="General" xml:space="preserve">
+    <value>This privacy policy describes how we collects and processes information that you may provide by using the BabySleepApp or by visiting our website at www.babysleepapp.com. Therefore, you should read it carefully before using any of our services.</value>
+  </data>
+  <data name="QuestionsH" xml:space="preserve">
+    <value>Questions and complaints</value>
+  </data>
+  <data name="QuestionsP1" xml:space="preserve">
+    <value>If you believe that any of your rights with respect to your or others’ identifiable information have been violated by us, please contact us using email described in Contact page</value>
+  </data>
+  <data name="SecurityH" xml:space="preserve">
+    <value>Security</value>
+  </data>
+  <data name="SecurityP1" xml:space="preserve">
+    <value>We hold your personal information in a secure cloud server.</value>
+  </data>
+  <data name="SecurityP2" xml:space="preserve">
+    <value>We take all measures reasonably necessary to protect against the unauthorized access, use, alteration, or destruction of potentially personally-identifying information.</value>
+  </data>
+  <data name="SecurityP3" xml:space="preserve">
+    <value>You should keep in mind that no internet transmission is ever completely secure or error-free. In the event you send us an email, please remember that the email is not necessarily secured against interception by another party.</value>
+  </data>
+</root>
