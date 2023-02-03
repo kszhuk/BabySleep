@@ -6,6 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Update="Resx\MainResources.Designer.cs">
+      <DependentUpon>MainResources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
     <Compile Update="Resx\FooterResources.Designer.cs">
       <DependentUpon>FooterResources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
@@ -54,6 +59,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Resx\MainResources.resx">
+      <LastGenOutput>MainResources.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Resx\FooterResources.resx">
       <LastGenOutput>FooterResources.Designer.cs</LastGenOutput>
       <Generator>PublicResXFileCodeGenerator</Generator>
