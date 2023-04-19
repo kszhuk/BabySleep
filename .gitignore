@@ -341,3 +341,4 @@ healthchecksdb
 
 # Local files
 appsettings.local.json
+appsettings.local.Development.json
