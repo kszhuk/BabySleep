@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BabySleep.Common.Enums;
+using BabySleep.Common.Interfaces;
 using BabySleep.Domain.Models;
 using BabySleep.Infrastructure.Data.Interfaces;
 using BabySleep.Infrastructure.Helpers;
@@ -15,9 +16,9 @@ namespace BabySleep.Infrastructure.Data.RepositoriesAws
     public class SleepRepositoryAws : ISleepRepository
     {
         private AwsHelper awsHelper;
-        public SleepRepositoryAws()
+        public SleepRepositoryAws(ICustomerConfig config)
         {
-            awsHelper = new AwsHelper();
+            awsHelper = new AwsHelper(config);
         }
 
         public void Add(Sleep sleep)

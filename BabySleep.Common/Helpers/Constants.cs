@@ -16,8 +16,5 @@ namespace BabySleep.Common.Helpers
         public const string QUALITY_FORMAT = "{0}/10";
         public static int NIGHT_SLEEP_START = 19;
         public static int NIGHT_SLEEP_END = 5;
-
-        public const string FIREBASE_WEB_API_KEY = "AIzaSyAS8-KY6JYi2WC2a0hxFndlzraETC_cziA";
-        public const string FIREBASE_TOKEN = "MyFirebaseRefreshToken";
     }
 }

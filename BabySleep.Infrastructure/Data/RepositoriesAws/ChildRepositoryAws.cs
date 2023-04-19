@@ -1,4 +1,5 @@
-﻿using BabySleep.Domain.Models;
+﻿using BabySleep.Common.Interfaces;
+using BabySleep.Domain.Models;
 using BabySleep.Infrastructure.Data.Interfaces;
 using BabySleep.Infrastructure.Helpers;
 using BabySleep.Infrastructure.Requests;
@@ -11,9 +12,10 @@ namespace BabySleep.Infrastructure.Data.RepositoriesAws
     public class ChildRepositoryAws : IChildRepository
     {
         private AwsHelper awsHelper;
-        public ChildRepositoryAws()
+
+        public ChildRepositoryAws(ICustomerConfig config)
         {
-            awsHelper = new AwsHelper();
+            awsHelper = new AwsHelper(config);
         }
 
         public void Add(Child child)

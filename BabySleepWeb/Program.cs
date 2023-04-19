@@ -1,5 +1,7 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using BabySleep.Common.Helpers;
+using BabySleep.Common.Interfaces;
 using BabySleep.Core;
 using BabySleepWeb.Helpers;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -32,6 +34,10 @@ builder.Services.Configure<CookiePolicyOptions>(options =>
 
 builder.Services.AddAntiforgery(o => o.HeaderName = "XSRF-TOKEN");
 
+builder.Configuration
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true) //load base settings
+    .AddJsonFile("appsettings.local.json", optional: true, reloadOnChange: true) //load local settings
+    .AddEnvironmentVariables();
 
 builder.Services.AddOptions();
 var section = builder.Configuration.GetSection(FirebaseOptions.Firebase);
@@ -43,6 +49,22 @@ builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 // call builder.Populate(), that happens in AutofacServiceProviderFactory.
 builder.Host.ConfigureContainer<ContainerBuilder>(builder => builder.RegisterModule(new DIContanerWebModule()));
 builder.Services.AddTransient<IChildrenHelper, ChildrenHelper>();
+
+//Create customer config
+builder.Services.AddSingleton<ICustomerConfig, CustomerConfig>(scope =>
+{
+    CustomerConfig config = new CustomerConfig();
+
+    config.SmtpEmail = builder.Configuration.GetValue<string>("Smtp:Email");
+    config.SmtpPassword = builder.Configuration.GetValue<string>("Smtp:Password");
+
+    config.FirebaseApiKey = builder.Configuration.GetValue<string>("Firebase:ApiKey");
+
+    config.AwsAccessKey = builder.Configuration.GetValue<string>("Aws:AccessKey");
+    config.AwsSecretKey = builder.Configuration.GetValue<string>("Aws:SecretKey");
+
+    return config;
+});
 
 //builder.Logging.AddSerilog(logger);
 

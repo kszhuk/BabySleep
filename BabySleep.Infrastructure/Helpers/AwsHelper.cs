@@ -2,6 +2,7 @@
 using Amazon.Lambda;
 using Amazon.Lambda.APIGatewayEvents;
 using Amazon.Runtime;
+using BabySleep.Common.Interfaces;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -12,9 +13,15 @@ namespace BabySleep.Infrastructure.Helpers
 {
     internal class AwsHelper
     {
+        private readonly ICustomerConfig config;
+        public AwsHelper(ICustomerConfig config)
+        {
+            this.config = config;
+        }
+
         public string GetLambdaResponse(AwsFunctionsEnum function, string pathParameters)
         {
-            BasicAWSCredentials awsCredentials = new BasicAWSCredentials("AKIAYEEPPMAQHNEU3BV4", "BPKg54cjMzGbGu3aRv6KZQR0Hh/iwO+QLWOAbVmr");
+            BasicAWSCredentials awsCredentials = new BasicAWSCredentials(config.AwsAccessKey, config.AwsSecretKey);
             AmazonLambdaConfig lambdaConfig = new AmazonLambdaConfig() { RegionEndpoint = RegionEndpoint.EUWest1 };
             AmazonLambdaClient lambdaClient = new AmazonLambdaClient(awsCredentials, lambdaConfig);
 
