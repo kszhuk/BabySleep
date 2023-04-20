@@ -13,6 +13,12 @@ namespace BabySleep.Api
 {
     public class Sleeps
     {
+        private IDynamoDbContextHelper dynamoDbContextHelper;
+        public Sleeps(IDynamoDbContextHelper dynamoDbContextHelper)
+        {
+            this.dynamoDbContextHelper = dynamoDbContextHelper;
+        }
+
         /// <summary>
         /// Returns all sleeps for child
         /// </summary>
@@ -130,7 +136,7 @@ namespace BabySleep.Api
         {
             try
             {
-                var contextDb = DynamoDbContextHelper.GetDynamoDbContext();
+                var contextDb = dynamoDbContextHelper.GetDynamoDbContext();
                 var sleepQuery = contextDb.ScanAsync<DdbModels.Sleeps>(new[] {
                     new ScanCondition
                     (
@@ -190,7 +196,7 @@ namespace BabySleep.Api
 
                 ValidateSleepTime(sleepParsed.StartTime, sleepParsed.EndTime, sleepParsed.SleepGuid.ToString(), sleepParsed.ChildGuid.ToString());
 
-                var dbClient = DynamoDbContextHelper.GetAmazonDynamoDBClient();
+                var dbClient = dynamoDbContextHelper.GetAmazonDynamoDBClient();
 
                 var putItemRequest = new PutItemRequest
                 {
@@ -264,7 +270,7 @@ namespace BabySleep.Api
 
                 ValidateSleepTime(sleepParsed.StartTime, sleepParsed.EndTime, sleepParsed.SleepGuid.ToString(), sleepParsed.ChildGuid.ToString());
 
-                var contextDb = DynamoDbContextHelper.GetDynamoDbContext();
+                var contextDb = dynamoDbContextHelper.GetDynamoDbContext();
 
                 var sleepQuery = contextDb.ScanAsync<DdbModels.Sleeps>(new[] {
                     new ScanCondition
@@ -310,7 +316,7 @@ namespace BabySleep.Api
         {
             try
             {
-                var contextDb = DynamoDbContextHelper.GetDynamoDbContext();
+                var contextDb = dynamoDbContextHelper.GetDynamoDbContext();
                 var sleepQuery = contextDb.ScanAsync<DdbModels.Sleeps>(new[] {
                     new ScanCondition
                     (
@@ -338,7 +344,7 @@ namespace BabySleep.Api
 
         private void ValidateSleepTime(DateTime startDate, DateTime endDate, string sleepGuid, string childGuid)
         {
-            var contextDb = DynamoDbContextHelper.GetDynamoDbContext();
+            var contextDb = dynamoDbContextHelper.GetDynamoDbContext();
 
             var sleepQuery = contextDb.QueryAsync<DdbModels.Sleeps>(childGuid.ToUpper());
 
@@ -370,7 +376,7 @@ namespace BabySleep.Api
         {
             var sleeps = new List<Sleep>();
 
-            var contextDb = DynamoDbContextHelper.GetDynamoDbContext();
+            var contextDb = dynamoDbContextHelper.GetDynamoDbContext();
 
             var sleepSearch = contextDb.ScanAsync<DdbModels.Sleeps>(new[] {
                     new ScanCondition

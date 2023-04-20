@@ -4,10 +4,16 @@ using Amazon.DynamoDBv2.DataModel;
 
 namespace BabySleep.Api.Helpers
 {
-    public class DynamoDbContextHelper
+    public class DynamoDbContextHelper : IDynamoDbContextHelper
     {
-        private static DynamoDBContext context;
-        public static DynamoDBContext GetDynamoDbContext()
+        private IConfiguration configuration;
+        public DynamoDbContextHelper(IConfiguration configuration)
+        {
+            this.configuration = configuration;
+        }
+
+        private DynamoDBContext context;
+        public DynamoDBContext GetDynamoDbContext()
         {
             if (context == null)
             {
@@ -19,9 +25,12 @@ namespace BabySleep.Api.Helpers
             return context;
         }
 
-        public static AmazonDynamoDBClient GetAmazonDynamoDBClient()
+        public AmazonDynamoDBClient GetAmazonDynamoDBClient()
         {
-            return new AmazonDynamoDBClient("AKIAYEEPPMAQNU3HK77C", "D5n5+ZGtC6XLTFTHcucujCOMTAwbeWW+dSPti4AI",
+            var accessKey = configuration.GetValue<string>("Aws:AccessKey");
+            var secretKey = configuration.GetValue<string>("Aws:SecretKey");
+
+            return new AmazonDynamoDBClient(accessKey, secretKey,
                     RegionEndpoint.EUWest1);
         }
     }

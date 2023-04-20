@@ -8,6 +8,12 @@ namespace BabySleep.Api
 {
     public class Users
     {
+        private IDynamoDbContextHelper dynamoDbContextHelper;
+        public Users(IDynamoDbContextHelper dynamoDbContextHelper)
+        {
+            this.dynamoDbContextHelper = dynamoDbContextHelper;
+        }
+
         /// <summary>
         /// Returns guid for user
         /// </summary>
@@ -19,7 +25,7 @@ namespace BabySleep.Api
         {
             try
             {
-                var contextDb = DynamoDbContextHelper.GetDynamoDbContext();
+                var contextDb = dynamoDbContextHelper.GetDynamoDbContext();
 
                 var userQuery = contextDb.QueryAsync<DdbModels.User>(email.ToLower());
 

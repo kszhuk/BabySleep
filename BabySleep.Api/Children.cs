@@ -9,6 +9,11 @@ namespace BabySleep.Api
 {
     public class Children
     {
+        private IDynamoDbContextHelper dynamoDbContextHelper;
+        public Children(IDynamoDbContextHelper dynamoDbContextHelper)
+        {
+            this.dynamoDbContextHelper = dynamoDbContextHelper;
+        }
 
         /// <summary>
         /// Returns all children for user
@@ -23,7 +28,7 @@ namespace BabySleep.Api
 
             try
             {
-                var contextDb = DynamoDbContextHelper.GetDynamoDbContext();
+                var contextDb = dynamoDbContextHelper.GetDynamoDbContext();
                 var childQuery = contextDb.QueryAsync<DdbModels.Child>(userGuid.ToUpper());
 
                 var resultChildren = childQuery.GetRemainingAsync().Result;

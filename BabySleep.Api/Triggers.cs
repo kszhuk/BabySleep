@@ -9,6 +9,12 @@ namespace BabySleep.Api
 {
     public class Triggers
     {
+        private IDynamoDbContextHelper dynamoDbContextHelper;
+        public Triggers(IDynamoDbContextHelper dynamoDbContextHelper)
+        {
+            this.dynamoDbContextHelper = dynamoDbContextHelper;
+        }
+
         /// <summary>
         /// Deletes sleep by guid
         /// </summary>
@@ -20,7 +26,7 @@ namespace BabySleep.Api
         {
             try
             {
-                var contextDb = DynamoDbContextHelper.GetDynamoDbContext();
+                var contextDb = dynamoDbContextHelper.GetDynamoDbContext();
 
                 var previousDate = DateTimeHelper.FormatEmptyDateAws(DateTime.Now.AddDays(-7));
 
