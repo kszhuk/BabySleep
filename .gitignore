@@ -343,3 +343,4 @@ healthchecksdb
 appsettings.local.json
 appsettings.local.Development.json
 google-services-local.json
+google-services.json

@@ -11,6 +11,10 @@ using BabySleep.Core;
 using BabySleep.Application.Interfaces;
 using System.Threading;
 using BabySleep.Resources.Resx;
+using Microsoft.Extensions.Configuration;
+using BabySleep.Common.Helpers;
+using BabySleep.Common.Interfaces;
+using Microsoft.Extensions.FileProviders;
 
 namespace BabySleep
 {
@@ -104,9 +108,34 @@ namespace BabySleep
             var externalContainer = new DIContainer();
             var builder = externalContainer.CreateContainerBuilder();
 
+            var config = GetConfig();
+            builder.Register(c => config).As<ICustomerConfig>();
+
             DependencyService.Get<IContainerService>().RegisterAppConfig(builder);
 
             Container = builder.Build();
+        }
+
+        private ICustomerConfig GetConfig()
+        {
+            var config = new ConfigurationBuilder()
+                .AddJsonFile(new EmbeddedFileProvider(typeof(App).Assembly, typeof(App).Namespace),
+                    "appsettings.json", optional: false, reloadOnChange: true)
+                .AddJsonFile(new EmbeddedFileProvider(typeof(App).Assembly, typeof(App).Namespace),
+                    "appsettings.local.json", optional: true, reloadOnChange: true)
+                .Build();
+
+            CustomerConfig customerConfig = new CustomerConfig();
+
+            customerConfig.SmtpEmail = config.GetValue<string>("Smtp:Email");
+            customerConfig.SmtpPassword = config.GetValue<string>("Smtp:Password");
+
+            customerConfig.FirebaseApiKey = config.GetValue<string>("Firebase:ApiKey");
+
+            customerConfig.AwsAccessKey = config.GetValue<string>("Aws:AccessKey");
+            customerConfig.AwsSecretKey = config.GetValue<string>("Aws:SecretKey");
+
+            return customerConfig;
         }
 
         private void InitializeApp()
