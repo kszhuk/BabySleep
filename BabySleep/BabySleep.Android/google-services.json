@@ -3,37 +3,5 @@
     "project_number": "902085279676",
     "project_id": "babysleepapp-d7b8b",
     "storage_bucket": "babysleepapp-d7b8b.appspot.com"
-  },
-  "client": [
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:902085279676:android:d9cbbffcb29a7398c9f5b9",
-        "android_client_info": {
-          "package_name": "com.companyname.babysleep"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "902085279676-ur6bfum2tqsk43e64hd9n8e7ok9nub99.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyD93_x_1DrB7YpWraKhctJOLjPvWK6aNHU"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "902085279676-ur6bfum2tqsk43e64hd9n8e7ok9nub99.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    }
-  ],
-  "configuration_version": "1"
+  }
 }
