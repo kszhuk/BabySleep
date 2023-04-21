@@ -144,6 +144,7 @@
         ],
         "PackageType": "Zip",
         "Handler": "BabySleep.Api::BabySleep.Api.Sleeps_GetSleeps_Generated::GetSleeps",
+        "FunctionName": "GetSleeps",
         "Events": {
           "RootGet": {
             "Type": "HttpApi",
@@ -174,6 +175,7 @@
         ],
         "PackageType": "Zip",
         "Handler": "BabySleep.Api::BabySleep.Api.Sleeps_GetSleepsDates_Generated::GetSleepsDates",
+        "FunctionName": "GetSleepsDates",
         "Events": {
           "RootGet": {
             "Type": "HttpApi",
@@ -204,6 +206,7 @@
         ],
         "PackageType": "Zip",
         "Handler": "BabySleep.Api::BabySleep.Api.Sleeps_GetSleep_Generated::GetSleep",
+        "FunctionName": "GetSleep",
         "Events": {
           "RootGet": {
             "Type": "HttpApi",
@@ -234,6 +237,7 @@
         ],
         "PackageType": "Zip",
         "Handler": "BabySleep.Api::BabySleep.Api.Sleeps_AddSleep_Generated::AddSleep",
+        "FunctionName": "AddSleep",
         "Events": {
           "RootPost": {
             "Type": "HttpApi",
@@ -264,6 +268,7 @@
         ],
         "PackageType": "Zip",
         "Handler": "BabySleep.Api::BabySleep.Api.Sleeps_UpdateSleep_Generated::UpdateSleep",
+        "FunctionName": "UpdateSleep",
         "Events": {
           "RootPut": {
             "Type": "HttpApi",
@@ -294,6 +299,7 @@
         ],
         "PackageType": "Zip",
         "Handler": "BabySleep.Api::BabySleep.Api.Sleeps_DeleteSleep_Generated::DeleteSleep",
+        "FunctionName": "DeleteSleep",
         "Events": {
           "RootDelete": {
             "Type": "HttpApi",
