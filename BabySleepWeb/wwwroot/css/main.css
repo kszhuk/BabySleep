@@ -27,3 +27,11 @@
 .header-blue {
     color: #033c73
 }
+
+.carousel-item img {
+    width: 200px;
+    height: 300px;
+    max-height: 300px;
+    margin: auto;
+    display: block;
+}

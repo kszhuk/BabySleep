@@ -31,7 +31,7 @@ function GetDate(dateControl) {
 }
 
 function ReloadChart() {
-    ShowBusyIndicator();
+    //ShowBusyIndicator();
 
     var startDate = GetDate($('#datepicker1'));
     var endDate = GetDate($('#datepicker2'));
